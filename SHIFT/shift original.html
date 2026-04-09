@@ -1172,21 +1172,6 @@ section{
   flex-shrink: 0;
   margin-top: 3px;
 }
-.ptab-expert {
-  background: var(--accent-1-dim);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--accent-1);
-  border-radius: 8px;
-  padding: 14px 16px;
-  font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.65;
-  margin-top: 20px;
-}
-.ptab-expert strong {
-  color: var(--accent-1);
-  font-weight: 700;
-}
 .ptab-scenario {
   background: var(--bg-secondary);
   border: 1px solid var(--border);
@@ -2102,21 +2087,7 @@ footer{
   </div>
 </div></section>
 
-<!-- ===== PACK DETAIL MODAL ===== -->
-<div class="pack-modal-overlay" id="packModalOverlay">
-  <div class="pack-modal-box" style="position:relative">
-    <button class="pack-modal-close" id="packModalClose">
-      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-    <div class="pack-modal-header" id="packModalHeader">
-      <span class="pack-modal-eyebrow" id="pmEyebrow"></span>
-      <div class="pack-modal-title" id="pmTitle"></div>
-      <div class="pack-modal-subtitle" id="pmSubtitle"></div>
-    </div>
-    <div class="pack-modal-tabs" id="packModalTabs"></div>
-    <div class="pack-modal-body" id="packModalBody"></div>
-  </div>
-</div>
+
 
 <!-- PROCESS -->
 <section id="process" style="background:var(--bg-secondary);transition:background var(--transition-theme)"><div class="container">
@@ -2263,7 +2234,21 @@ footer{
   </div>
 </footer>
 
-
+<!-- ===== PACK DETAIL MODAL ===== -->
+<div class="pack-modal-overlay" id="packModalOverlay">
+  <div class="pack-modal-box" style="position:relative">
+    <button class="pack-modal-close" id="packModalClose">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="pack-modal-header" id="packModalHeader">
+      <span class="pack-modal-eyebrow" id="pmEyebrow"></span>
+      <div class="pack-modal-title" id="pmTitle"></div>
+      <div class="pack-modal-subtitle" id="pmSubtitle"></div>
+    </div>
+    <div class="pack-modal-tabs" id="packModalTabs"></div>
+    <div class="pack-modal-body" id="packModalBody"></div>
+  </div>
+</div>
 
 
 
@@ -2599,7 +2584,6 @@ const PACK_DATA = {
           'Création et configuration experte des réseaux sociaux : Bannières, Bios optimisées, Liens',
           'Bonus SHIFT : Mini-guide stratégique PDF — applications à utiliser, meilleures heures de publication',
         ],
-        expert: 'Paiement en <strong>une seule fois</strong>. Ce pack permet de faire de l\'upsell immédiatement vers le Pack 1.C (Gestion Sociale).',
       },
       {
         id: '1b',
@@ -2612,7 +2596,6 @@ const PACK_DATA = {
           'Option Vidéo : Pack "Snack" (Reels/TikTok 15s) · Pack "Cinematic/Teaser" (vidéo très travaillée)',
           'Livraison des fichiers bruts : MP4, PNG — le client gère la publication',
         ],
-        expert: 'Tu vends de la <strong>production brute</strong>. Périmètre sécurisé, très rentable, délais maîtrisés.',
       },
       {
         id: '1c',
@@ -2625,7 +2608,6 @@ const PACK_DATA = {
           'Calendrier éditorial : création du contenu (Flyers + Vidéos) ET gestion des publications',
           'Analyse des metrics et ajustement de la stratégie chaque mois',
         ],
-        expert: 'Le prix est <strong>dégressif</strong> : plus cher sur 1 mois, moins cher sur 3 ou 6 mois. Cela garantit une visibilité financière pour payer l\'équipe.',
       },
       {
         id: '1d',
@@ -2638,7 +2620,6 @@ const PACK_DATA = {
           'Écoute du besoin + devis sur-mesure construit à partir des ressources A, B ou C',
           'CTA clair : "Vous avez un besoin spécifique ? Réservez votre consultation."',
         ],
-        expert: 'Cet appel est votre <strong>machine de vente</strong>. En écoutant le client, vous créez un devis personnalisé en piochant intelligemment dans vos ressources.',
       },
     ],
   },
@@ -2659,7 +2640,6 @@ const PACK_DATA = {
           'Configuration du nom de domaine et certificat de sécurité SSL',
           'Formulaire de contact basique',
         ],
-        expert: 'Projet <strong>"One-Shot"</strong> — payé une fois. Le Web Designer fait la maquette. Temps de production maîtrisé : 1 à 2 semaines max.',
       },
       {
         id: '2b',
@@ -2673,7 +2653,6 @@ const PACK_DATA = {
           'Génération automatique de documents Google Docs (fiche client, reçu) via Autocrat/Make',
           'Notification automatique au propriétaire à chaque nouvelle entrée',
         ],
-        expert: 'Tu ne vends pas juste l\'installation, tu vends le <strong>suivi du système</strong> — maintenance mensuelle des flux et évolution trimestrielle.',
         scenario: {
           title: 'Scénario concret — École de langue',
           rows: [
@@ -2695,7 +2674,6 @@ const PACK_DATA = {
           'Sauvegardes hebdomadaires du site',
           'Bonus : 1 à 2 heures de petites modifications incluses par mois',
         ],
-        expert: 'Ne <strong>jamais</strong> livrer un site sans proposer ce pack. Si refus, faire signer une décharge. 90% prendront l\'abonnement par sécurité.',
       },
       {
         id: '2d',
@@ -2708,7 +2686,6 @@ const PACK_DATA = {
           'Plateforme de membres / e-learning sur-mesure',
           'Devis personnalisé après appel stratégique — pas de prix public affiché',
         ],
-        expert: 'Ne pas mettre de prix public pour l\'e-commerce. Chaque boutique est différente. Le devis se construit <strong>après l\'appel de découverte</strong>.',
       },
     ],
   },
@@ -2729,7 +2706,6 @@ const PACK_DATA = {
           'Mise en page professionnelle avec images d\'illustration',
           'Nettoyage et sécurisation du blog à chaque publication',
         ],
-        expert: 'C\'est un service de <strong>"secrétariat de luxe"</strong>. Le Web Designer prépare les templates, la Gestionnaire WP injecte le contenu.',
       },
       {
         id: '3b',
@@ -2743,7 +2719,6 @@ const PACK_DATA = {
           'Multimédia : Video Editor et Designer créent visuels et courtes vidéos pour illustrer',
           'Analyse : Rapport mensuel sur les lectures et le classement Google',
         ],
-        expert: 'Pack le plus <strong>haut de gamme</strong> en termes de gestion. Demande une forte coordination entre le SMM (stratégie) et la Gestionnaire WP.',
       },
       {
         id: '3c',
@@ -2756,7 +2731,6 @@ const PACK_DATA = {
           '1 vidéo courte Teaser pour TikTok/Reels (réalisé par le Video Editor)',
           '1 newsletter simple à envoyer aux abonnés du client',
         ],
-        expert: 'C\'est ce qui rend SHIFT <strong>imbattable</strong>. Tu vends une "Machine à Contenu". Le client voit son investissement multiplié par 5 sur toutes ses plateformes.',
       },
       {
         id: '3d',
@@ -2769,7 +2743,6 @@ const PACK_DATA = {
           'Architecture de contenu sur-mesure sur 6 à 12 mois',
           'Devis personnalisé après appel stratégique',
         ],
-        expert: '"Votre projet éditorial dépasse nos packs classiques ? Discutons de votre ligne éditoriale lors d\'une session privée."',
       },
     ],
   },
@@ -2789,7 +2762,6 @@ const PACK_DATA = {
           'Gestion Éditoriale : Publication constante d\'articles et SEO (Niveau 3)',
           'Gestion Sociale : Création de contenu quotidien, vidéos, flyers, modération (Niveau 1)',
         ],
-        expert: 'Au lieu de payer 5 salaires différents, le client paie <strong>un seul contrat SHIFT</strong>. L\'équipe de 5 personnes travaille en synergie totale.',
       },
       {
         id: '4b',
@@ -2802,7 +2774,6 @@ const PACK_DATA = {
           'Création de visuels et vidéos spécifiques à la vente ("Ad Creatives")',
           'Optimisation du budget publicitaire pour maximiser le Retour sur Investissement (ROI)',
         ],
-        expert: 'Facturation de <strong>frais de gestion</strong> (ex : 20% du budget publicitaire) en plus du forfait de base.',
       },
       {
         id: '4c',
@@ -2815,7 +2786,6 @@ const PACK_DATA = {
           'SHIFT baisse ses frais fixes en échange d\'un pourcentage sur les ventes générées',
           'Suivi de performance mensuel avec reporting transparent',
         ],
-        expert: '<strong>Sois très sélectif.</strong> Ne fais cela qu\'avec des entreprises dont tu as analysé les comptes. Si le produit ne plaît pas au marché, l\'équipe travaillera dur pour 0$. Préfère un modèle "Forfait Fixe + Commission".',
       },
       {
         id: '4d',
@@ -2828,7 +2798,6 @@ const PACK_DATA = {
           'Roadmap digitale complète : web, contenu, social, ads, automatisation',
           'Suivi mensuel et ajustements stratégiques en temps réel',
         ],
-        expert: 'Le niveau ultime de la collaboration. SHIFT ne prend que les projets dans lesquels il croit vraiment.',
       },
     ],
   },
@@ -2893,8 +2862,6 @@ function buildPackModal(levelId) {
           </div>`).join('')}
       </div>`;
     }
-
-    html += `<div class="ptab-expert">💡 <strong>Point expert :</strong> ${tab.expert}</div>`;
 
     html += `
       <div class="pack-modal-cta">
