@@ -1,0 +1,227 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans)}
+.page{max-width:860px;margin:0 auto;padding:2.5rem 1.5rem}
+.eyebrow{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:0.75rem}
+.hero-title{font-size:2rem;font-weight:500;color:var(--color-text-primary);line-height:1.25;margin-bottom:1.25rem}
+.hero-title span{color:#1D9E75}
+.hero-intro{font-size:1rem;line-height:1.75;color:var(--color-text-secondary);max-width:640px;margin-bottom:2.5rem}
+.level-badge{display:inline-flex;align-items:center;gap:8px;background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:6px 14px;font-size:12px;color:var(--color-text-secondary);margin-bottom:2rem}
+.divider{height:0.5px;background:var(--color-border-tertiary);margin:2.5rem 0}
+.pack-grid{display:flex;flex-direction:column;gap:1.5rem}
+.pack-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.5rem 1.75rem;position:relative}
+.pack-card.featured{border:2px solid #1D9E75}
+.pack-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.25rem;flex-wrap:wrap}
+.pack-title-block{}
+.pack-code{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:4px}
+.pack-name{font-size:1.15rem;font-weight:500;color:var(--color-text-primary)}
+.pack-sub{font-size:0.875rem;color:var(--color-text-secondary);margin-top:2px}
+.badge-mrr{background:#E1F5EE;color:#0F6E56;font-size:11px;padding:4px 10px;border-radius:var(--border-radius-md);font-weight:500;white-space:nowrap}
+.badge-onetime{background:var(--color-background-secondary);color:var(--color-text-secondary);font-size:11px;padding:4px 10px;border-radius:var(--border-radius-md);font-weight:500;white-space:nowrap}
+.pack-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-bottom:1.25rem}
+@media(max-width:600px){.pack-row{grid-template-columns:1fr}}
+.pack-cell{}
+.cell-label{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:6px}
+.cell-label.prob{color:#993C1D}
+.cell-label.sol{color:#0F6E56}
+.cell-label.res{color:#185FA5}
+.cell-text{font-size:0.9rem;line-height:1.6;color:var(--color-text-primary)}
+.deliverables{margin-top:1.25rem;padding-top:1.25rem;border-top:0.5px solid var(--color-border-tertiary)}
+.deliverables-title{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:10px}
+.deliverable-list{display:flex;flex-direction:column;gap:6px}
+.deliverable-item{display:flex;align-items:flex-start;gap:8px;font-size:0.875rem;color:var(--color-text-primary);line-height:1.5}
+.dot{width:5px;height:5px;border-radius:50%;background:#1D9E75;margin-top:7px;flex-shrink:0}
+.sub-packs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:1.25rem}
+@media(max-width:500px){.sub-packs{grid-template-columns:1fr}}
+.sub-pack{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:1rem}
+.sub-pack-name{font-size:0.875rem;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+.sub-pack-desc{font-size:0.8rem;color:var(--color-text-secondary);line-height:1.5}
+.cible-block{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:1.5rem 1.75rem;margin:2.5rem 0}
+.cible-title{font-size:0.9rem;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1rem}
+.cible-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0.75rem}
+.cible-item{display:flex;align-items:center;gap:8px;font-size:0.875rem;color:var(--color-text-primary)}
+.cible-dot{width:6px;height:6px;border-radius:50%;background:#1D9E75;flex-shrink:0}
+.cta-block{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:2rem 1.75rem;text-align:center}
+.cta-title{font-size:1.2rem;font-weight:500;color:var(--color-text-primary);margin-bottom:0.5rem}
+.cta-sub{font-size:0.9rem;color:var(--color-text-secondary);margin-bottom:1.5rem;line-height:1.6}
+.cta-btn{display:inline-block;background:#1D9E75;color:#fff;font-size:0.9rem;font-weight:500;padding:12px 28px;border-radius:var(--border-radius-md);text-decoration:none;cursor:pointer;border:none}
+.cta-btn:hover{background:#0F6E56}
+.cta-secondary{margin-top:0.75rem;font-size:0.8rem;color:var(--color-text-secondary)}
+.accent{color:#1D9E75}
+</style>
+
+<div class="page">
+
+<div class="eyebrow">Niveau 01 — Les services SHIFT</div>
+<h1 class="hero-title">Votre image parle avant vous.<br><span>Faites qu'elle dise la bonne chose.</span></h1>
+<p class="hero-intro">Vous êtes compétent dans votre domaine. Mais si votre présence visuelle ne reflète pas ce niveau d'excellence, vous perdez des clients avant même d'avoir ouvert la bouche. Le Studio SHIFT vous fournit les munitions digitales pour que votre image vende à votre place — dès le premier regard.</p>
+
+<div class="divider"></div>
+
+<div class="pack-grid">
+
+  <!-- PACK 1.A -->
+  <div class="pack-card">
+    <div class="pack-header">
+      <div class="pack-title-block">
+        <div class="pack-code">Pack 1.A</div>
+        <div class="pack-name">Fondations & Identité</div>
+        <div class="pack-sub">Le Kit de Démarrage — Paiement unique</div>
+      </div>
+      <div class="badge-onetime">Une fois</div>
+    </div>
+    <div class="pack-row">
+      <div class="pack-cell">
+        <div class="cell-label prob">Le problème</div>
+        <div class="cell-text">Vous existez, mais en ligne vous êtes invisible — ou pire, vous semblez peu sérieux. Un logo fait sur Canva en 10 minutes, des réseaux désorganisés, des bios vides. Ça coûte des contrats chaque jour.</div>
+      </div>
+      <div class="pack-cell">
+        <div class="cell-label sol">La solution SHIFT</div>
+        <div class="cell-text">Nous construisons votre socle visuel de A à Z : logo, palette de couleurs, typographie, puis nous configurons et habillons chaque réseau social avec des bannières professionnelles et des bios optimisées. En bonus, nous vous remettons un Guide Stratégique SHIFT — les outils, les métriques, les meilleures heures pour poster.</div>
+      </div>
+      <div class="pack-cell">
+        <div class="cell-label res">Le résultat</div>
+        <div class="cell-text">Une image unifiée, cohérente et mémorable sur tous vos canaux. Vous arrivez en réunion, en DM ou en présentation avec l'assurance d'une marque qui inspire confiance immédiatement.</div>
+      </div>
+    </div>
+    <div class="deliverables">
+      <div class="deliverables-title">Ce que vous recevez</div>
+      <div class="deliverable-list">
+        <div class="deliverable-item"><div class="dot"></div>Identité numérique complète (logo de base, palette, typographie)</div>
+        <div class="deliverable-item"><div class="dot"></div>Configuration experte de vos réseaux sociaux (bannières, bios optimisées, liens)</div>
+        <div class="deliverable-item"><div class="dot"></div>Guide de démarrage SHIFT (PDF) — applications, métriques, stratégie de publication</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PACK 1.B -->
+  <div class="pack-card">
+    <div class="pack-header">
+      <div class="pack-title-block">
+        <div class="pack-code">Pack 1.B</div>
+        <div class="pack-name">Les Munitions</div>
+        <div class="pack-sub">Packs Visuels & Vidéo au volume</div>
+      </div>
+      <div class="badge-onetime">À la commande</div>
+    </div>
+    <div class="pack-row">
+      <div class="pack-cell">
+        <div class="cell-label prob">Le problème</div>
+        <div class="cell-text">Vous gérez vos réseaux, vous avez les idées — mais créer des visuels de qualité professionnelle prend des heures que vous n'avez pas. Résultat : vous postez moins, votre audience s'essouffle, et vos concurrents avancent.</div>
+      </div>
+      <div class="pack-cell">
+        <div class="cell-label sol">La solution SHIFT</div>
+        <div class="cell-text">Vous choisissez un forfait selon votre besoin d'impact. Nous produisons les assets — flyers, affiches, Reels, vidéos cinématiques — et nous vous livrons les fichiers bruts (PNG, MP4) prêts à l'emploi. Vous publiez. Nous produisons.</div>
+      </div>
+      <div class="pack-cell">
+        <div class="cell-label res">Le résultat</div>
+        <div class="cell-text">Un stock de contenus visuels professionnels livré dans les délais. Votre calendrier de publication ne tombe plus à sec, votre audience perçoit une marque sérieuse et consistante.</div>
+      </div>
+    </div>
+    <div class="sub-packs">
+      <div>
+        <div class="sub-pack-name" style="font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:8px">Option Visuels</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="sub-pack"><div class="sub-pack-name">Pack Basic</div><div class="sub-pack-desc">5 flyers professionnels — idéal pour une campagne ciblée.</div></div>
+          <div class="sub-pack"><div class="sub-pack-name">Pack Pro</div><div class="sub-pack-desc">10 flyers + déclinaisons — pour une présence continue sur le mois.</div></div>
+          <div class="sub-pack"><div class="sub-pack-name">Pack Événementiel</div><div class="sub-pack-desc">Affiche principale + déclinaisons web et formats stories.</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="sub-pack-name" style="font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:8px">Option Vidéo</div>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <div class="sub-pack"><div class="sub-pack-name">Pack Snack</div><div class="sub-pack-desc">Vidéos courtes 15s type Reels / TikTok — volume et fréquence.</div></div>
+          <div class="sub-pack"><div class="sub-pack-name">Pack Cinematic / Teaser</div><div class="sub-pack-desc">Vidéo soignée, travaillée frame par frame — pour marquer les esprits.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PACK 1.C -->
+  <div class="pack-card featured">
+    <div class="pack-header">
+      <div class="pack-title-block">
+        <div class="pack-code">Pack 1.C</div>
+        <div class="pack-name">Le Pilote</div>
+        <div class="pack-sub">Gestion complète de vos réseaux sociaux — mensuel</div>
+      </div>
+      <div class="badge-mrr">Revenu récurrent</div>
+    </div>
+    <div class="pack-row">
+      <div class="pack-cell">
+        <div class="cell-label prob">Le problème</div>
+        <div class="cell-text">Vous savez que vous devriez poster régulièrement. Vous savez que les metrics existent. Mais entre votre activité principale, votre vie, et la dizaine d'autres priorités — les réseaux passent toujours en dernier. Et ça se voit.</div>
+      </div>
+      <div class="pack-cell">
+        <div class="cell-label sol">La solution SHIFT</div>
+        <div class="cell-text">Nous devenons votre équipe éditoriale. Calendrier éditorial, création des visuels et vidéos, publication sur tous vos canaux, analyse des métriques chaque mois et ajustement de la stratégie. Vous validez, nous exécutons. Si vous partez de zéro, l'identité visuelle (Pack 1.A) est intégrée à tarif préférentiel sur engagement.</div>
+      </div>
+      <div class="pack-cell">
+        <div class="cell-label res">Le résultat</div>
+        <div class="cell-text">Vos réseaux travaillent en permanence, même quand vous dormez. Votre audience grandit. Vos prospects arrivent déjà convaincus. Vous récupérez le seul bien que personne ne peut vous vendre : votre temps.</div>
+      </div>
+    </div>
+    <div class="deliverables">
+      <div class="deliverables-title">Ce que vous recevez chaque mois</div>
+      <div class="deliverable-list">
+        <div class="deliverable-item"><div class="dot"></div>Calendrier éditorial mensuel — thèmes, formats, fréquences définies avec vous</div>
+        <div class="deliverable-item"><div class="dot"></div>Création complète du contenu (flyers + vidéos) et publication sur tous vos canaux</div>
+        <div class="deliverable-item"><div class="dot"></div>Rapport mensuel des métriques + recommandations stratégiques pour le mois suivant</div>
+        <div class="deliverable-item"><div class="dot"></div>Tarification dégressive : engagement 3 ou 6 mois = coût mensuel réduit</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PACK 1.D -->
+  <div class="pack-card">
+    <div class="pack-header">
+      <div class="pack-title-block">
+        <div class="pack-code">Pack 1.D</div>
+        <div class="pack-name">Audit & Plan Personnalisé</div>
+        <div class="pack-sub">Pour les projets atypiques ou les indécis stratégiques</div>
+      </div>
+      <div class="badge-onetime">Sur devis</div>
+    </div>
+    <div class="pack-row">
+      <div class="pack-cell">
+        <div class="cell-label prob">Le problème</div>
+        <div class="cell-text">Votre projet ne rentre dans aucune case. Vous avez besoin de contenu, d'identité, peut-être de gestion — mais vous ne savez pas dans quel ordre ni en quelle quantité. Choisir le mauvais pack, c'est dépenser sans résultat.</div>
+      </div>
+      <div class="pack-cell">
+        <div class="cell-label sol">La solution SHIFT</div>
+        <div class="cell-text">Une session stratégique avec notre équipe (Zoom, Meet ou en physique). Nous écoutons votre situation, analysons ce qui freine votre croissance, et construisons un plan sur mesure en combinant intelligemment les ressources A, B et C selon vos priorités et votre budget.</div>
+      </div>
+      <div class="pack-cell">
+        <div class="cell-label res">Le résultat</div>
+        <div class="cell-text">Un devis clair, une feuille de route précise, et la certitude d'investir exactement là où ça produit un impact mesurable. Vous repartez avec un plan — pas une brochure.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="divider"></div>
+
+<!-- CIBLE IDEALE -->
+<div class="cible-block">
+  <div class="cible-title">Ce niveau est fait pour vous si...</div>
+  <div class="cible-grid">
+    <div class="cible-item"><div class="cible-dot"></div>Vous lancez votre projet et partez de zéro</div>
+    <div class="cible-item"><div class="cible-dot"></div>Votre image actuelle ne reflète pas votre valeur réelle</div>
+    <div class="cible-item"><div class="cible-dot"></div>Vous créez du contenu mais manquez de régularité</div>
+    <div class="cible-item"><div class="cible-dot"></div>Vous êtes créateur, indépendant, artisan ou startup</div>
+    <div class="cible-item"><div class="cible-dot"></div>Vous avez les idées — mais pas le temps ni les outils</div>
+    <div class="cible-item"><div class="cible-dot"></div>Vous voulez une crédibilité digitale immédiate</div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-block">
+  <div class="cta-title">Votre image a trop de valeur pour être improvisée.</div>
+  <div class="cta-sub">Choisissez le pack qui correspond à votre étape, ou parlez-nous de votre projet.<br>En 30 minutes, nous saurons exactement ce dont vous avez besoin.</div>
+  <button class="cta-btn" onclick="sendPrompt('Je veux en savoir plus sur les packs du Niveau 1 de SHIFT et obtenir un devis.')">Démarrer avec SHIFT →</button>
+  <div class="cta-secondary">Ou réservez votre consultation stratégique gratuite via le Pack 1.D</div>
+</div>
+
+</div>

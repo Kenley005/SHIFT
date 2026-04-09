@@ -1,0 +1,248 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.page{max-width:860px;margin:0 auto;padding:2.5rem 1.5rem;font-family:var(--font-sans)}
+.eyebrow{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:0.75rem}
+.hero-title{font-size:2rem;font-weight:500;color:var(--color-text-primary);line-height:1.25;margin-bottom:1.25rem}
+.hero-title span{color:#185FA5}
+.hero-intro{font-size:1rem;line-height:1.75;color:var(--color-text-secondary);max-width:640px;margin-bottom:2rem}
+.scenario-block{background:var(--color-background-secondary);border-left:3px solid #185FA5;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;padding:1rem 1.25rem;margin-bottom:2.5rem}
+.scenario-label{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#185FA5;margin-bottom:6px}
+.scenario-flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.scenario-step{font-size:0.825rem;color:var(--color-text-primary);background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:5px 12px}
+.scenario-arrow{font-size:14px;color:var(--color-text-secondary)}
+.divider{height:0.5px;background:var(--color-border-tertiary);margin:2.5rem 0}
+.pack-grid{display:flex;flex-direction:column;gap:1.5rem}
+.pack-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.5rem 1.75rem}
+.pack-card.featured{border:2px solid #185FA5}
+.pack-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.25rem;flex-wrap:wrap}
+.pack-code{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:4px}
+.pack-name{font-size:1.15rem;font-weight:500;color:var(--color-text-primary)}
+.pack-sub{font-size:0.875rem;color:var(--color-text-secondary);margin-top:2px}
+.badge-mrr{background:#E6F1FB;color:#185FA5;font-size:11px;padding:4px 10px;border-radius:var(--border-radius-md);font-weight:500;white-space:nowrap}
+.badge-shot{background:var(--color-background-secondary);color:var(--color-text-secondary);font-size:11px;padding:4px 10px;border-radius:var(--border-radius-md);font-weight:500;white-space:nowrap}
+.badge-devis{background:#FAEEDA;color:#854F0B;font-size:11px;padding:4px 10px;border-radius:var(--border-radius-md);font-weight:500;white-space:nowrap}
+.pack-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-bottom:1.25rem}
+@media(max-width:600px){.pack-row{grid-template-columns:1fr}}
+.cell-label{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px}
+.cell-label.prob{color:#993C1D}
+.cell-label.sol{color:#0F6E56}
+.cell-label.res{color:#185FA5}
+.cell-text{font-size:0.9rem;line-height:1.65;color:var(--color-text-primary)}
+.deliverables{margin-top:1.25rem;padding-top:1.25rem;border-top:0.5px solid var(--color-border-tertiary)}
+.deliverables-title{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:10px}
+.del-list{display:flex;flex-direction:column;gap:6px}
+.del-item{display:flex;align-items:flex-start;gap:8px;font-size:0.875rem;color:var(--color-text-primary);line-height:1.5}
+.dot{width:5px;height:5px;border-radius:50%;background:#185FA5;margin-top:7px;flex-shrink:0}
+.dot-amber{background:#BA7517}
+.mec-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0.75rem;margin-top:1.25rem}
+@media(max-width:560px){.mec-grid{grid-template-columns:1fr}}
+.mec-step{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:1rem;position:relative}
+.mec-num{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#185FA5;margin-bottom:6px}
+.mec-title{font-size:0.875rem;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+.mec-desc{font-size:0.8rem;color:var(--color-text-secondary);line-height:1.5}
+.alert-block{display:flex;align-items:flex-start;gap:10px;background:#FAEEDA;border-radius:var(--border-radius-md);padding:1rem 1.25rem;margin-top:1.25rem}
+.alert-icon{font-size:14px;flex-shrink:0;margin-top:1px}
+.alert-text{font-size:0.825rem;color:#633806;line-height:1.55}
+.cible-block{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:1.5rem 1.75rem;margin:2.5rem 0}
+.cible-title{font-size:0.9rem;font-weight:500;color:var(--color-text-secondary);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:1rem}
+.cible-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:0.75rem}
+.cible-item{display:flex;align-items:center;gap:8px;font-size:0.875rem;color:var(--color-text-primary)}
+.cible-dot{width:6px;height:6px;border-radius:50%;background:#185FA5;flex-shrink:0}
+.cta-block{border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:2rem 1.75rem;text-align:center}
+.cta-title{font-size:1.2rem;font-weight:500;color:var(--color-text-primary);margin-bottom:0.5rem}
+.cta-sub{font-size:0.9rem;color:var(--color-text-secondary);margin-bottom:1.5rem;line-height:1.6}
+.cta-btn{display:inline-block;background:#185FA5;color:#fff;font-size:0.9rem;font-weight:500;padding:12px 28px;border-radius:var(--border-radius-md);border:none;cursor:pointer}
+.cta-btn:hover{background:#0C447C}
+.cta-secondary{margin-top:0.75rem;font-size:0.8rem;color:var(--color-text-secondary)}
+</style>
+
+<div class="page">
+
+<div class="eyebrow">Niveau 02 — Les services SHIFT</div>
+<h1 class="hero-title">Votre site ne dort jamais.<br><span>Il travaille. Il collecte. Il livre.</span></h1>
+<p class="hero-intro">Un site vitrine, c'est bien. Un site qui remplace une secrétaire, classe vos clients automatiquement et génère des documents à votre place — c'est ce que SHIFT construit. L'Infrastructure, c'est la différence entre une présence digitale et un outil de travail qui produit du chiffre d'affaires pendant que vous dormez.</p>
+
+<div class="scenario-block">
+  <div class="scenario-label">Scénario réel — École de langue avec Pack 2.B</div>
+  <div class="scenario-flow">
+    <div class="scenario-step">Parent remplit le formulaire</div>
+    <div class="scenario-arrow">→</div>
+    <div class="scenario-step">Données enregistrées dans Google Sheets</div>
+    <div class="scenario-arrow">→</div>
+    <div class="scenario-step">Contrat généré automatiquement</div>
+    <div class="scenario-arrow">→</div>
+    <div class="scenario-step">Directeur reçoit une notification</div>
+    <div class="scenario-arrow">→</div>
+    <div class="scenario-step">10h gagnées par semaine</div>
+  </div>
+</div>
+
+<div class="pack-grid">
+
+  <!-- PACK 2.A -->
+  <div class="pack-card">
+    <div class="pack-header">
+      <div>
+        <div class="pack-code">Pack 2.A</div>
+        <div class="pack-name">La Vitrine Pro</div>
+        <div class="pack-sub">Le site essentiel — paiement unique</div>
+      </div>
+      <div class="badge-shot">One-shot</div>
+    </div>
+    <div class="pack-row">
+      <div>
+        <div class="cell-label prob">Le problème</div>
+        <div class="cell-text">Vos prospects vous cherchent sur Google et ne trouvent rien — ou pire, tombent sur une page Facebook à l'abandon ou un numéro WhatsApp. Sans site professionnel, vous n'existez pas aux yeux de la majorité de vos clients potentiels.</div>
+      </div>
+      <div>
+        <div class="cell-label sol">La solution SHIFT</div>
+        <div class="cell-text">Nous concevons un site de 1 à 5 pages optimisé pour le référencement Google et parfait sur mobile. Accueil, À Propos, Services, Galerie, Contact — chaque page a un rôle précis pour convertir un visiteur en prospect. Domaine, SSL, formulaire de contact : tout est configuré et livré.</div>
+      </div>
+      <div>
+        <div class="cell-label res">Le résultat</div>
+        <div class="cell-text">En 1 à 2 semaines, vous avez une adresse professionnelle sur le web. Vos clients vous trouvent, vous font confiance, et vous contactent directement — sans passer par un intermédiaire.</div>
+      </div>
+    </div>
+    <div class="deliverables">
+      <div class="deliverables-title">Ce que vous recevez</div>
+      <div class="del-list">
+        <div class="del-item"><div class="dot"></div>Site 1 à 5 pages — design Mobile-First et optimisé SEO</div>
+        <div class="del-item"><div class="dot"></div>Configuration du nom de domaine + certificat de sécurité SSL</div>
+        <div class="del-item"><div class="dot"></div>Formulaire de contact intégré — les demandes arrivent directement dans votre boîte mail</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PACK 2.B -->
+  <div class="pack-card featured">
+    <div class="pack-header">
+      <div>
+        <div class="pack-code">Pack 2.B</div>
+        <div class="pack-name">L'Infrastructure Intelligente</div>
+        <div class="pack-sub">Site + Automatisation — le cœur de l'offre SHIFT</div>
+      </div>
+      <div class="badge-mrr">Installation + Suivi mensuel</div>
+    </div>
+    <div class="pack-row">
+      <div>
+        <div class="cell-label prob">Le problème</div>
+        <div class="cell-text">Vous perdez des heures chaque semaine à recopier des informations, à répondre aux mêmes questions, à relancer manuellement des clients. Votre système actuel est une chaîne humaine — fragile, lente, et qui ne s'arrête jamais.</div>
+      </div>
+      <div>
+        <div class="cell-label sol">La solution SHIFT</div>
+        <div class="cell-text">Nous construisons un écosystème automatisé sur votre site : les formulaires intelligents capturent les données clients, Google Sheets les centralise en temps réel, et des outils d'automatisation génèrent vos documents (fiches, reçus, contrats) automatiquement. Votre site devient un assistant administratif disponible 24h/24.</div>
+      </div>
+      <div>
+        <div class="cell-label res">Le résultat</div>
+        <div class="cell-text">Zéro saisie manuelle. Zéro donnée perdue. Chaque nouveau contact est automatiquement rangé, traité et documenté. Vous avez l'image d'une grande entreprise structurée — sans recruter un seul assistant.</div>
+      </div>
+    </div>
+    <div class="deliverables">
+      <div class="deliverables-title">Le mécanisme technique installé par SHIFT</div>
+      <div class="mec-grid">
+        <div class="mec-step">
+          <div class="mec-num">Étape 1 — Capture</div>
+          <div class="mec-title">Formulaire intelligent</div>
+          <div class="mec-desc">Google Forms personnalisé ou formulaire WordPress intégré directement à votre site.</div>
+        </div>
+        <div class="mec-step">
+          <div class="mec-num">Étape 2 — Stockage</div>
+          <div class="mec-title">Base de données automatique</div>
+          <div class="mec-desc">Chaque réponse alimente un Google Sheets en temps réel. Chaque ligne = un client, accessible depuis votre téléphone.</div>
+        </div>
+        <div class="mec-step">
+          <div class="mec-num">Étape 3 — Rendu</div>
+          <div class="mec-title">Documents générés</div>
+          <div class="mec-desc">Via Autocrat ou Zapier/Make : fiche client, reçu ou contrat généré en Google Docs dès la soumission du formulaire.</div>
+        </div>
+      </div>
+      <div class="deliverables-title" style="margin-top:1.25rem">Suivi mensuel inclus</div>
+      <div class="del-list">
+        <div class="del-item"><div class="dot"></div>Vérification mensuelle du bon fonctionnement de toutes les automatisations</div>
+        <div class="del-item"><div class="dot"></div>Évolution trimestrielle : nouveau formulaire ou nouveau type de rapport selon vos besoins</div>
+        <div class="del-item"><div class="dot"></div>Sécurisation et sauvegarde de vos données</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PACK 2.C -->
+  <div class="pack-card">
+    <div class="pack-header">
+      <div>
+        <div class="pack-code">Pack 2.C</div>
+        <div class="pack-name">Le Bouclier</div>
+        <div class="pack-sub">Maintenance, sécurité & hébergement — mensuel ou annuel</div>
+      </div>
+      <div class="badge-mrr">Revenu récurrent</div>
+    </div>
+    <div class="pack-row">
+      <div>
+        <div class="cell-label prob">Le problème</div>
+        <div class="cell-text">Un site WordPress non maintenu est une cible. En quelques mois sans mise à jour, les plugins deviennent des portes ouvertes pour les pirates. Votre site disparaît de Google, vos données sont exposées — et vous ne le savez même pas avant qu'il soit trop tard.</div>
+      </div>
+      <div>
+        <div class="cell-label sol">La solution SHIFT</div>
+        <div class="cell-text">Nous prenons en charge l'hébergement, les mises à jour mensuelles de WordPress et de ses plugins, les sauvegardes hebdomadaires, et jusqu'à 2 heures de petites modifications par mois. Votre site reste rapide, sécurisé et à jour — en permanence, sans que vous ayez à y penser.</div>
+      </div>
+      <div>
+        <div class="cell-label res">Le résultat</div>
+        <div class="cell-text">Votre investissement initial (Pack 2.A ou 2.B) est protégé sur le long terme. Aucune mauvaise surprise, aucune interruption de service. Et si vous avez besoin d'une modification rapide, elle est incluse — pas de facture surprise.</div>
+      </div>
+    </div>
+    <div class="alert-block">
+      <div class="alert-icon">⚠</div>
+      <div class="alert-text">Tout site livré par SHIFT sans souscription au Bouclier nécessite la signature d'une décharge de responsabilité. En cas de piratage ou de panne, SHIFT ne pourra pas être tenu responsable. Nous vous recommandons fortement cet abonnement — c'est votre assurance digitale.</div>
+    </div>
+  </div>
+
+  <!-- PACK 2.D -->
+  <div class="pack-card">
+    <div class="pack-header">
+      <div>
+        <div class="pack-code">Pack 2.D</div>
+        <div class="pack-name">Architecture Sur-Mesure</div>
+        <div class="pack-sub">E-commerce, plateformes complexes & projets spéciaux</div>
+      </div>
+      <div class="badge-devis">Sur devis</div>
+    </div>
+    <div class="pack-row">
+      <div>
+        <div class="cell-label prob">Le problème</div>
+        <div class="cell-text">Vous voulez vendre en ligne, gérer des abonnements, ou construire une plateforme e-learning. Les packs standards ne couvrent pas votre besoin — et chaque erreur de conception à ce stade coûte des mois de refonte.</div>
+      </div>
+      <div>
+        <div class="cell-label sol">La solution SHIFT</div>
+        <div class="cell-text">Notre architecte web analyse votre projet en détail lors d'un appel dédié. Boutique WooCommerce, espace membres, plateforme de cours en ligne — nous construisons l'architecture adaptée à votre modèle économique, pas un template générique.</div>
+      </div>
+      <div>
+        <div class="cell-label res">Le résultat</div>
+        <div class="cell-text">Une plateforme construite pour durer et pour vendre. Un devis clair, sans surprise, avec un périmètre précis et des délais définis. Vous investissez dans un actif numérique — pas dans une dépense.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="divider"></div>
+
+<div class="cible-block">
+  <div class="cible-title">Ce niveau est fait pour vous si...</div>
+  <div class="cible-grid">
+    <div class="cible-item"><div class="cible-dot"></div>Vous n'existez pas encore sur Google</div>
+    <div class="cible-item"><div class="cible-dot"></div>Vous perdez du temps sur des tâches manuelles répétitives</div>
+    <div class="cible-item"><div class="cible-dot"></div>Vous avez un site mais personne ne s'en occupe</div>
+    <div class="cible-item"><div class="cible-dot"></div>Vous gérez un cabinet, une clinique, une école</div>
+    <div class="cible-item"><div class="cible-dot"></div>Vous voulez un outil qui travaille même quand vous êtes absent</div>
+    <div class="cible-item"><div class="cible-dot"></div>Vous cherchez à digitaliser une activité physique existante</div>
+  </div>
+</div>
+
+<div class="cta-block">
+  <div class="cta-title">Votre prochain employé ne prend pas de congés.</div>
+  <div class="cta-sub">Un site bien construit travaille 24h/24, 7j/7, sans pause déjeuner.<br>Parlons de ce que nous pouvons automatiser dans votre activité — dès cette semaine.</div>
+  <button class="cta-btn" onclick="sendPrompt('Je veux en savoir plus sur l\'Infrastructure SHIFT et obtenir un devis pour le Niveau 2.')">Construire mon infrastructure →</button>
+  <div class="cta-secondary">Ou réservez votre consultation avec notre architecte web via le Pack 2.D</div>
+</div>
+
+</div>
