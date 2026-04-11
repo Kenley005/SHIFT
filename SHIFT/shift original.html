@@ -1823,6 +1823,571 @@ footer{
 ::-webkit-scrollbar-thumb:hover{
     background:var(--accent-1);
 }
+
+
+/* ===== INTÉGRATION NIVEAUX DÉTAILLÉS ===== */
+.pm-content {
+  --font-sans: 'DM Sans', sans-serif;
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-background-primary: var(--bg-card);
+  --color-background-secondary: var(--bg-secondary);
+  --color-border-tertiary: var(--border);
+  --color-border-secondary: var(--border-hover);
+  --border-radius-lg: 12px;
+  --border-radius-md: 8px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* Structure générale de la page niveau */
+.pm-content .page { padding: 0; max-width: 100%; }
+.pm-content .eyebrow {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px; letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px; display: block;
+}
+.pm-content .hero-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(20px, 2.8vw, 30px);
+  font-weight: 800; line-height: 1.2;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+.pm-content .hero-intro {
+  font-size: 14px; line-height: 1.75;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+.pm-content .divider {
+  height: 1px;
+  background: var(--border);
+  margin: 24px 0;
+}
+
+/* Scenario flow (N2/N3/N4) */
+.pm-content .scenario-block {
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 24px;
+}
+.pm-content[data-level="1"] .scenario-block { background: rgba(29,158,117,.08); border-left: 3px solid #1D9E75; }
+.pm-content[data-level="2"] .scenario-block { background: rgba(24,95,165,.08); border-left: 3px solid #185FA5; }
+.pm-content[data-level="3"] .scenario-block { background: rgba(83,74,183,.08); border-left: 3px solid #534AB7; }
+.pm-content[data-level="4"] .scenario-block { background: rgba(29,158,117,.08); border-left: 3px solid #1D9E75; }
+.pm-content .scenario-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.pm-content[data-level="1"] .scenario-label { color: #1D9E75; }
+.pm-content[data-level="2"] .scenario-label { color: #185FA5; }
+.pm-content[data-level="3"] .scenario-label { color: #534AB7; }
+.pm-content[data-level="4"] .scenario-label { color: #1D9E75; }
+.pm-content .scenario-flow {
+  display: flex; align-items: center;
+  gap: 8px; flex-wrap: wrap;
+}
+.pm-content .scenario-step {
+  font-size: 12px;
+  color: var(--text-primary);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px; padding: 5px 11px;
+}
+.pm-content .scenario-arrow {
+  font-size: 13px; color: var(--text-muted);
+}
+
+/* Pack grid */
+.pm-content .pack-grid {
+  display: flex; flex-direction: column; gap: 16px;
+}
+.pm-content .pack-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px 24px;
+  transition: border-color .2s;
+}
+.pm-content .pack-card:hover { border-color: var(--border-hover); }
+.pm-content[data-level="1"] .pack-card.featured { border: 2px solid #1D9E75; }
+.pm-content[data-level="2"] .pack-card.featured { border: 2px solid #185FA5; }
+.pm-content[data-level="3"] .pack-card.featured { border: 2px solid #534AB7; }
+.pm-content[data-level="4"] .pack-card.featured { border: 2px solid #1D9E75; }
+
+.pm-content .pack-header {
+  display: flex; align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px; margin-bottom: 16px; flex-wrap: wrap;
+}
+.pm-content .pack-code {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .15em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 4px;
+}
+.pm-content .pack-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 17px; font-weight: 800;
+  color: var(--text-primary);
+}
+.pm-content .pack-sub {
+  font-size: 12px; color: var(--text-secondary); margin-top: 2px;
+}
+
+/* Badges */
+.pm-content .badge-mrr,
+.pm-content .badge-onetime,
+.pm-content .badge-shot,
+.pm-content .badge-devis,
+.pm-content .badge-select,
+.pm-content .badge-flagship {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 999px;
+  white-space: nowrap; flex-shrink: 0;
+}
+.pm-content .badge-mrr    { background: rgba(29,158,117,.15); color: #1D9E75; }
+.pm-content .badge-onetime { background: var(--accent-1-dim); color: var(--accent-1); }
+.pm-content .badge-shot   { background: var(--bg-secondary); color: var(--text-muted); }
+.pm-content .badge-devis  { background: rgba(186,117,23,.15); color: #BA7517; }
+.pm-content .badge-select { background: rgba(114,36,62,.15); color: #72243E; }
+.pm-content .badge-flagship { background: rgba(83,74,183,.15); color: #534AB7; }
+
+/* 3 colonnes Problème / Solution / Résultat */
+.pm-content .pack-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 14px; margin-bottom: 16px;
+}
+@media(max-width:640px){ .pm-content .pack-row { grid-template-columns: 1fr; } }
+
+.pm-content .cell-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.pm-content .cell-label.prob { color: #993C1D; }
+.pm-content .cell-label.sol  { color: #0F6E56; }
+.pm-content .cell-label.res  { color: #185FA5; }
+.pm-content .cell-text {
+  font-size: 13px; line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+/* Livrables */
+.pm-content .deliverables,
+.pm-content .deliverables-title {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.pm-content .deliverables-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 10px;
+  border-top: none; padding-top: 0; margin-top: 0;
+}
+.pm-content .deliverable-list,
+.pm-content .del-list {
+  display: flex; flex-direction: column; gap: 7px;
+}
+.pm-content .deliverable-item,
+.pm-content .del-item {
+  display: flex; align-items: flex-start;
+  gap: 9px; font-size: 13px;
+  color: var(--text-primary); line-height: 1.5;
+}
+.pm-content .dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  flex-shrink: 0; margin-top: 7px;
+}
+.pm-content[data-level="1"] .dot { background: #1D9E75; }
+.pm-content[data-level="2"] .dot { background: #185FA5; }
+.pm-content[data-level="3"] .dot { background: #534AB7; }
+.pm-content[data-level="4"] .dot { background: #1D9E75; }
+.pm-content .dot-amber { background: #BA7517 !important; }
+
+/* Sub-packs (N1 1.B) */
+.pm-content .sub-packs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap: 12px; margin-top: 14px;
+}
+@media(max-width:500px){ .pm-content .sub-packs { grid-template-columns: 1fr; } }
+.pm-content .sub-pack {
+  background: var(--bg-secondary);
+  border-radius: 8px; padding: 12px;
+}
+.pm-content .sub-pack-name {
+  font-size: 13px; font-weight: 600;
+  color: var(--text-primary); margin-bottom: 4px;
+}
+.pm-content .sub-pack-desc {
+  font-size: 12px; color: var(--text-secondary); line-height: 1.5;
+}
+
+/* Mec grid (N2) */
+.pm-content .mec-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 10px; margin-top: 14px;
+}
+@media(max-width:560px){ .pm-content .mec-grid { grid-template-columns: 1fr; } }
+.pm-content .mec-step {
+  background: var(--bg-secondary);
+  border-radius: 8px; padding: 12px;
+}
+.pm-content .mec-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: #185FA5; margin-bottom: 5px;
+}
+.pm-content .mec-title {
+  font-size: 13px; font-weight: 600;
+  color: var(--text-primary); margin-bottom: 3px;
+}
+.pm-content .mec-desc {
+  font-size: 12px; color: var(--text-secondary); line-height: 1.5;
+}
+
+/* Echo grid (N3) */
+.pm-content .echo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 10px; margin-top: 14px;
+}
+@media(max-width:560px){ .pm-content .echo-grid { grid-template-columns: 1fr; } }
+.pm-content .echo-step {
+  background: var(--bg-secondary);
+  border-radius: 8px; padding: 12px;
+}
+.pm-content .echo-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: #534AB7; margin-bottom: 5px;
+}
+.pm-content .echo-title {
+  font-size: 13px; font-weight: 600;
+  color: var(--text-primary); margin-bottom: 3px;
+}
+.pm-content .echo-desc {
+  font-size: 12px; color: var(--text-secondary); line-height: 1.5;
+}
+.pm-content .multiplier-block {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(83,74,183,.1);
+  border-radius: 8px; padding: 12px 16px;
+  margin-top: 14px; flex-wrap: wrap;
+}
+.pm-content .multiplier-icon {
+  font-size: 18px; font-weight: 800;
+  color: #534AB7; flex-shrink: 0;
+}
+.pm-content .multiplier-text {
+  font-size: 12px; color: var(--text-secondary); line-height: 1.55;
+}
+.pm-content .multiplier-text strong { color: var(--text-primary); }
+
+/* Pillars (N4) */
+.pm-content .pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 10px; margin-top: 14px;
+}
+@media(max-width:560px){ .pm-content .pillars-grid { grid-template-columns: 1fr; } }
+.pm-content .pillar {
+  background: var(--bg-secondary);
+  border-radius: 8px; padding: 12px;
+}
+.pm-content .pillar-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: #1D9E75; margin-bottom: 5px;
+}
+.pm-content .pillar-title {
+  font-size: 13px; font-weight: 600;
+  color: var(--text-primary); margin-bottom: 3px;
+}
+.pm-content .pillar-desc {
+  font-size: 12px; color: var(--text-secondary); line-height: 1.5;
+}
+
+/* Alert block */
+.pm-content .alert-block {
+  display: flex; align-items: flex-start;
+  gap: 10px; border-radius: 8px;
+  padding: 12px 16px; margin-top: 14px;
+}
+.pm-content[data-level="2"] .alert-block { background: rgba(186,117,23,.12); }
+.pm-content[data-level="4"] .alert-block { background: rgba(114,36,62,.1); }
+.pm-content .alert-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+.pm-content .alert-text {
+  font-size: 12px; line-height: 1.55; color: var(--text-secondary);
+}
+
+/* Cible block */
+.pm-content .cible-block {
+  background: var(--bg-secondary);
+  border-radius: 12px; padding: 20px 22px;
+  margin: 24px 0;
+}
+.pm-content .cible-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .1em;
+  color: var(--text-muted); margin-bottom: 14px;
+}
+.pm-content .cible-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+  gap: 10px;
+}
+.pm-content .cible-item {
+  display: flex; align-items: center;
+  gap: 8px; font-size: 13px; color: var(--text-primary);
+}
+.pm-content .cible-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%; flex-shrink: 0;
+}
+.pm-content[data-level="1"] .cible-dot { background: #1D9E75; }
+.pm-content[data-level="2"] .cible-dot { background: #185FA5; }
+.pm-content[data-level="3"] .cible-dot { background: #534AB7; }
+.pm-content[data-level="4"] .cible-dot { background: #1D9E75; }
+
+/* CTA block final */
+.pm-content .cta-block {
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 28px 24px;
+  text-align: center; margin-top: 8px;
+}
+.pm-content .cta-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px; font-weight: 800;
+  color: var(--text-primary); margin-bottom: 8px;
+}
+.pm-content .cta-sub {
+  font-size: 13px; color: var(--text-secondary);
+  margin-bottom: 20px; line-height: 1.65;
+}
+.pm-content .cta-btn {
+  display: inline-block;
+  font-family: 'Syne', sans-serif;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--bg-primary);
+  border: none; padding: 13px 28px;
+  border-radius: 8px; cursor: pointer;
+  transition: all .2s; text-decoration: none;
+}
+.pm-content[data-level="1"] .cta-btn { background: #1D9E75; }
+.pm-content[data-level="2"] .cta-btn { background: #185FA5; }
+.pm-content[data-level="3"] .cta-btn { background: #534AB7; }
+.pm-content[data-level="4"] .cta-btn { background: #1D9E75; }
+.pm-content .cta-btn:hover { opacity: .85; transform: translateY(-2px); }
+.pm-content .cta-secondary {
+  margin-top: 10px; font-size: 11px; color: var(--text-muted);
+}
+
+/* Hero title accent colors par niveau */
+.pm-content[data-level="1"] .hero-title span { color: #1D9E75; }
+.pm-content[data-level="2"] .hero-title span { color: #185FA5; }
+.pm-content[data-level="3"] .hero-title span { color: #534AB7; }
+.pm-content[data-level="4"] .hero-title span { color: #1D9E75; }
+
+
+
+/* ===== QUESTIONNAIRE MODAL ===== */
+.quiz-wrapper { padding: 0; }
+.quiz-step { display: none; }
+.quiz-step.active { display: block; }
+
+.quiz-progress {
+  display: flex; gap: 6px;
+  margin-bottom: 24px;
+}
+.quiz-progress-dot {
+  height: 3px; flex: 1;
+  border-radius: 999px;
+  background: var(--border);
+  transition: background .3s;
+}
+.quiz-progress-dot.done { background: var(--accent-1); }
+
+.quiz-q-label {
+  font-family: 'Syne', sans-serif;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 12px;
+}
+.quiz-q-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(16px, 2vw, 20px);
+  font-weight: 800; line-height: 1.3;
+  color: var(--text-primary); margin-bottom: 20px;
+}
+.quiz-options { display: flex; flex-direction: column; gap: 10px; }
+.quiz-option {
+  display: flex; align-items: flex-start;
+  gap: 12px; padding: 14px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px; cursor: pointer;
+  transition: all .2s; text-align: left;
+  width: 100%;
+}
+.quiz-option:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+  transform: translateX(4px);
+}
+.quiz-option.selected {
+  border-color: var(--accent-1);
+  background: var(--accent-1-dim);
+}
+.quiz-opt-key {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 700;
+  width: 24px; height: 24px;
+  border-radius: 6px; flex-shrink: 0;
+  display: flex; align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  transition: all .2s;
+}
+.quiz-option.selected .quiz-opt-key {
+  background: var(--accent-1);
+  border-color: var(--accent-1);
+  color: var(--bg-primary);
+}
+.quiz-opt-text {
+  font-size: 14px; line-height: 1.5;
+  color: var(--text-secondary);
+  transition: color .2s;
+}
+.quiz-option.selected .quiz-opt-text { color: var(--text-primary); }
+
+/* Résultat */
+.quiz-result { display: none; }
+.quiz-result.active { display: block; }
+.quiz-result-badge {
+  display: inline-flex; align-items: center;
+  gap: 8px; padding: 5px 14px;
+  border-radius: 999px; margin-bottom: 16px;
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+}
+.quiz-result-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(17px, 2.2vw, 22px);
+  font-weight: 800; color: var(--text-primary);
+  margin-bottom: 14px; line-height: 1.25;
+}
+.quiz-result-msg {
+  font-size: 14px; line-height: 1.75;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 10px; padding: 18px 20px;
+  margin-bottom: 24px;
+}
+.quiz-result-msg strong { color: var(--text-primary); }
+.quiz-result-actions {
+  display: flex; gap: 12px; flex-wrap: wrap;
+}
+.quiz-divider {
+  height: 1px; background: var(--border);
+  margin: 28px 0; position: relative;
+}
+.quiz-divider::after {
+  content: 'ou explorer tous les packs';
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--bg-card);
+  padding: 0 12px;
+  font-size: 11px; color: var(--text-muted);
+  font-family: 'Syne', sans-serif;
+  font-weight: 600; letter-spacing: .08em;
+  text-transform: uppercase; white-space: nowrap;
+}
+.quiz-see-all {
+  font-family: 'Syne', sans-serif;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1.5px solid var(--border-hover);
+  padding: 11px 22px; border-radius: 8px;
+  cursor: pointer; transition: all .2s;
+  display: flex; align-items: center; gap: 7px;
+}
+.quiz-see-all:hover {
+  border-color: var(--accent-1);
+  color: var(--accent-1);
+  background: var(--accent-1-dim);
+}
+.quiz-restart {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 600;
+  color: var(--text-muted); background: none;
+  border: none; cursor: pointer;
+  padding: 0; margin-top: 16px;
+  display: block; transition: color .2s;
+  letter-spacing: .05em;
+}
+.quiz-restart:hover { color: var(--accent-1); }
+
+/* Tab nav modal (quiz / contenu) */
+.pm-nav {
+  display: flex; gap: 4px;
+  padding: 0 32px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.pm-nav-btn {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--text-muted); background: none;
+  border: none; padding: 12px 16px; cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px; transition: all .2s;
+  white-space: nowrap;
+}
+.pm-nav-btn:hover { color: var(--text-secondary); }
+.pm-nav-btn.active {
+  color: var(--accent-1);
+  border-bottom-color: var(--accent-1);
+}
+.pm-panel { display: none; }
+.pm-panel.active { display: block; }
+@media(max-width:600px){
+  .pm-nav { padding: 0 20px; }
+}
+
+/* Pack highlight dans le contenu */
+.pack-card.highlighted {
+  border-color: var(--accent-1) !important;
+  box-shadow: 0 0 0 3px var(--accent-1-dim), var(--shadow-card);
+  animation: pack-highlight-pulse 1.2s ease 2;
+}
+@keyframes pack-highlight-pulse {
+  0%, 100% { box-shadow: 0 0 0 3px var(--accent-1-dim), var(--shadow-card); }
+  50%       { box-shadow: 0 0 0 8px var(--accent-glow), var(--shadow-card); }
+}
 </style>
 
 
@@ -2200,9 +2765,37 @@ footer{
       <div class="form-group"><label class="form-label">Nom</label><input type="text" id="f-nom" name="from_name" class="form-input" placeholder="Votre prenom..." required></div>
     </div>
     <div class="form-group"><label class="form-label">Email</label><input type="email" id="f-email" name="from_email" class="form-input" placeholder="Votre email..." required></div>
-    <div class="form-group"><label class="form-label">Service souhaité</label>
-      <select id="f-service" class="form-select"><option value="">Sélectionner...</option><option>Web Design & Développement</option><option>Branding & Identité Visuelle</option><option>Vidéo & Motion Design</option><option>Réseaux Sociaux & Print</option><option>Pack Complet</option><option>Autre</option></select>
-    </div>
+   <div class="form-group">
+  <label class="form-label" for="f-service">Service souhaité</label>
+  <select id="f-service" name="f_service" class="form-select">
+    <option value="">Sélectionner...</option>
+    <optgroup label="── Niveau 01 — Le Studio ──">
+      <option value="Pack 1.A — Fondations & Identité">Pack 1.A — Fondations & Identité</option>
+      <option value="Pack 1.B — Les Munitions (Visuels & Vidéo)">Pack 1.B — Les Munitions (Visuels & Vidéo)</option>
+      <option value="Pack 1.C — Le Pilote (Gestion Réseaux)">Pack 1.C — Le Pilote (Gestion Réseaux)</option>
+      <option value="Pack 1.D — Audit & Plan Personnalisé">Pack 1.D — Audit & Plan Personnalisé</option>
+    </optgroup>
+    <optgroup label="── Niveau 02 — L'Infrastructure ──">
+      <option value="Pack 2.A — La Vitrine Pro">Pack 2.A — La Vitrine Pro</option>
+      <option value="Pack 2.B — L'Infrastructure Intelligente">Pack 2.B — L'Infrastructure Intelligente</option>
+      <option value="Pack 2.C — Le Bouclier (Maintenance)">Pack 2.C — Le Bouclier (Maintenance)</option>
+      <option value="Pack 2.D — Architecture Sur-Mesure">Pack 2.D — Architecture Sur-Mesure</option>
+    </optgroup>
+    <optgroup label="── Niveau 03 — L'Autorité Éditoriale ──">
+      <option value="Pack 3.A — Le Diffuseur (SEO)">Pack 3.A — Le Diffuseur (SEO)</option>
+      <option value="Pack 3.B — Le Responsable Éditorial">Pack 3.B — Le Responsable Éditorial</option>
+      <option value="Pack 3.C — L'Écho Digital (Recyclage)">Pack 3.C — L'Écho Digital (Recyclage)</option>
+      <option value="Pack 3.D — Stratégie Éditoriale Sur-Mesure">Pack 3.D — Stratégie Éditoriale Sur-Mesure</option>
+    </optgroup>
+    <optgroup label="── Niveau 04 — Le Partenariat 360° ──">
+      <option value="Pack 4.A — L'Empreinte Globale">Pack 4.A — L'Empreinte Globale</option>
+      <option value="Pack 4.B — Le Propulseur (Ads)">Pack 4.B — Le Propulseur (Ads)</option>
+      <option value="Pack 4.C — Le Partenariat Performance">Pack 4.C — Le Partenariat Performance</option>
+      <option value="Pack 4.D — L'Inkubateur 360°">Pack 4.D — L'Inkubateur 360°</option>
+    </optgroup>
+    <option value="Combo / Autre">Combo / Autre</option>
+  </select>
+</div>
     <div class="form-group"><label class="form-label">Votre message...</label><textarea id="f-message" name="message" class="form-textarea" placeholder="Décrivez brièvement votre projet..." required></textarea></div>
     <button type="submit" class="form-submit">Envoyer le message<svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22,2 15,22 11,13 2,9"/></svg></button>
     <div id="form-status" style="font-size:13px;color:var(--accent-1);margin-top:8px;display:none"></div>
@@ -2567,321 +3160,1296 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 
 // ========== PACK DETAIL MODAL ==========
-const PACK_DATA = {
+
+// ── Données du questionnaire par niveau ──────────────────────────────
+const QUIZ_DATA = {
   1: {
-    eyebrow: 'Niveau 01',
-    title: 'Le Studio — Création & Visibilité',
-    subtitle: 'Notre porte d\'entrée. L\'objectif est de fournir des "munitions" digitales de haute qualité pour les créateurs, entreprises ou projets qui ont besoin d\'une image professionnelle immédiate.',
-    tabs: [
-      {
-        id: '1a',
-        label: '1.A — Fondations',
-        name: 'Pack "Fondations & Identité"',
-        tagline: 'Le Kit de Démarrage — habiller votre marque de la tête aux pieds.',
-        cible: 'Ceux qui partent de zéro ou qui ont une image "bricolée".',
-        livrables: [
-          'Création de l\'Identité Numérique : Logo de base, palette de couleurs, typographie',
-          'Création et configuration experte des réseaux sociaux : Bannières, Bios optimisées, Liens',
-          'Bonus SHIFT : Mini-guide stratégique PDF — applications à utiliser, meilleures heures de publication',
-        ],
-      },
-      {
-        id: '1b',
-        label: '1.B — Munitions',
-        name: 'Pack "Les Munitions"',
-        tagline: 'Packs Visuels & Vidéos au volume — production brute, livrée en fichiers.',
-        cible: 'Ceux qui savent gérer leurs réseaux mais qui n\'ont pas les compétences graphiques ou vidéo.',
-        livrables: [
-          'Option Visuels : Pack Basic (5 flyers) · Pack Pro (10 flyers) · Pack Événementiel (Affiches + Déclinaisons Web)',
-          'Option Vidéo : Pack "Snack" (Reels/TikTok 15s) · Pack "Cinematic/Teaser" (vidéo très travaillée)',
-          'Livraison des fichiers bruts : MP4, PNG — le client gère la publication',
-        ],
-      },
-      {
-        id: '1c',
-        label: '1.C — Le Pilote',
-        name: '© Pack "Le Pilote"',
-        tagline: 'Gestion complète des Réseaux Sociaux — Revenu Mensuel Récurrent.',
-        cible: 'Ceux qui ont compris qu\'ils n\'ont pas le temps de poster et d\'analyser.',
-        livrables: [
-          'Intégration du Pack 1.A (Identité) gratuitement ou à prix réduit si engagement sur durée',
-          'Calendrier éditorial : création du contenu (Flyers + Vidéos) ET gestion des publications',
-          'Analyse des metrics et ajustement de la stratégie chaque mois',
-        ],
-      },
-      {
-        id: '1d',
-        label: '1.D — Sur-Mesure',
-        name: '"Audit & Plan Personnalisé"',
-        tagline: 'La Porte Ouverte — présente à la fin de chaque niveau.',
-        cible: 'Le client intéressé mais dont le projet est atypique, ou qui est tout simplement perdu.',
-        livrables: [
-          'Session de consulting stratégique (Zoom, Meet ou en physique)',
-          'Écoute du besoin + devis sur-mesure construit à partir des ressources A, B ou C',
-          'CTA clair : "Vous avez un besoin spécifique ? Réservez votre consultation."',
-        ],
-      },
-    ],
+    accentColor: '#1D9E75',
+    q1: {
+      label: 'Question 1 / 2',
+      text: 'Où en êtes-vous avec votre présence digitale aujourd\'hui ?',
+      options: [
+        { key: 'A', text: 'Je pars de zéro — pas de logo, pas de réseaux' },
+        { key: 'B', text: 'J\'ai une base mais elle est désorganisée / peu professionnelle' },
+        { key: 'C', text: 'Je suis actif mais je manque de contenu régulier' },
+        { key: 'D', text: 'Je gère tout mais je veux déléguer complètement' }
+      ]
+    },
+    q2: {
+      label: 'Question 2 / 2',
+      text: 'Quel est votre objectif prioritaire dans les 3 prochains mois ?',
+      options: [
+        { key: 'A', text: 'Avoir une image professionnelle crédible' },
+        { key: 'B', text: 'Produire plus de visuels et vidéos (flyers, Reels)' },
+        { key: 'C', text: 'Déléguer la gestion complète de mes réseaux' },
+        { key: 'D', text: 'Je ne sais pas encore — j\'ai besoin d\'un conseil' }
+      ]
+    },
+    results: {
+      'A-A': { badge: '→ Pack 1.A', title: 'Le Pack Fondations & Identité est fait pour vous.', msg: 'Votre priorité est claire : des fondations solides avant tout le reste. Le <strong>Pack 1.A — Fondations & Identité</strong> construit votre socle visuel de A à Z : logo, palette, typographie, configuration experte de vos réseaux avec bannières et bios optimisées. En bonus, votre Guide de Démarrage SHIFT. Paiement unique, livraison en 5 à 7 jours ouvrés.', cta: 'Demander ce pack' },
+      'B-A': { badge: '→ Pack 1.A', title: 'Le Pack Fondations & Identité est fait pour vous.', msg: 'Votre image actuelle ne reflète pas votre vraie valeur. Le <strong>Pack 1.A — Fondations & Identité</strong> repart de zéro sur ce qui compte : identité visuelle cohérente, réseaux configurés et habillés, guide stratégique inclus. Un paiement unique pour une image qui inspire confiance dès le premier regard.', cta: 'Demander ce pack' },
+      'B-B': { badge: '→ Pack 1.B', title: 'Les Munitions — du contenu visuel en volume.', msg: 'Vous avez la base, vous avez les idées — il vous faut du carburant. Le <strong>Pack 1.B — Les Munitions</strong> vous livre des visuels et vidéos professionnels prêts à l\'emploi : flyers, affiches, Reels, vidéos cinématiques. Vous choisissez le forfait, nous produisons et livrons les fichiers bruts (PNG, MP4). Sans abonnement.', cta: 'Choisir mon forfait' },
+      'C-B': { badge: '→ Pack 1.B', title: 'Les Munitions — du contenu visuel en volume.', msg: 'Vous êtes actif mais votre stock de contenu s\'épuise trop vite. Le <strong>Pack 1.B — Les Munitions</strong> recharge régulièrement votre calendrier : flyers, Reels, vidéos cinématiques — livrés en fichiers bruts prêts à publier. Commandez quand vous en avez besoin.', cta: 'Choisir mon forfait' },
+      'A-C': { badge: '→ Pack 1.A + 1.C', title: 'Combo gagnant : Fondations + Gestion complète.', msg: 'Vous partez de zéro et voulez déléguer entièrement — le scénario idéal. Nous posons vos fondations visuelles (<strong>Pack 1.A</strong> — identité, configuration des réseaux) puis prenons immédiatement le relais avec la gestion mensuelle complète (<strong>Pack 1.C — Le Pilote</strong>). Sur engagement 3 ou 6 mois, le 1.A est intégré à tarif préférentiel.', cta: 'Je veux ce combo' },
+      'B-C': { badge: '→ Pack 1.C', title: 'Le Pilote — vos réseaux gérés de A à Z.', msg: 'Vous avez compris que votre temps vaut plus que le temps passé à poster. Le <strong>Pack 1.C — Le Pilote</strong> fait tout : calendrier éditorial, création des visuels et vidéos, publication, rapport mensuel. Vous validez, nous exécutons. Plus l\'engagement est long (3 ou 6 mois), plus le tarif est avantageux.', cta: 'Je veux Le Pilote' },
+      'C-C': { badge: '→ Pack 1.C', title: 'Le Pilote — vos réseaux gérés de A à Z.', msg: 'Vous êtes actif mais la régularité vous échappe. Le <strong>Pack 1.C — Le Pilote</strong> assure cette régularité à votre place : contenu créé, publié et analysé chaque mois. Votre audience grandit même quand vous dormez.', cta: 'Je veux Le Pilote' },
+      'D-C': { badge: '→ Pack 1.C', title: 'Le Pilote — vos réseaux gérés de A à Z.', msg: 'Déléguer complètement, c\'est exactement ce que fait le <strong>Pack 1.C — Le Pilote</strong>. Notre équipe devient votre équipe éditoriale. Calendrier, création, publication, métriques — vous ne touchez plus à vos réseaux si vous ne le souhaitez pas.', cta: 'Je veux Le Pilote' },
+      'DEFAULT': { badge: '→ Pack 1.D', title: 'Une consultation stratégique personnalisée.', msg: 'Pas de devis au hasard. Le <strong>Pack 1.D — Audit & Plan Personnalisé</strong> commence par une session de 30 minutes avec notre équipe (Zoom, Meet ou en physique) pour comprendre exactement votre situation. Vous repartez avec un diagnostic clair, une recommandation précise et un devis chiffré. Sans engagement.', cta: 'Réserver ma consultation' }
+    }
   },
   2: {
-    eyebrow: 'Niveau 02',
-    title: 'L\'Infrastructure — Actifs & Automatisation',
-    subtitle: 'Nous créons l\'employé numérique du client. Ce niveau s\'adresse aux entreprises qui veulent digitaliser leur activité, être trouvées sur Google, et gagner du temps grâce à l\'automatisation.',
-    tabs: [
-      {
-        id: '2a',
-        label: '2.A — Vitrine Pro',
-        name: 'Pack "La Vitrine Pro"',
-        tagline: 'Le Site Essentiel — la fondation de toute présence digitale.',
-        cible: 'Indépendants, PME, cliniques, cabinets qui ont besoin d\'exister professionnellement sur Google.',
-        livrables: [
-          'Création d\'un site de 1 à 5 pages : Accueil, À Propos, Services, Galerie, Contact',
-          'Design Mobile-First — parfait sur téléphone',
-          'Configuration du nom de domaine et certificat de sécurité SSL',
-          'Formulaire de contact basique',
-        ],
-      },
-      {
-        id: '2b',
-        label: '2.B — Intelligent',
-        name: 'Pack "L\'Infrastructure Intelligente"',
-        tagline: 'Site + Automatisation — transformer le site en assistant administratif 24h/24.',
-        cible: 'Entrepreneurs qui reçoivent des demandes en volume et perdent du temps à les traiter manuellement.',
-        livrables: [
-          'Formulaire intelligent intégré au site (Google Forms personnalisé ou WPForms)',
-          'Connexion directe vers Google Sheets — chaque ligne = un nouveau client',
-          'Génération automatique de documents Google Docs (fiche client, reçu) via Autocrat/Make',
-          'Notification automatique au propriétaire à chaque nouvelle entrée',
-        ],
-        scenario: {
-          title: 'Scénario concret — École de langue',
-          rows: [
-            { label: 'Avant SHIFT', text: 'Il reçoit des appels, note les noms sur un cahier, perd les numéros.' },
-            { label: 'Avec SHIFT', text: 'Les parents s\'inscrivent sur le site → données dans Sheets → contrat d\'inscription Google Docs généré automatiquement → directeur notifié.' },
-            { label: 'Résultat', text: 'Le client gagne 10h par semaine.' },
-          ],
-        },
-      },
-      {
-        id: '2c',
-        label: '2.C — Le Bouclier',
-        name: 'Pack "Le Bouclier"',
-        tagline: 'Maintenance & Sécurité — le Revenu Mensuel Récurrent de la partie Web.',
-        cible: 'Tous les clients ayant acheté le Pack 2.A ou 2.B.',
-        livrables: [
-          'Hébergement du site web',
-          'Mises à jour mensuelles de WordPress et des plugins (anti-piratage)',
-          'Sauvegardes hebdomadaires du site',
-          'Bonus : 1 à 2 heures de petites modifications incluses par mois',
-        ],
-      },
-      {
-        id: '2d',
-        label: '2.D — Sur-Mesure',
-        name: '"Architecture Sur-Mesure"',
-        tagline: 'E-commerce & Projets Spéciaux — la porte ouverte aux demandes complexes.',
-        cible: 'Quelqu\'un qui veut vendre des produits en ligne (WooCommerce) ou créer une plateforme e-learning à membres payants.',
-        livrables: [
-          'Boutique e-commerce WooCommerce complète',
-          'Plateforme de membres / e-learning sur-mesure',
-          'Devis personnalisé après appel stratégique — pas de prix public affiché',
-        ],
-      },
-    ],
+    accentColor: '#185FA5',
+    q1: {
+      label: 'Question 1 / 2',
+      text: 'Quelle est votre situation actuelle en ligne ?',
+      options: [
+        { key: 'A', text: 'Je n\'ai pas de site — je n\'existe pas sur Google' },
+        { key: 'B', text: 'J\'ai un site mais personne ne s\'en occupe' },
+        { key: 'C', text: 'J\'ai un site mais je veux automatiser mes tâches' },
+        { key: 'D', text: 'J\'ai un projet complexe (boutique, plateforme)' }
+      ]
+    },
+    q2: {
+      label: 'Question 2 / 2',
+      text: 'Quelle est votre priorité principale ?',
+      options: [
+        { key: 'A', text: 'Être trouvé sur Google et avoir un site professionnel' },
+        { key: 'B', text: 'Automatiser mes prises de contact et tâches administratives' },
+        { key: 'C', text: 'Protéger et maintenir mon site existant' },
+        { key: 'D', text: 'Je ne sais pas par où commencer — j\'ai besoin d\'un conseil' }
+      ]
+    },
+    results: {
+      'A-A': { badge: '→ Pack 2.A', title: 'La Vitrine Pro — existez enfin sur Google.', msg: 'En 1 à 2 semaines, le <strong>Pack 2.A — La Vitrine Pro</strong> vous donne un site de 1 à 5 pages, optimisé Google, parfait sur mobile. Nom de domaine, certificat SSL, formulaire de contact : tout est configuré et livré clé en main. Un investissement unique. Une présence professionnelle dès cette semaine.', cta: 'Je veux ce site' },
+      'A-B': { badge: '→ Pack 2.A + 2.B', title: 'Site + automatisation — le combo complet.', msg: 'Vous n\'avez pas de site et vous voulez automatiser. Le <strong>Pack 2.B — L\'Infrastructure Intelligente</strong> inclut la construction du site ET l\'installation de l\'écosystème automatisé : formulaires intelligents, Google Sheets en temps réel, génération automatique de documents. Un devis combiné vous sera préparé après notre appel.', cta: 'Automatiser mon activité' },
+      'C-B': { badge: '→ Pack 2.B', title: 'L\'Infrastructure Intelligente — votre site travaille pour vous.', msg: 'Votre site existe — il doit maintenant travailler à votre place. Le <strong>Pack 2.B</strong> installe un écosystème complet : chaque contact entrant est capturé, classé dans Google Sheets et déclenche la génération automatique d\'un document. Zéro saisie manuelle. Suivi mensuel inclus.', cta: 'Automatiser mon activité' },
+      'B-C': { badge: '→ Pack 2.C', title: 'Le Bouclier — votre site sécurisé en permanence.', msg: 'Un site non maintenu est une cible. Le <strong>Pack 2.C — Le Bouclier</strong> prend en charge l\'hébergement, les mises à jour mensuelles de WordPress et des plugins, les sauvegardes hebdomadaires, et jusqu\'à 2h de modifications incluses par mois. C\'est votre assurance digitale — et elle coûte beaucoup moins cher qu\'une reconstruction après piratage.', cta: 'Protéger mon site' },
+      'DEFAULT': { badge: '→ Pack 2.D', title: 'Architecture Sur-Mesure — votre projet mérite mieux qu\'un template.', msg: 'Votre projet sort du cadre standard. Notre architecte web analyse votre situation lors d\'un appel dédié. Boutique WooCommerce, espace membres, plateforme e-learning — nous construisons l\'architecture adaptée à votre modèle économique. Pas de prix public : un devis précis après l\'appel.', cta: 'Parler à notre architecte' }
+    }
   },
   3: {
-    eyebrow: 'Niveau 03',
-    title: 'L\'Autorité Éditoriale — Contenu & SEO',
-    subtitle: 'Nous transformons le site du client en une référence dans son domaine. Ce niveau s\'adresse aux experts, institutions et entreprises qui veulent attirer du trafic organique gratuit via Google.',
-    tabs: [
-      {
-        id: '3a',
-        label: '3.A — Le Diffuseur',
-        name: 'Pack "Le Diffuseur"',
-        tagline: 'Mise en ligne & SEO — le client écrit, SHIFT s\'occupe de la magie technique.',
-        cible: 'Ceux qui aiment écrire ou qui ont des rapports à publier, mais qui détestent la technique WordPress.',
-        livrables: [
-          'Intégration de [X] articles par mois sur le site WordPress',
-          'Optimisation SEO de base : mots-clés, balises H1/H2, méta-descriptions',
-          'Mise en page professionnelle avec images d\'illustration',
-          'Nettoyage et sécurisation du blog à chaque publication',
-        ],
-      },
-      {
-        id: '3b',
-        label: '3.B — Éditorial',
-        name: 'Pack "Le Responsable Éditorial"',
-        tagline: 'Gestion Totale — SHIFT est le rédacteur en chef, le client ne s\'occupe de rien.',
-        cible: 'Entreprises sérieuses qui veulent une présence constante mais n\'ont aucune ressource interne.',
-        livrables: [
-          'Planification : Calendrier éditorial mensuel (sujets, dates)',
-          'Production : Rédaction ou supervision de la rédaction des articles',
-          'Multimédia : Video Editor et Designer créent visuels et courtes vidéos pour illustrer',
-          'Analyse : Rapport mensuel sur les lectures et le classement Google',
-        ],
-      },
-      {
-        id: '3c',
-        label: '3.C — L\'Écho',
-        name: 'Pack "L\'Écho Digital"',
-        tagline: 'Le Recyclage Intelligent — transformer 1 article en 5 contenus différents.',
-        cible: 'Marques qui publient régulièrement et veulent maximiser la portée de chaque contenu.',
-        livrables: [
-          '1 visuel de résumé pour Facebook/Instagram',
-          '1 vidéo courte Teaser pour TikTok/Reels (réalisé par le Video Editor)',
-          '1 newsletter simple à envoyer aux abonnés du client',
-        ],
-      },
-      {
-        id: '3d',
-        label: '3.D — Sur-Mesure',
-        name: '"Stratégie de Contenu Sur-Mesure"',
-        tagline: 'La porte ouverte aux projets éditoriaux exceptionnels.',
-        cible: 'Lancement de magazine en ligne, couverture digitale d\'un événement multi-jours, bibliothèque de ressources complexe.',
-        livrables: [
-          'Session privée avec le Patron pour définir la ligne éditoriale',
-          'Architecture de contenu sur-mesure sur 6 à 12 mois',
-          'Devis personnalisé après appel stratégique',
-        ],
-      },
-    ],
+    accentColor: '#534AB7',
+    q1: {
+      label: 'Question 1 / 2',
+      text: 'Quelle est votre situation actuelle avec votre contenu ?',
+      options: [
+        { key: 'A', text: 'J\'écris déjà des articles — mais je ne sais pas les publier et les optimiser sur WordPress' },
+        { key: 'B', text: 'Je n\'ai ni le temps ni les ressources pour rédiger — j\'ai besoin que quelqu\'un gère tout' },
+        { key: 'C', text: 'Je publie du contenu mais il reste sur mon blog — il ne circule pas ailleurs' },
+        { key: 'D', text: 'J\'ai un projet éditorial complexe (magazine, événement, bibliothèque de ressources)' }
+      ]
+    },
+    q2: {
+      label: 'Question 2 / 2',
+      text: 'Quel est votre objectif principal dans les 6 prochains mois ?',
+      options: [
+        { key: 'A', text: 'Être trouvé sur Google et générer du trafic organique gratuit' },
+        { key: 'B', text: 'Publier régulièrement sans m\'en occuper — zéro effort de ma part' },
+        { key: 'C', text: 'Rentabiliser chaque article sur toutes mes plateformes en même temps' },
+        { key: 'D', text: 'Je veux une stratégie sur mesure avant de me lancer' }
+      ]
+    },
+    results: {
+      'A-A': { badge: '→ Pack 3.A', title: 'Le Diffuseur — vous rédigez, SHIFT publie.', msg: 'Vous avez ce qui compte le plus : les idées et le savoir. Le reste — la technique, le SEO, la mise en page — c\'est exactement ce que fait le <strong>Pack 3.A — Le Diffuseur</strong>. Vous nous envoyez votre texte brut. Nous l\'intégrons sur WordPress de manière professionnelle, l\'optimisons pour Google et le mettons en page avec des visuels. Votre article en ligne, indexé, sans que vous ayez ouvert WordPress une seule fois.', cta: 'Publier mon prochain article' },
+      'B-B': { badge: '→ Pack 3.B', title: 'Le Responsable Éditorial — zéro effort de votre part.', msg: 'Vous voulez une présence éditoriale forte et régulière sans y consacrer une seule heure. Le <strong>Pack 3.B — Le Responsable Éditorial</strong> fait tout : planification, rédaction, optimisation SEO, visuels, rapport mensuel. Vous validez une fois, nous exécutons le reste. C\'est notre pack le plus complet — et le seul où vous n\'avez littéralement rien à faire.', cta: 'Déléguer mon contenu à SHIFT' },
+      'C-C': { badge: '→ Pack 3.C', title: 'L\'Écho Digital — 1 article = 5 contenus.', msg: 'Vous investissez du temps à écrire et votre article reste isolé sur votre blog. C\'est une perte sèche. Le <strong>Pack 3.C — L\'Écho Digital</strong> transforme chaque article en 5 contenus : visuel Instagram, Reel TikTok, newsletter abonnés — tout distribué sur toutes vos plateformes. Un investissement multiplié par 5.', cta: 'Multiplier mon contenu × 5' },
+      'A-C': { badge: '→ Pack 3.A + 3.C', title: 'Combo parfait : Diffuser + Recycler.', msg: 'Vous rédigez déjà et voulez un impact maximal. Le <strong>Pack 3.A + 3.C</strong> publie et optimise vos articles sur WordPress puis les transforme immédiatement en 5 contenus sur toutes vos plateformes. Idéal pour les créateurs actifs qui veulent maximiser leur retour sans changer leur façon de travailler.', cta: 'Je veux ce combo' },
+      'DEFAULT': { badge: '→ Pack 3.D', title: 'Stratégie Éditoriale Sur-Mesure — une session privée.', msg: 'Votre projet dépasse le cadre d\'un blog classique. Le <strong>Pack 3.D — Stratégie Éditoriale Sur-Mesure</strong> commence par une session stratégique privée pour dessiner votre ligne éditoriale : positionnement, architecture de contenu, calendrier, indicateurs de succès. Vous repartez avec une vision — pas une brochure.', cta: 'Réserver ma session éditoriale' }
+    }
   },
   4: {
-    eyebrow: 'Niveau 04',
-    title: 'Le Partenariat 360° — Externalisation Totale',
-    subtitle: 'SHIFT devient le département Marketing Digital exclusif du client. Ce niveau s\'adresse aux entreprises qui veulent déléguer 100% de leur présence en ligne pour se concentrer sur leur cœur de métier.',
-    tabs: [
-      {
-        id: '4a',
-        label: '4.A — Empreinte',
-        name: 'Pack "L\'Empreinte Globale"',
-        tagline: 'Gestion Complète — SHIFT devient le département marketing du client.',
-        cible: 'Entreprises qui veulent un seul interlocuteur pour tout leur digital.',
-        livrables: [
-          'Gestion Web : Maintenance, mises à jour et évolutions du site (Niveau 2)',
-          'Gestion Éditoriale : Publication constante d\'articles et SEO (Niveau 3)',
-          'Gestion Sociale : Création de contenu quotidien, vidéos, flyers, modération (Niveau 1)',
-        ],
-      },
-      {
-        id: '4b',
-        label: '4.B — Le Propulseur',
-        name: 'Pack "Le Propulseur"',
-        tagline: 'Gestion Publicitaire / Ads — on ne publie plus seulement, on investit pour gagner.',
-        cible: 'Marques prêtes à investir dans la publicité payante pour accélérer leur croissance.',
-        livrables: [
-          'Création et gestion de campagnes publicitaires : Facebook Ads, Instagram Ads, Google Ads',
-          'Création de visuels et vidéos spécifiques à la vente ("Ad Creatives")',
-          'Optimisation du budget publicitaire pour maximiser le Retour sur Investissement (ROI)',
-        ],
-      },
-      {
-        id: '4c',
-        label: '4.C — Performance',
-        name: 'Pack "Le Partenariat Performance"',
-        tagline: 'Partage de revenus — modèle à haute récompense, sélectif uniquement.',
-        cible: 'Entreprises dont le produit se vend déjà bien et qui cherchent un partenaire de croissance.',
-        livrables: [
-          'Contrat "Revenue Share" ou "Profit Share"',
-          'SHIFT baisse ses frais fixes en échange d\'un pourcentage sur les ventes générées',
-          'Suivi de performance mensuel avec reporting transparent',
-        ],
-      },
-      {
-        id: '4d',
-        label: '4.D — Inkubateur',
-        name: '"L\'Inkubateur 360°"',
-        tagline: 'Plan Personnalisé — pour les lancements de produits ou grandes transformations.',
-        cible: 'Projets de lancement ambitieux ou entreprises en transformation digitale complète.',
-        livrables: [
-          'Réunion stratégique avec le Patron pour dessiner une architecture numérique sur 12 mois',
-          'Roadmap digitale complète : web, contenu, social, ads, automatisation',
-          'Suivi mensuel et ajustements stratégiques en temps réel',
-        ],
-      },
-    ],
-  },
+    accentColor: '#1D9E75',
+    q1: {
+      label: 'Question 1 / 2',
+      text: 'Quelle décrit le mieux votre situation aujourd\'hui ?',
+      options: [
+        { key: 'A', text: 'Je gère plusieurs prestataires digitaux séparés — c\'est désorganisé et incohérent' },
+        { key: 'B', text: 'J\'ai un budget publicitaire mais mes campagnes ne convertissent pas assez' },
+        { key: 'C', text: 'Mon produit se vend bien — je cherche un partenaire qui croit en moi pour partager le risque' },
+        { key: 'D', text: 'Je lance un nouveau projet d\'envergure et j\'ai besoin d\'une stratégie sur 12 mois' }
+      ]
+    },
+    q2: {
+      label: 'Question 2 / 2',
+      text: 'Qu\'est-ce qui vous retient le plus aujourd\'hui ?',
+      options: [
+        { key: 'A', text: 'Le manque de cohérence entre mes différentes actions digitales' },
+        { key: 'B', text: 'Le gaspillage de budget publicitaire sans retour mesurable' },
+        { key: 'C', text: 'Le coût fixe élevé sans garantie de résultats' },
+        { key: 'D', text: 'L\'absence d\'un plan structuré pour démarrer sur de bonnes bases' }
+      ]
+    },
+    results: {
+      'A-A': { badge: '→ Pack 4.A', title: 'L\'Empreinte Globale — un seul contrat, zéro dispersion.', msg: 'Coordonner 5 prestataires différents ne devrait pas être votre travail. Le <strong>Pack 4.A — L\'Empreinte Globale</strong> remplace tous vos prestataires par un seul contrat, une seule équipe, une seule vision. SHIFT gère en synergie votre image et réseaux (N1), site et automatisations (N2), et contenu SEO (N3). Un interlocuteur. Un reporting mensuel. La sérénité totale.', cta: 'Tout déléguer à SHIFT' },
+      'A-B': { badge: '→ Pack 4.A + 4.B', title: 'Combo Empreinte Globale + Le Propulseur.', msg: 'Votre problème est double : actions désorganisées ET budget publicitaire inefficace. La combinaison <strong>Pack 4.A + Pack 4.B</strong> unifie votre présence digitale sous un seul contrat et pilote vos campagnes publicitaires avec un objectif de ROI maximisé. Une équipe. Deux leviers actifs simultanément.', cta: 'Discuter de ce combo' },
+      'B-B': { badge: '→ Pack 4.B', title: 'Le Propulseur — votre budget Ads piloté pour performer.', msg: 'Un budget publicitaire mal géré est une dépense. Géré par SHIFT, c\'est un investissement avec un retour documenté. Le <strong>Pack 4.B — Le Propulseur</strong> prend en charge campagnes Facebook, Instagram et Google Ads, production de visuels "Ad Creatives" orientés conversion, et rapport mensuel clair : coût par acquisition, ROAS, recommandations. Vous définissez le budget. Nous le faisons fructifier.', cta: 'Optimiser mon budget Ads' },
+      'C-C': { badge: '→ Pack 4.C', title: 'Le Partenariat Performance — nos intérêts s\'alignent.', msg: 'Vous cherchez un partenaire — pas un fournisseur. Le <strong>Pack 4.C — Le Partenariat Performance</strong> propose un contrat Forfait Fixe + Commission sur les ventes générées. SHIFT réduit ses frais fixes en échange d\'un pourcentage des revenus produits. Quand vous gagnez, SHIFT gagne. Ce modèle est sélectif — nous analysons votre activité avant tout engagement.', cta: 'Candidater au Partenariat' },
+      'DEFAULT': { badge: '→ Pack 4.D', title: 'L\'Inkubateur — votre plan sur 12 mois.', msg: 'Un grand projet sans plan structuré, c\'est du budget gaspillé. Le <strong>Pack 4.D — L\'Inkubateur</strong> commence par une réunion stratégique directe avec la direction de SHIFT pour dessiner votre plan de transformation digitale sur 12 mois : positionnement, roadmap, KPIs de croissance. Chaque décision documentée, mesurée et orientée ROI.', cta: 'Réserver ma session Inkubateur' }
+    }
+  }
 };
 
-const checkIcon = `<svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>`;
-
-function buildPackModal(levelId) {
-  const d = PACK_DATA[levelId];
-  if (!d) return;
-
-  document.getElementById('pmEyebrow').textContent   = d.eyebrow;
-  document.getElementById('pmTitle').textContent     = d.title;
-  document.getElementById('pmSubtitle').textContent  = d.subtitle;
-
-  // Tabs
-  const tabsEl = document.getElementById('packModalTabs');
-  const bodyEl = document.getElementById('packModalBody');
-  tabsEl.innerHTML = '';
-  bodyEl.innerHTML = '';
-
-  d.tabs.forEach((tab, i) => {
-    // Tab button
-    const btn = document.createElement('button');
-    btn.className = 'pack-tab-btn' + (i === 0 ? ' active' : '');
-    btn.textContent = tab.label;
-    btn.addEventListener('click', () => {
-      tabsEl.querySelectorAll('.pack-tab-btn').forEach(b => b.classList.remove('active'));
-      bodyEl.querySelectorAll('.pack-tab-panel').forEach(p => p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById('ptpanel-' + tab.id).classList.add('active');
-    });
-    tabsEl.appendChild(btn);
-
-    // Panel
-    const panel = document.createElement('div');
-    panel.className = 'pack-tab-panel' + (i === 0 ? ' active' : '');
-    panel.id = 'ptpanel-' + tab.id;
-
-    let html = `
-      <div class="ptab-name">${tab.name}</div>
-      <div class="ptab-tagline">${tab.tagline}</div>
-      <div class="ptab-block">
-        <div class="ptab-block-title">Cible</div>
-        <p style="font-size:14px;color:var(--text-secondary);line-height:1.65">${tab.cible}</p>
+// ── Contenu riche des niveaux ─────────────────────────────────────────
+const NIVEAU_HTML = {
+  1: `
+<div class="page">
+  <div class="eyebrow">Niveau 01 — Les services SHIFT</div>
+  <h1 class="hero-title">Votre image parle avant vous.<br><span>Faites qu'elle dise la bonne chose.</span></h1>
+  <p class="hero-intro">Vous êtes compétent dans votre domaine. Mais si votre présence visuelle ne reflète pas ce niveau d'excellence, vous perdez des clients avant même d'avoir ouvert la bouche. Le Studio SHIFT vous fournit les munitions digitales pour que votre image vende à votre place — dès le premier regard.</p>
+  <div class="divider"></div>
+  
+  <div class="pack-grid">
+    <!-- PACK 1.A --> 
+    <div class="pack-card" id="pack-1a">
+      <div class="pack-header">
+        <div>
+          <div class="pack-code">Pack 1.A</div>
+          <div class="pack-name">Fondations & Identité</div>
+          <div class="pack-sub">Le Kit de Démarrage — Paiement unique</div>
+        </div>
+        <div class="badge-onetime">Une fois</div>
       </div>
-      <div class="ptab-block">
-        <div class="ptab-block-title">Livrables</div>
-        <ul class="ptab-list">
-          ${tab.livrables.map(l => `<li>${checkIcon}<span>${l}</span></li>`).join('')}
-        </ul>
-      </div>`;
+      
+      <div class="pack-row">
+        <div>
+          <div class="cell-label prob">Le problème</div>
+          <div class="cell-text">Vous existez, mais en ligne vous êtes invisible — ou pire, vous semblez peu sérieux. Un logo fait sur Canva en 10 minutes, des réseaux désorganisés, des bios vides. Ça coûte des contrats chaque jour.</div>
+        </div>
+        <div>
+          <div class="cell-label sol">La solution SHIFT</div>
+          <div class="cell-text">Nous construisons votre socle visuel de A à Z : logo, palette de couleurs, typographie, puis nous configurons et habillons chaque réseau social avec des bannières professionnelles et des bios optimisées. En bonus, un Guide Stratégique SHIFT.</div>
+        </div>
+        <div>
+          <div class="cell-label res">Le résultat</div>
+          <div class="cell-text">Une image unifiée, cohérente et mémorable sur tous vos canaux. Vous arrivez en réunion ou en DM avec l'assurance d'une marque qui inspire confiance immédiatement.</div>
+        </div>
+      </div>
+      
+      <div class="deliverables">
+        <div class="deliverables-title">Ce que vous recevez</div>
+        <div class="deliverable-list">
+          <div class="deliverable-item"><div class="dot"></div>Identité numérique complète (logo de base, palette, typographie)</div>
+          <div class="deliverable-item"><div class="dot"></div>Configuration experte de vos réseaux sociaux (bannières, bios optimisées, liens)</div>
+          <div class="deliverable-item"><div class="dot"></div>Guide de démarrage SHIFT (PDF) — applications, métriques, stratégie de publication</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- PACK 1.B -->
+    <div class="pack-card" id="pack-1b">
+      <div class="pack-header">
+        <div>
+          <div class="pack-code">Pack 1.B</div>
+          <div class="pack-name">Les Munitions</div>
+          <div class="pack-sub">Packs Visuels & Vidéo au volume</div>
+        </div>
+        <div class="badge-onetime">À la commande</div>
+      </div> 
+      <div class="pack-row">
+        <div>
+          <div class="cell-label prob">Le problème</div>
+          <div class="cell-text">Vous gérez vos réseaux, vous avez les idées — mais créer des visuels professionnels prend des heures que vous n'avez pas. Résultat : vous postez moins, votre audience s'essouffle.</div>
+        </div> 
+        <div>
+          <div class="cell-label sol">La solution SHIFT</div>
+          <div class="cell-text">Vous choisissez un forfait selon votre besoin. Nous produisons les assets — flyers, affiches, Reels, vidéos cinématiques — et livrons les fichiers bruts (PNG, MP4) prêts à l'emploi.</div>
+        </div>
+        <div>
+          <div class="cell-label res">Le résultat</div>
+          <div class="cell-text">Un stock de contenus visuels professionnels livré dans les délais. Votre calendrier ne tombe plus à sec, votre audience perçoit une marque sérieuse et consistante.</div>
+        </div>
+      </div>
+      
+      <div class="sub-packs">
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px">Option Visuels</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div class="sub-pack">
+              <div class="sub-pack-name">Pack Basic</div>
+              <div class="sub-pack-desc">5 flyers professionnels.</div>
+            </div>
+            <div class="sub-pack">
+              <div class="sub-pack-name">Pack Pro</div>
+              <div class="sub-pack-desc">10 flyers + déclinaisons.</div>
+            </div>
+            <div class="sub-pack">
+              <div class="sub-pack-name">Pack Événementiel</div>
+              <div class="sub-pack-desc">Affiche + déclinaisons web et stories.</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:8px">Option Vidéo</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div class="sub-pack">
+              <div class="sub-pack-name">Pack Snack</div>
+              <div class="sub-pack-desc">Vidéos 15s type Reels / TikTok.</div>
+            </div>
+            <div class="sub-pack">
+              <div class="sub-pack-name">Pack Cinematic</div>
+              <div class="sub-pack-desc">Vidéo soignée frame par frame.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- PACK 1.C -->
+    <div class="pack-card featured" id="pack-1c">
+      <div class="pack-header">
+        <div>
+          <div class="pack-code">Pack 1.C</div>
+          <div class="pack-name">Le Pilote</div>
+          <div class="pack-sub">Gestion complète de vos réseaux — mensuel</div>
+        </div>
+        <div class="badge-mrr">Revenu récurrent</div>
+      </div>
+      
+      <div class="pack-row">
+        <div>
+          <div class="cell-label prob">Le problème</div>
+          <div class="cell-text">Vous savez que vous devriez poster régulièrement. Mais entre votre activité principale et toutes les autres priorités — les réseaux passent toujours en dernier. Et ça se voit.</div>
+        </div>
+        <div>
+          <div class="cell-label sol">La solution SHIFT</div>
+          <div class="cell-text">Nous devenons votre équipe éditoriale. Calendrier éditorial, création des visuels et vidéos, publication sur tous vos canaux, analyse des métriques chaque mois. Vous validez, nous exécutons.</div>
+        </div>
+        <div>
+          <div class="cell-label res">Le résultat</div>
+          <div class="cell-text">Vos réseaux travaillent en permanence, même quand vous dormez. Votre audience grandit. Vos prospects arrivent déjà convaincus. Vous récupérez votre temps.</div>
+        </div>
+      </div>
+      
+      <div class="deliverables">
+        <div class="deliverables-title">Ce que vous recevez chaque mois</div>
+        <div class="deliverable-list">
+          <div class="deliverable-item"><div class="dot"></div>Calendrier éditorial mensuel — thèmes, formats, fréquences définies avec vous</div>
+          <div class="deliverable-item"><div class="dot"></div>Création complète du contenu (flyers + vidéos) et publication sur tous vos canaux</div>
+          <div class="deliverable-item"><div class="dot"></div>Rapport mensuel des métriques + recommandations stratégiques</div>
+          <div class="deliverable-item"><div class="dot"></div>Tarification dégressive : engagement 3 ou 6 mois = coût mensuel réduit</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- PACK 1.D -->
+    <div class="pack-card" id="pack-1d">
+      <div class="pack-header">
+        <div>
+          <div class="pack-code">Pack 1.D</div>
+          <div class="pack-name">Audit & Plan Personnalisé</div>
+          <div class="pack-sub">Pour les projets atypiques ou les indécis stratégiques</div>
+        </div>
+        <div class="badge-shot">Sur devis</div>
+      </div>
+      
+      <div class="pack-row">
+        <div>
+          <div class="cell-label prob">Le problème</div>
+          <div class="cell-text">Votre projet ne rentre dans aucune case. Vous avez besoin de contenu, d'identité, peut-être de gestion — mais vous ne savez pas dans quel ordre ni en quelle quantité.</div>
+        </div>
+        <div>
+          <div class="cell-label sol">La solution SHIFT</div>
+          <div class="cell-text">Une session stratégique avec notre équipe (Zoom, Meet ou en physique). Nous écoutons votre situation et construisons un plan sur mesure en combinant intelligemment les ressources A, B et C.</div>
+        </div>
+        <div>
+          <div class="cell-label res">Le résultat</div>
+          <div class="cell-text">Un devis clair, une feuille de route précise, et la certitude d'investir exactement là où ça produit un impact mesurable.</div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="divider"></div>
+  
+  <!-- CIBLE DU NIVEAU 1 -->
+  <div class="cible-block">
+    <div class="cible-title">Ce niveau est fait pour vous si...</div>
+    <div class="cible-grid">
+      <div class="cible-item"><div class="cible-dot"></div>Vous lancez votre projet et partez de zéro</div>
+      <div class="cible-item"><div class="cible-dot"></div>Votre image ne reflète pas votre valeur réelle</div>
+      <div class="cible-item"><div class="cible-dot"></div>Vous créez du contenu mais manquez de régularité</div>
+      <div class="cible-item"><div class="cible-dot"></div>Vous êtes créateur, indépendant, artisan ou startup</div>
+      <div class="cible-item"><div class="cible-dot"></div>Vous avez les idées — mais pas le temps ni les outils</div>
+      <div class="cible-item"><div class="cible-dot"></div>Vous voulez une crédibilité digitale immédiate</div>
+    </div>
+  </div>
+  
+  <!-- CTA NIVEAU 1 -->
+  <div class="cta-block">
+    <div class="cta-title">Votre image a trop de valeur pour être improvisée.</div>
+    <div class="cta-sub">Choisissez le pack qui correspond à votre étape, ou parlez-nous de votre projet.<br>En 30 minutes, nous saurons exactement ce dont vous avez besoin.</div>
+    <button class="cta-btn" onclick="closePackModal();document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Démarrer avec SHIFT →</button>
+    <!-- APRÈS — "Pack 2.D" devient un lien cliquable -->
+<div class="cta-secondary">
+  Ou réservez votre consultation avec notre architecte via
+  <button
+    onclick="goToPackDetail('→ Pack 1.D')"
+    style="
+      background: none;
+      border: none;
+      padding: 0;
+      font-size: inherit;
+      font-family: inherit;
+      color: var(--accent-1);
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-weight: 700;
+    "
+  >le Pack 1.D</button>
+</div>
+  </div>
+  
+</div>
+`,
 
-    if (tab.scenario) {
-      html += `
-      <div class="ptab-scenario">
-        <div class="ptab-scenario-title">📋 ${tab.scenario.title}</div>
-        ${tab.scenario.rows.map(r => `
-          <div class="ptab-scenario-row">
-            <span>${r.label}</span>
-            <span>${r.text}</span>
-          </div>`).join('')}
-      </div>`;
-    }
+  2: `
+<div class="page">
+  
+  <div class="eyebrow">Niveau 02 — Les services SHIFT</div>
+  
+  <h1 class="hero-title">Votre site ne dort jamais.<br><span>Il travaille. Il collecte. Il livre.</span></h1>
+  
+  <p class="hero-intro">Un site vitrine, c'est bien. Un site qui remplace une secrétaire, classe vos clients automatiquement et génère des documents à votre place — c'est ce que SHIFT construit.</p>
+  
+  <!-- SCÉNARIO RÉEL -->
+  <div class="scenario-block">
+    <div class="scenario-label">Scénario réel — École de langue avec Pack 2.B</div>
+    <div class="scenario-flow">
+      <div class="scenario-step">Parent remplit le formulaire</div>
+      <div class="scenario-arrow">→</div>
+      <div class="scenario-step">Données dans Google Sheets</div>
+      <div class="scenario-arrow">→</div>
+      <div class="scenario-step">Contrat généré automatiquement</div>
+      <div class="scenario-arrow">→</div>
+      <div class="scenario-step">Directeur notifié</div>
+      <div class="scenario-arrow">→</div>
+      <div class="scenario-step">10h gagnées / semaine</div>
+    </div>
+  </div>
+  
+  <div class="pack-grid">
+    
+    <!-- PACK 2.A -->
+    <div class="pack-card" id="pack-2a">
+      <div class="pack-header">
+        <div>
+          <div class="pack-code">Pack 2.A</div>
+          <div class="pack-name">La Vitrine Pro</div>
+          <div class="pack-sub">Le site essentiel — paiement unique</div>
+        </div>
+        <div class="badge-shot">One-shot</div>
+      </div>
+      
+      <div class="pack-row">
+        <div>
+          <div class="cell-label prob">Le problème</div>
+          <div class="cell-text">Vos prospects vous cherchent sur Google et ne trouvent rien. Sans site professionnel, vous n'existez pas aux yeux de la majorité de vos clients potentiels.</div>
+        </div>
+        
+        <div>
+          <div class="cell-label sol">La solution SHIFT</div>
+          <div class="cell-text">Nous concevons un site de 1 à 5 pages optimisé pour Google et parfait sur mobile. Accueil, À Propos, Services, Galerie, Contact — chaque page a un rôle précis. Domaine, SSL, formulaire : tout est configuré et livré.</div>
+        </div>
+        
+        <div>
+          <div class="cell-label res">Le résultat</div>
+          <div class="cell-text">En 1 à 2 semaines, vous avez une adresse professionnelle sur le web. Vos clients vous trouvent, vous font confiance, et vous contactent directement.</div>
+        </div>
+      </div>
+      
+      <div class="deliverables">
+        <div class="deliverables-title">Ce que vous recevez</div>
+        <div class="del-list">
+          <div class="del-item"><div class="dot"></div>Site 1 à 5 pages — design Mobile-First et optimisé SEO</div>
+          <div class="del-item"><div class="dot"></div>Configuration du nom de domaine + certificat de sécurité SSL</div>
+          <div class="del-item"><div class="dot"></div>Formulaire de contact intégré</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- PACK 2.B -->
+    <div class="pack-card featured" id="pack-2b">
+      <div class="pack-header">
+        <div>
+          <div class="pack-code">Pack 2.B</div>
+          <div class="pack-name">L'Infrastructure Intelligente</div>
+          <div class="pack-sub">Site + Automatisation — le cœur de l'offre SHIFT</div>
+        </div>
+        <div class="badge-mrr">Installation + Suivi mensuel</div>
+      </div>
+      
+      <div class="pack-row">
+        <div>
+          <div class="cell-label prob">Le problème</div>
+          <div class="cell-text">Vous perdez des heures chaque semaine à recopier des informations et relancer manuellement des clients. Votre système est une chaîne humaine — fragile et lente.</div>
+        </div>
+        
+        <div>
+          <div class="cell-label sol">La solution SHIFT</div>
+          <div class="cell-text">Nous construisons un écosystème automatisé : formulaires intelligents, Google Sheets en temps réel, génération automatique de documents. Votre site devient un assistant administratif 24h/24.</div>
+        </div>
+        
+        <div>
+          <div class="cell-label res">Le résultat</div>
+          <div class="cell-text">Zéro saisie manuelle. Zéro donnée perdue. Vous avez l'image d'une grande entreprise structurée — sans recruter un seul assistant.</div>
+        </div>
+      </div>
+      
+      <div class="deliverables">
+        <div class="deliverables-title">Le mécanisme technique installé par SHIFT</div>
+        <div class="mec-grid">
+          <div class="mec-step">
+            <div class="mec-num">Étape 1 — Capture</div>
+            <div class="mec-title">Formulaire intelligent</div>
+            <div class="mec-desc">Google Forms ou formulaire WordPress intégré à votre site.</div>
+          </div>
+          <div class="mec-step">
+            <div class="mec-num">Étape 2 — Stockage</div>
+            <div class="mec-title">Base de données auto</div>
+            <div class="mec-desc">Chaque réponse alimente un Google Sheets en temps réel.</div>
+          </div>
+          <div class="mec-step">
+            <div class="mec-num">Étape 3 — Rendu</div>
+            <div class="mec-title">Documents générés</div>
+            <div class="mec-desc">Via Autocrat ou Zapier/Make : fiche client, reçu ou contrat généré automatiquement.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- PACK 2.C -->
+    <div class="pack-card" id="pack-2c">
+      <div class="pack-header">
+        <div>
+          <div class="pack-code">Pack 2.C</div>
+          <div class="pack-name">Le Bouclier</div>
+          <div class="pack-sub">Maintenance, sécurité & hébergement — mensuel ou annuel</div>
+        </div>
+        <div class="badge-mrr">Revenu récurrent</div>
+      </div>
+      
+      <div class="pack-row">
+        <div>
+          <div class="cell-label prob">Le problème</div>
+          <div class="cell-text">Un site WordPress non maintenu est une cible. En quelques mois sans mise à jour, les plugins deviennent des portes ouvertes pour les pirates.</div>
+        </div>
+        
+        <div>
+          <div class="cell-label sol">La solution SHIFT</div>
+          <div class="cell-text">Hébergement, mises à jour mensuelles de WordPress et des plugins, sauvegardes hebdomadaires, et jusqu'à 2h de modifications par mois incluses.</div>
+        </div>
+        
+        <div>
+          <div class="cell-label res">Le résultat</div>
+          <div class="cell-text">Votre investissement initial est protégé sur le long terme. Aucune mauvaise surprise, aucune interruption de service.</div>
+        </div>
+      </div>
+      
+      <div class="alert-block">
+        <div class="alert-icon">⚠</div>
+        <div class="alert-text">Tout site livré sans souscription au Bouclier nécessite une décharge de responsabilité. En cas de piratage, SHIFT ne pourra pas être tenu responsable. C'est votre assurance digitale.</div>
+      </div>
+    </div>
+    
+    <!-- PACK 2.D -->
+    <div class="pack-card" id="pack-2d">
+      <div class="pack-header">
+        <div>
+          <div class="pack-code">Pack 2.D</div>
+          <div class="pack-name">Architecture Sur-Mesure</div>
+          <div class="pack-sub">E-commerce, plateformes complexes & projets spéciaux</div>
+        </div>
+        <div class="badge-devis">Sur devis</div>
+      </div>
+      
+      <div class="pack-row">
+        <div>
+          <div class="cell-label prob">Le problème</div>
+          <div class="cell-text">Vous voulez vendre en ligne, gérer des abonnements, ou construire une plateforme e-learning. Les packs standards ne couvrent pas votre besoin.</div>
+        </div>
+        
+        <div>
+          <div class="cell-label sol">La solution SHIFT</div>
+          <div class="cell-text">Notre architecte web analyse votre projet lors d'un appel dédié. Boutique WooCommerce, espace membres, plateforme de cours — nous construisons l'architecture adaptée.</div>
+        </div>
+        
+        <div>
+          <div class="cell-label res">Le résultat</div>
+          <div class="cell-text">Une plateforme construite pour durer et pour vendre. Un devis clair, un périmètre précis et des délais définis.</div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="divider"></div>
+  
+  <!-- CIBLE DU NIVEAU 2 -->
+  <div class="cible-block">
+    <div class="cible-title">Ce niveau est fait pour vous si...</div>
+    <div class="cible-grid">
+      <div class="cible-item"><div class="cible-dot"></div>Vous n'existez pas encore sur Google</div>
+      <div class="cible-item"><div class="cible-dot"></div>Vous perdez du temps sur des tâches manuelles répétitives</div>
+      <div class="cible-item"><div class="cible-dot"></div>Vous avez un site mais personne ne s'en occupe</div>
+      <div class="cible-item"><div class="cible-dot"></div>Vous gérez un cabinet, une clinique, une école</div>
+      <div class="cible-item"><div class="cible-dot"></div>Vous voulez un outil qui travaille même quand vous êtes absent</div>
+      <div class="cible-item"><div class="cible-dot"></div>Vous cherchez à digitaliser une activité physique existante</div>
+    </div>
+  </div>
+  
+  <!-- CTA NIVEAU 2 -->
+  <div class="cta-block">
+    <div class="cta-title">Votre prochain employé ne prend pas de congés.</div>
+    <div class="cta-sub">Un site bien construit travaille 24h/24, 7j/7, sans pause déjeuner.</div>
+    <button class="cta-btn" onclick="closePackModal();document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Construire mon infrastructure →</button>
+    <div class="cta-secondary">
+      Ou réservez votre consultation avec notre architecte via
+      <button
+        onclick="goToPackDetail('→ Pack 2.D')"
+        style="
+          background: none;
+          border: none;
+          padding: 0;
+          font-size: inherit;
+          font-family: inherit;
+          color: var(--accent-1);
+          cursor: pointer;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+          font-weight: 700;
+        "
+      >le Pack 2.D</button>
+    </div>
+  </div>
+  
+</div>
+`,
 
-    html += `
-      <div class="pack-modal-cta">
-        <a href="#contact" class="btn-primary" onclick="closePackModal()">
-          Demander un devis
-          <svg viewBox="0 0 16 16"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
-        </a>
-      </div>`;
+  3: `
+<div class="page">
+  
+  <div class="eyebrow">Niveau 03 — Les services SHIFT</div>
+  
+  <h1 class="hero-title">Votre expertise mérite d'être lue.<br><span>Transformez votre site en référence de votre secteur.</span></h1>
+  
+  <p class="hero-intro">Vous avez un message fort, une expertise réelle — mais Google ne vous trouve pas. L'Autorité Éditoriale transforme votre savoir en visibilité organique durable : des articles qui rankent, un contenu qui se multiplie.</p>
+  
+  <!-- SCÉNARIO RÉEL -->
+  <div class="scenario-block">
+    <div class="scenario-label">Scénario réel — Coach business avec Pack 3.C</div>
+    <div class="scenario-flow">
+      <div class="scenario-step">1 article publié</div>
+      <div class="scenario-arrow">→</div>
+      <div class="scenario-step">1 Reel tiré</div>
+      <div class="scenario-arrow">→</div>
+      <div class="scenario-step">3 visuels Instagram</div>
+      <div class="scenario-arrow">→</div>
+      <div class="scenario-step">1 newsletter</div>
+      <div class="scenario-arrow">→</div>
+      <div class="scenario-step">5x la portée</div>
+    </div>
+  </div>
+  
+  <div class="pack-grid">
+    
+    <!-- PACK 3.A -->
+    <div class="pack-card" id="pack-3a">
+      <div class="pack-header">
+        <div>
+          <div class="pack-code">Pack 3.A</div>
+          <div class="pack-name">Le Diffuseur</div>
+          <div class="pack-sub">Mise en ligne & optimisation SEO — à la publication</div>
+        </div>
+        <div class="badge-shot">À la publication</div>
+      </div>
+      
+      <div class="pack-row">
+        <div>
+          <div class="cell-label prob">Le problème</div>
+          <div class="cell-text">Vous écrivez, vous avez des idées. Mais WordPress vous donne des maux de tête — et vos articles finissent dans un tiroir faute de temps pour les publier correctement.</div>
+        </div>
+        
+        <div>
+          <div class="cell-label sol">La solution SHIFT</div>
+          <div class="cell-text">Vous nous envoyez votre texte brut. Nous nous occupons de tout : intégration professionnelle sur WordPress, optimisation SEO complète, mise en page soignée avec visuels.</div>
+        </div>
+        
+        <div>
+          <div class="cell-label res">Le résultat</div>
+          <div class="cell-text">Vos articles en ligne, optimisés et indexés sur Google. Votre blog vit. Vos lecteurs arrivent. Et vous n'avez pas touché à WordPress une seule fois.</div>
+        </div>
+      </div>
+      
+      <div class="deliverables">
+        <div class="deliverables-title">Ce que vous recevez par article</div>
+        <div class="del-list">
+          <div class="del-item"><div class="dot"></div>Intégration professionnelle sur WordPress</div>
+          <div class="del-item"><div class="dot"></div>Optimisation SEO complète : mots-clés ciblés, balises H1/H2, méta-description</div>
+          <div class="del-item"><div class="dot"></div>Mise en page avec image d'illustration fournie par notre Designer</div>
+          <div class="del-item"><div class="dot"></div>Vérification technique et sécurisation du blog</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- PACK 3.B -->
+    <div class="pack-card featured" id="pack-3b">
+      <div class="pack-header">
+        <div>
+          <div class="pack-code">Pack 3.B</div>
+          <div class="pack-name">Le Responsable Éditorial</div>
+          <div class="pack-sub">Gestion éditoriale totale — mensuel</div>
+        </div>
+        <div class="badge-mrr">Revenu récurrent</div>
+      </div>
+      
+      <div class="pack-row">
+        <div>
+          <div class="cell-label prob">Le problème</div>
+          <div class="cell-text">Vous savez qu'il faut publier régulièrement pour exister sur Google. Mais la régularité est votre ennemie. Vous partez bien, puis vous décrochez. Et Google punit l'irrégularité.</div>
+        </div>
+        
+        <div>
+          <div class="cell-label sol">La solution SHIFT</div>
+          <div class="cell-text">SHIFT devient votre rédacteur en chef externe. Nous planifions, rédigeons, illustrons et analysons — chaque mois, sans interruption. Vous validez une fois, nous exécutons le reste.</div>
+        </div>
+        
+        <div>
+          <div class="cell-label res">Le résultat</div>
+          <div class="cell-text">Une présence éditoriale constante et professionnelle. Votre trafic organique croît mois après mois. Vos prospects arrivent déjà convaincus de votre expertise.</div>
+        </div>
+      </div>
+      
+      <div class="deliverables">
+        <div class="deliverables-title">Ce que vous recevez chaque mois</div>
+        <div class="del-list">
+          <div class="del-item"><div class="dot"></div>Calendrier éditorial mensuel — sujets, angles, dates définis avec vous</div>
+          <div class="del-item"><div class="dot"></div>Rédaction ou supervision complète des articles, intégrés et optimisés SEO</div>
+          <div class="del-item"><div class="dot"></div>Visuels et vidéos courtes créés par Designer et Video Editor pour illustrer</div>
+          <div class="del-item"><div class="dot"></div>Rapport mensuel : lectures, classements Google, évolution du trafic organique</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- PACK 3.C -->
+    <div class="pack-card" id="pack-3c">
+      <div class="pack-header">
+        <div>
+          <div class="pack-code">Pack 3.C</div>
+          <div class="pack-name">L'Écho Digital</div>
+          <div class="pack-sub">Le recyclage intelligent de contenu — par article</div>
+        </div>
+        <div class="badge-shot">Par article</div>
+      </div>
+      
+      <div class="pack-row">
+        <div>
+          <div class="cell-label prob">Le problème</div>
+          <div class="cell-text">Vous publiez un article… et il reste sur votre blog. Une seule audience, une seule plateforme. L'énergie investie ne se rentabilise jamais pleinement.</div>
+        </div>
+        
+        <div>
+          <div class="cell-label sol">La solution SHIFT</div>
+          <div class="cell-text">Nos 5 experts activent la "Machine à Contenu" SHIFT sur chaque article : Reel, trois visuels percutants et une newsletter — chacun adapté au format de sa plateforme.</div>
+        </div>
+        
+        <div>
+          <div class="cell-label res">Le résultat</div>
+          <div class="cell-text">Un seul article. Cinq points de contact. Votre audience vous retrouve là où elle se trouve. Votre investissement éditorial est multiplié par 5.</div>
+        </div>
+      </div>
+      
+      <div class="deliverables">
+        <div class="deliverables-title">Ce que votre article génère avec SHIFT</div>
+        <div class="echo-grid">
+          <div class="echo-step">
+            <div class="echo-num">Format 1 — Blog</div>
+            <div class="echo-title">L'article source</div>
+            <div class="echo-desc">Optimisé SEO, publié et indexé sur WordPress.</div>
+          </div>
+          <div class="echo-step">
+            <div class="echo-num">Format 2 — Social</div>
+            <div class="echo-title">Visuel résumé</div>
+            <div class="echo-desc">1 visuel percutant — adapté Facebook & Instagram.</div>
+          </div>
+          <div class="echo-step">
+            <div class="echo-num">Format 3 — Vidéo</div>
+            <div class="echo-title">Teaser Reels / TikTok</div>
+            <div class="echo-desc">1 vidéo courte réalisée par notre Video Editor.</div>
+          </div>
+        </div>
+        <div class="multiplier-block">
+          <div class="multiplier-icon">×</div>
+          <div class="multiplier-text">Chaque article est aussi transformé en <strong>1 newsletter</strong> envoyée à vos abonnés. Un article = 5 contenus. C'est l'argument imbattable de SHIFT.</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- PACK 3.D -->
+    <div class="pack-card" id="pack-3d">
+      <div class="pack-header">
+        <div>
+          <div class="pack-code">Pack 3.D</div>
+          <div class="pack-name">Stratégie Éditoriale Sur-Mesure</div>
+          <div class="pack-sub">Projets éditoriaux complexes & hors-normes</div>
+        </div>
+        <div class="badge-devis">Sur devis</div>
+      </div>
+      
+      <div class="pack-row">
+        <div>
+          <div class="cell-label prob">Le problème</div>
+          <div class="cell-text">Votre projet dépasse le cadre d'un blog classique : magazine en ligne, couverture d'un événement multi-jours, bibliothèque de ressources complexe.</div>
+        </div>
+        
+        <div>
+          <div class="cell-label sol">La solution SHIFT</div>
+          <div class="cell-text">Une session stratégique privée pour dessiner votre ligne éditoriale sur mesure : positionnement, architecture de contenu, calendrier et indicateurs de succès.</div>
+        </div>
+        
+        <div>
+          <div class="cell-label res">Le résultat</div>
+          <div class="cell-text">Une vision éditoriale claire, un plan d'action concret. Vous savez exactement ce qui va être produit, quand et pourquoi.</div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="divider"></div>
+  
+  <!-- CIBLE DU NIVEAU 3 -->
+  <div class="cible-block">
+    <div class="cible-title">Ce niveau est fait pour vous si...</div>
+    <div class="cible-grid">
+      <div class="cible-item"><div class="cible-dot"></div>Vous avez un site mais il ne génère aucun trafic</div>
+      <div class="cible-item"><div class="cible-dot"></div>Vous êtes expert, consultant ou coach reconnu</div>
+      <div class="cible-item"><div class="cible-dot"></div>Vous voulez être trouvé sur Google sans payer de publicité</div>
+      <div class="cible-item"><div class="cible-dot"></div>Vous avez du contenu à produire mais manquez de régularité</div>
+      <div class="cible-item"><div class="cible-dot"></div>Vous êtes une association, ONG ou institution</div>
+      <div class="cible-item"><div class="cible-dot"></div>Vous publiez sur un canal mais votre contenu ne voyage pas</div>
+    </div>
+  </div>
+  
+  <!-- CTA NIVEAU 3 -->
+  <div class="cta-block">
+    <div class="cta-title">Google récompense ceux qui publient avec constance.</div>
+    <div class="cta-sub">Votre expertise mérite d'être la première réponse que vos clients trouvent.</div>
+    <button class="cta-btn" onclick="closePackModal();document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Activer mon autorité digitale →</button>
+    <div class="cta-secondary">
+      Ou lancez-vous avec le
+      <button
+        onclick="goToPackDetail('→ Pack 3.D')"
+        style="
+          background: none;
+          border: none;
+          padding: 0;
+          font-size: inherit;
+          font-family: inherit;
+          color: var(--accent-1);
+          cursor: pointer;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+          font-weight: 700;
+        "
+      >Pack 3.D</button>
+       — votre session stratégique sur-mesure
+    </div>
+  </div>
+  
+</div>
+`,
 
-    panel.innerHTML = html;
-    bodyEl.appendChild(panel);
-  });
+  4: `
+<div class="page">
+  
+  <div class="eyebrow">Niveau 04 — Les services SHIFT</div>
+  
+  <h1 class="hero-title">Votre entreprise mérite un département marketing complet.<br><span>Sans recruter une seule personne.</span></h1>
+  
+  <p class="hero-intro">À ce stade, vous n'avez plus besoin d'un prestataire ponctuel. SHIFT devient votre Directeur Marketing Digital externalisé, avec une équipe de 5 experts mobilisée pour votre croissance.</p>
+  
+  <!-- SCÉNARIO RÉEL -->
+  <div class="scenario-block">
+    <div class="scenario-label">Ce que remplace un contrat Niveau 04</div>
+    <div class="scenario-flow">
+      <div class="scenario-step">Community Manager</div>
+      <div class="scenario-arrow">+</div>
+      <div class="scenario-step">Développeur Web</div>
+      <div class="scenario-arrow">+</div>
+      <div class="scenario-step">Rédacteur SEO</div>
+      <div class="scenario-arrow">+</div>
+      <div class="scenario-step">Designer</div>
+      <div class="scenario-arrow">+</div>
+      <div class="scenario-step">Vidéaste</div>
+      <div class="scenario-arrow">=</div>
+      <div class="scenario-step">1 contrat SHIFT</div>
+    </div>
+  </div>
+  
+  <div class="pack-grid">
+    
+    <!-- PACK 4.A -->
+    <div class="pack-card featured" id="pack-4a">
+      <div class="pack-header">
+        <div>
+          <div class="pack-code">Pack 4.A</div>
+          <div class="pack-name">L'Empreinte Globale</div>
+          <div class="pack-sub">Gestion digitale intégrale Niveaux 1 + 2 + 3 — mensuel</div>
+        </div>
+        <div class="badge-mrr">Revenu récurrent</div>
+      </div>
+      
+      <div class="pack-row">
+        <div>
+          <div class="cell-label prob">Le problème</div>
+          <div class="cell-text">Gérer 5 prestataires différents — chacun avec son agenda, ses devis — vous coûte plus en énergie qu'en résultats. Votre présence digitale manque de cohérence.</div>
+        </div>
+        
+        <div>
+          <div class="cell-label sol">La solution SHIFT</div>
+          <div class="cell-text">Un seul contrat. Une seule équipe. Une vision unifiée. SHIFT gère en synergie votre image et réseaux (N1), site et automatisations (N2), et contenu SEO (N3).</div>
+        </div>
+        
+        <div>
+          <div class="cell-label res">Le résultat</div>
+          <div class="cell-text">La sérénité totale. Un interlocuteur. Un reporting mensuel. Zéro dispersion. Votre présence digitale cohérente et performante sur tous les fronts.</div>
+        </div>
+      </div>
+      
+      <div class="deliverables">
+        <div class="deliverables-title">Les trois piliers actifs en permanence</div>
+        <div class="pillars-grid">
+          <div class="pillar">
+            <div class="pillar-num">Pilier 1 — Niveau 01</div>
+            <div class="pillar-title">Image & Réseaux Sociaux</div>
+            <div class="pillar-desc">Création de contenu quotidien, vidéos, flyers, modération et gestion de votre communauté.</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">Pilier 2 — Niveau 02</div>
+            <div class="pillar-title">Site Web & Automatisations</div>
+            <div class="pillar-desc">Maintenance, mises à jour, sécurité et évolutions de votre site. Automatisations surveillées en continu.</div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-num">Pilier 3 — Niveau 03</div>
+            <div class="pillar-title">Contenu & SEO</div>
+            <div class="pillar-desc">Publication régulière d'articles optimisés Google et recyclage de contenu sur toutes vos plateformes.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- PACK 4.B -->
+    <div class="pack-card" id="pack-4b">
+      <div class="pack-header">
+        <div>
+          <div class="pack-code">Pack 4.B</div>
+          <div class="pack-name">Le Propulseur</div>
+          <div class="pack-sub">Gestion publicitaire & maximisation du ROI Ads</div>
+        </div>
+        <div class="badge-mrr">Revenu récurrent</div>
+      </div>
+      
+      <div class="pack-row">
+        <div>
+          <div class="cell-label prob">Le problème</div>
+          <div class="cell-text">Vous avez un budget publicitaire, mais vos campagnes Facebook ou Google tournent dans le vide. Mauvais ciblage, visuels génériques, budget gaspillé.</div>
+        </div>
+        
+        <div>
+          <div class="cell-label sol">La solution SHIFT</div>
+          <div class="cell-text">Nous prenons en charge l'intégralité de votre stratégie Ads : campagnes Facebook, Instagram et Google, production de visuels "Ad Creatives" orientés conversion, optimisation continue.</div>
+        </div>
+        
+        <div>
+          <div class="cell-label res">Le résultat</div>
+          <div class="cell-text">Chaque euro investi est piloté pour générer un retour mesurable. Rapport mensuel clair : coût par acquisition, ROAS, recommandations pour le mois suivant.</div>
+        </div>
+      </div>
+      
+      <div class="deliverables">
+        <div class="deliverables-title">Ce que vous recevez</div>
+        <div class="del-list">
+          <div class="del-item"><div class="dot"></div>Création et gestion de campagnes Facebook Ads, Instagram Ads & Google Ads</div>
+          <div class="del-item"><div class="dot"></div>Production de visuels et vidéos "Ad Creatives" spécifiques à la conversion</div>
+          <div class="del-item"><div class="dot"></div>Optimisation continue du ciblage, des enchères et des budgets</div>
+          <div class="del-item"><div class="dot"></div>Rapport mensuel : coût par acquisition, ROAS, recommandations stratégiques</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- PACK 4.C -->
+    <div class="pack-card" id="pack-4c">
+      <div class="pack-header">
+        <div>
+          <div class="pack-code">Pack 4.C</div>
+          <div class="pack-name">Le Partenariat Performance</div>
+          <div class="pack-sub">Modèle hybride — frais fixes réduits + commission sur résultats</div>
+        </div>
+        <div class="badge-select">Sélectif</div>
+      </div>
+      
+      <div class="pack-row">
+        <div>
+          <div class="cell-label prob">Le problème</div>
+          <div class="cell-text">Vous avez un produit prouvé. Vous voulez accélérer votre croissance mais préférez partager le risque plutôt que payer un forfait élevé à un prestataire non exposé à votre réussite.</div>
+        </div>
+        
+        <div>
+          <div class="cell-label sol">La solution SHIFT</div>
+          <div class="cell-text">Un contrat Forfait Fixe + Commission sur les ventes générées via le digital. SHIFT réduit ses frais mensuels en échange d'un pourcentage des revenus produits par nos actions.</div>
+        </div>
+        
+        <div>
+          <div class="cell-label res">Le résultat</div>
+          <div class="cell-text">Un alignement total d'intérêts. Une équipe motivée à performer. Et la garantie que votre investissement mensuel reste maîtrisé pendant la montée en puissance.</div>
+        </div>
+      </div>
+      
+      <div class="alert-block">
+        <div class="alert-icon">◈</div>
+        <div class="alert-text">Ce pack est réservé aux entreprises dont le produit a déjà prouvé sa traction marché. SHIFT analyse votre activité avant tout engagement.</div>
+      </div>
+    </div>
+    
+    <!-- PACK 4.D -->
+    <div class="pack-card" id="pack-4d">
+      <div class="pack-header">
+        <div>
+          <div class="pack-code">Pack 4.D</div>
+          <div class="pack-name">L'Inkubateur</div>
+          <div class="pack-sub">Plan de transformation digitale sur 12 mois</div>
+        </div>
+        <div class="badge-devis">Sur devis</div>
+      </div>
+      
+      <div class="pack-row">
+        <div>
+          <div class="cell-label prob">Le problème</div>
+          <div class="cell-text">Vous lancez un nouveau projet d'envergure. Vous avez le budget et la vision, mais aucun plan structuré sur 12 mois.</div>
+        </div>
+        
+        <div>
+          <div class="cell-label sol">La solution SHIFT</div>
+          <div class="cell-text">Une réunion stratégique directe avec la direction de SHIFT pour dessiner votre architecture numérique complète sur 12 mois : positionnement, roadmap phase par phase, KPIs de croissance.</div>
+        </div>
+        
+        <div>
+          <div class="cell-label res">Le résultat</div>
+          <div class="cell-text">Un plan de transformation digitale sur-mesure avec une équipe dédiée et une vision à 12 mois. Chaque décision documentée, mesurée et orientée ROI.</div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  
+  <div class="divider"></div>
+  
+  <!-- CIBLE DU NIVEAU 4 -->
+  <div class="cible-block">
+    <div class="cible-title">Ce niveau est fait pour vous si...</div>
+    <div class="cible-grid">
+      <div class="cible-item"><div class="cible-dot"></div>Vous n'avez pas de département marketing interne</div>
+      <div class="cible-item"><div class="cible-dot"></div>Vous voulez un seul interlocuteur pour tout votre digital</div>
+      <div class="cible-item"><div class="cible-dot"></div>Vous avez le budget mais pas le temps de tout piloter</div>
+      <div class="cible-item"><div class="cible-dot"></div>Vous lancez un projet d'envergure</div>
+      <div class="cible-item"><div class="cible-dot"></div>Vous gérez une PME ou une entreprise en forte croissance</div>
+      <div class="cible-item"><div class="cible-dot"></div>Vous cherchez un partenaire de croissance, pas un simple prestataire</div>
+    </div>
+  </div>
+  
+  <!-- CTA NIVEAU 4 -->
+  <div class="cta-block">
+    <div class="cta-title">Vous dirigez votre entreprise. Laissez SHIFT diriger votre croissance digitale.</div>
+    <div class="cta-sub">Un seul appel. Un seul contrat. Une équipe de 5 experts à votre service.</div>
+    <button class="cta-btn" onclick="closePackModal();document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Demander ma session stratégique →</button>
+    <div class="cta-secondary">
+      Ou découvrez comment L'Inkubateur
+      <button
+        onclick="goToPackDetail('→ Pack 4.D')"
+        style="
+          background: none;
+          border: none;
+          padding: 0;
+          font-size: inherit;
+          font-family: inherit;
+          color: var(--accent-1);
+          cursor: pointer;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+          font-weight: 700;
+        "
+      >(Pack 4.D)</button>
+      peut transformer votre projet sur 12 mois
+    </div>
+  </div>
+  
+</div>
+`
+};
+
+const NIVEAU_META = {
+  1: { eyebrow: 'Niveau 01', title: 'Le Studio — Création & Visibilité' },
+  2: { eyebrow: 'Niveau 02', title: 'L\'Infrastructure — Actifs & Automatisation' },
+  3: { eyebrow: 'Niveau 03', title: 'L\'Autorité Éditoriale — Contenu & SEO' },
+  4: { eyebrow: 'Niveau 04', title: 'Le Partenariat 360° — Externalisation Totale' }
+};
+
+// ── État du quiz ──────────────────────────────────────────────────────
+let _currentLevel = 1;
+let _answerQ1 = null;
+let _answerQ2 = null;
+
+function _getResult(level, a1, a2) {
+  const results = QUIZ_DATA[level].results;
+  const key = `${a1}-${a2}`;
+  return results[key] || results['DEFAULT'];
 }
 
+function _buildQuizHTML(level) {
+  const q = QUIZ_DATA[level];
+  const color = q.accentColor;
+  const optsHTML = (opts) => opts.map(o => `
+    <button class="quiz-option" data-key="${o.key}" onclick="quizSelectOption(this)">
+      <span class="quiz-opt-key">${o.key}</span>
+      <span class="quiz-opt-text">${o.text}</span>
+    </button>`).join('');
+
+  return `
+  <div class="quiz-wrapper">
+    <!-- Barre de progression -->
+    <div class="quiz-progress">
+      <div class="quiz-progress-dot" id="qp1"></div>
+      <div class="quiz-progress-dot" id="qp2"></div>
+      <div class="quiz-progress-dot" id="qp3"></div>
+    </div>
+
+    <!-- Étape 1 — Q1 -->
+    <div class="quiz-step active" id="quiz-step-1">
+      <div class="quiz-q-label">${q.q1.label}</div>
+      <div class="quiz-q-text">${q.q1.text}</div>
+      <div class="quiz-options" id="quiz-opts-1">${optsHTML(q.q1.options)}</div>
+    </div>
+
+    <!-- Étape 2 — Q2 -->
+    <div class="quiz-step" id="quiz-step-2">
+      <div class="quiz-q-label">${q.q2.label}</div>
+      <div class="quiz-q-text">${q.q2.text}</div>
+      <div class="quiz-options" id="quiz-opts-2">${optsHTML(q.q2.options)}</div>
+    </div>
+
+    <!-- Étape 3 — Résultat -->
+    <div class="quiz-step" id="quiz-step-3">
+      <div class="quiz-result active" id="quiz-result-content"></div>
+    </div>
+  </div>`;
+}
+
+function quizSelectOption(btn) {
+  // Identifier l'étape active
+  const step1 = document.getElementById('quiz-step-1');
+  const step2 = document.getElementById('quiz-step-2');
+  const isStep1 = step1.classList.contains('active');
+
+  // Marquer la sélection
+  const parent = btn.closest('.quiz-options');
+  parent.querySelectorAll('.quiz-option').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+
+  // Avancer après un court délai
+  setTimeout(() => {
+    if (isStep1) {
+      _answerQ1 = btn.dataset.key;
+      document.getElementById('qp1').classList.add('done');
+      step1.classList.remove('active');
+      step2.classList.add('active');
+    } else {
+      _answerQ2 = btn.dataset.key;
+      document.getElementById('qp2').classList.add('done');
+      step2.classList.remove('active');
+      document.getElementById('quiz-step-3').classList.add('active');
+      _showQuizResult(_currentLevel, _answerQ1, _answerQ2);
+      document.getElementById('qp3').classList.add('done');
+    }
+  }, 380);
+}
+
+function _showQuizResult(level, a1, a2) {
+  const res = _getResult(level, a1, a2);
+  const color = QUIZ_DATA[level].accentColor;
+
+  // Récupère les textes des questions/réponses pour pré-remplir le formulaire
+  const q = QUIZ_DATA[level];
+  const textQ1 = q.q1.options.find(o => o.key === a1)?.text || '';
+  const textQ2 = q.q2.options.find(o => o.key === a2)?.text || '';
+
+  // Stocke pour usage dans les CTAs
+  window._quizContext = {
+    pack: res.badge.replace('→ ', '').trim(),
+    q1Label: q.q1.text,
+    q1Answer: textQ1,
+    q2Label: q.q2.text,
+    q2Answer: textQ2,
+    cta: res.cta
+  };
+
+  document.getElementById('quiz-result-content').innerHTML = `
+    <div class="quiz-result-badge" style="background:${color}22;color:${color}">
+      ✦ ${res.badge}
+    </div>
+    <div class="quiz-result-title">${res.title}</div>
+    <div class="quiz-result-msg">${res.msg}</div>
+
+    <div class="quiz-result-actions" style="flex-direction:column;gap:10px">
+      <!-- Bouton 1 : Voir le pack en détail -->
+      <button class="btn-secondary" onclick="goToPackDetail('${res.badge}')" style="justify-content:center">
+        <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        Voir ce pack en détail
+      </button>
+      <!-- Bouton 2 : Demander ce pack + pré-remplir contact -->
+      <a href="#contact" class="btn-primary" onclick="fillAndGoContact();closePackModal();">
+        ${res.cta}
+        <svg viewBox="0 0 16 16"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
+      </a>
+    </div>
+
+    <div class="quiz-divider"></div>
+    <button class="quiz-see-all" onclick="switchToContent()">
+      <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      Voir tous les packs du niveau
+    </button>
+    <button class="quiz-restart" onclick="restartQuiz()">↺ Recommencer le questionnaire</button>`;
+}
+
+function restartQuiz() {
+  _answerQ1 = null; _answerQ2 = null;
+  document.getElementById('quiz-step-1').classList.add('active');
+  document.getElementById('quiz-step-2').classList.remove('active');
+  document.getElementById('quiz-step-3').classList.remove('active');
+  ['qp1','qp2','qp3'].forEach(id => document.getElementById(id).classList.remove('done'));
+  document.querySelectorAll('.quiz-option').forEach(b => b.classList.remove('selected'));
+}
+
+function switchToContent() {
+  document.querySelector('.pm-nav-btn[data-view="quiz"]').classList.remove('active');
+  document.querySelector('.pm-nav-btn[data-view="content"]').classList.add('active');
+  document.getElementById('pm-panel-quiz').classList.remove('active');
+  document.getElementById('pm-panel-content').classList.add('active');
+  document.getElementById('packModalBody').scrollTop = 0;
+}
+function switchToQuiz() {
+  document.querySelector('.pm-nav-btn[data-view="content"]').classList.remove('active');
+  document.querySelector('.pm-nav-btn[data-view="quiz"]').classList.add('active');
+  document.getElementById('pm-panel-content').classList.remove('active');
+  document.getElementById('pm-panel-quiz').classList.add('active');
+}
+
+// ── Construction du modal ─────────────────────────────────────────────
+function buildPackModal(levelId) {
+  _currentLevel = levelId;
+  _answerQ1 = null; _answerQ2 = null;
+
+  const meta = NIVEAU_META[levelId];
+  document.getElementById('pmEyebrow').textContent  = meta.eyebrow;
+  document.getElementById('pmTitle').textContent    = meta.title;
+  document.getElementById('pmSubtitle').textContent = '';
+
+  // Nav tabs quiz / contenu
+  const tabsEl = document.getElementById('packModalTabs');
+  tabsEl.innerHTML = `
+    <button class="pm-nav-btn active" data-view="quiz" onclick="switchToQuiz()">
+      ✦ Trouver mon pack
+    </button>
+    <button class="pm-nav-btn" data-view="content" onclick="switchToContent()">
+      Voir tous les packs
+    </button>`;
+  tabsEl.className = 'pm-nav';
+
+  // Corps : quiz + contenu
+  const bodyEl = document.getElementById('packModalBody');
+  bodyEl.innerHTML = `
+    <div class="pm-panel active" id="pm-panel-quiz">
+      ${_buildQuizHTML(levelId)}
+    </div>
+    <div class="pm-panel" id="pm-panel-content">
+      <div class="pm-content" data-level="${levelId}">${NIVEAU_HTML[levelId]}</div>
+    </div>`;
+}
+
+// Pré-remplit le formulaire contact et y scrolle
+function fillAndGoContact() {
+  if (!window._quizContext) return;
+  const ctx = window._quizContext;
+
+  // Sélectionne le bon pack dans le select
+  const select = document.getElementById('f-service');
+  for (let i = 0; i < select.options.length; i++) {
+    if (select.options[i].value.includes(ctx.pack)) {
+      select.selectedIndex = i;
+      break;
+    }
+  }
+
+  // Pré-remplit le textarea avec le contexte du quiz
+  const textarea = document.getElementById('f-message');
+  textarea.value =
+`Bonjour,
+
+Suite au questionnaire sur votre site, voici mes réponses :
+
+Q : ${ctx.q1Label}
+→ ${ctx.q1Answer}
+
+Q : ${ctx.q2Label}
+→ ${ctx.q2Answer}
+
+Pack recommandé : ${ctx.pack}
+
+Je souhaite en savoir plus sur ce pack et obtenir un devis.`;
+
+  // Scroll vers le formulaire après fermeture du modal
+  setTimeout(() => {
+    document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+    // Effet focus sur le champ prénom
+    setTimeout(() => document.getElementById('f-prenom').focus(), 600);
+  }, 350);
+}
+
+// Bascule vers le contenu et scroll + highlight le pack recommandé
+function goToPackDetail(badgeText) {
+  // Passe à l'onglet "Voir tous les packs"
+  switchToContent();
+
+  // Extrait le code du pack (ex: "→ Pack 1.A" → "pack-1a")
+  const match = badgeText.match(/Pack\s+(\d+\.[A-Z])/i);
+  if (!match) return;
+
+  const packId = 'pack-' + match[1].toLowerCase().replace('.', '');
+  const bodyEl = document.getElementById('packModalBody');
+
+  setTimeout(() => {
+    const target = document.getElementById(packId);
+    if (!target) return;
+
+    // Scroll jusqu'au pack dans le modal
+    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    // Effet highlight
+    target.classList.remove('highlighted');
+    void target.offsetWidth; // force reflow
+    target.classList.add('highlighted');
+    setTimeout(() => target.classList.remove('highlighted'), 3000);
+  }, 120);
+}
+
+// ── Ouverture / fermeture ─────────────────────────────────────────────
 function openPackModal(levelId) {
   buildPackModal(levelId);
   document.getElementById('packModalOverlay').classList.add('open');
   document.body.classList.add('modal-open');
+  document.getElementById('packModalBody').scrollTop = 0;
 }
-
 function closePackModal() {
   document.getElementById('packModalOverlay').classList.remove('open');
   document.body.classList.remove('modal-open');
@@ -2892,15 +4460,11 @@ document.querySelectorAll('.pack-trigger').forEach(card => {
     openPackModal(parseInt(card.getAttribute('data-pack')));
   });
 });
-
 document.getElementById('packModalClose').addEventListener('click', closePackModal);
 document.getElementById('packModalOverlay').addEventListener('click', e => {
   if (e.target === document.getElementById('packModalOverlay')) closePackModal();
 });
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closePackModal();
-});
-
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closePackModal(); });
 </script>
 </body>
 </html>
