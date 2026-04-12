@@ -1213,6 +1213,44 @@ section{
   gap: 12px;
   flex-wrap: wrap;
 }
+/* Bouton "Demander ce pack" sur chaque pack card dans le modal */
+.pack-card-cta-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px 0;
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent-1);
+  background: var(--accent-1-dim);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all .22s;
+}
+.pack-card-cta-btn:hover {
+  background: var(--accent-1);
+  color: var(--bg-primary);
+  border-color: var(--accent-1);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--accent-glow);
+}
+.pack-card-cta-btn svg {
+  width: 12px;
+  height: 12px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
 @media(max-width:600px){
   .pack-modal-header, .pack-modal-tabs, .pack-modal-body { padding-left: 20px; padding-right: 20px; }
   .pack-modal-box { border-radius: 14px; }
@@ -2341,7 +2379,7 @@ footer{
 }
 .quiz-restart {
   font-family: 'Syne', sans-serif;
-  font-size: 11px; font-weight: 600;
+  font-size: 15px; font-weight: 600;
   color: var(--text-muted); background: none;
   border: none; cursor: pointer;
   padding: 0; margin-top: 16px;
@@ -2459,7 +2497,7 @@ footer{
   <div class="hero-inner">
     <div class="hero-content reveal">
       <h1 class="hero-title">Design / Code<br><span>IMPACT</span><br></h1>
-      <p class="hero-sub">SHIFT est une agence digitale spécialisée dans le web design, le branding, la vidéo et le marketing — pour les entrepreneurs qui veulent exister vraiment en ligne.</p>
+      <p class="hero-sub">SHIFT est une agence digitale spécialisée dans le web design, le branding, la vidéo et le marketing — pour les entrepreneurs, créateurs, startups, PME, institutions,... qui veulent exister vraiment en ligne.</p>
       <div class="hero-actions">
         <a href="#packs" class="btn-primary">
           Voir nos packs
@@ -2596,7 +2634,7 @@ footer{
         <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>1.C — Le Pilote (Gestion Sociale)</li>
         <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>1.D — Audit & Plan Personnalisé</li>
       </ul>
-      <div class="pack-price">Dès 200<span>$/ projet</span></div>
+      <div class="pack-price">Sur devis<span>/ projet</span></div>
       <div class="pack-target">Idéal : Créateurs, startups, micro-entreprises</div>
       <span class="pack-cta" style="margin-top:auto">Explorer ce niveau →</span>
     </div>
@@ -2612,7 +2650,7 @@ footer{
         <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>2.C — Le Bouclier (Maintenance)</li>
         <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>2.D — Architecture Sur-Mesure</li>
       </ul>
-      <div class="pack-price">Dès 500<span>$/ projet</span></div>
+      <div class="pack-price">Sur devis<span>/ projet</span></div>
       <div class="pack-target">Idéal : PME, ONG, cabinets, cliniques</div>
       <span class="pack-cta" style="margin-top:auto">Explorer ce niveau →</span>
     </div>
@@ -2628,7 +2666,7 @@ footer{
         <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>3.C — L'Écho Digital (Recyclage)</li>
         <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>3.D — Stratégie Sur-Mesure</li>
       </ul>
-      <div class="pack-price">Dès 400<span>$/ mois</span></div>
+      <div class="pack-price">Sur devis<span>/ mois</span></div>
       <div class="pack-target">Idéal : Marques établies, institutions</div>
       <span class="pack-cta" style="margin-top:auto">Explorer ce niveau →</span>
     </div>
@@ -3333,6 +3371,10 @@ const NIVEAU_HTML = {
           <div class="deliverable-item"><div class="dot"></div>Guide de démarrage SHIFT (PDF) — applications, métriques, stratégie de publication</div>
         </div>
       </div>
+      <button class="pack-card-cta-btn" onclick="choisirPack('Pack 1.A — Fondations & Identité')">
+        Demander ce pack
+        <svg viewBox="0 0 16 16"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
+      </button>
     </div>
     
     <!-- PACK 1.B -->
@@ -3392,6 +3434,10 @@ const NIVEAU_HTML = {
           </div>
         </div>
       </div>
+      <button class="pack-card-cta-btn" onclick="choisirPack('Pack 1.B — Les Munitions')">
+        Choisir mon forfait
+        <svg viewBox="0 0 16 16"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
+      </button>
     </div>
     
     <!-- PACK 1.C -->
@@ -3429,6 +3475,10 @@ const NIVEAU_HTML = {
           <div class="deliverable-item"><div class="dot"></div>Tarification dégressive : engagement 3 ou 6 mois = coût mensuel réduit</div>
         </div>
       </div>
+      <button class="pack-card-cta-btn" onclick="choisirPack('Pack 1.C — Le Pilote')">
+        Je veux ce pack
+        <svg viewBox="0 0 16 16"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
+      </button>
     </div>
     
     <!-- PACK 1.D -->
@@ -3457,7 +3507,10 @@ const NIVEAU_HTML = {
         </div>
       </div>
     </div>
-    
+    <button class="pack-card-cta-btn" onclick="choisirPack('Pack 1.D — Audit & Plan Personnalisé')">
+      Réserver ma consultation
+      <svg viewBox="0 0 16 16"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
+    </button>
   </div>
   
   <div class="divider"></div>
@@ -3567,6 +3620,10 @@ const NIVEAU_HTML = {
           <div class="del-item"><div class="dot"></div>Formulaire de contact intégré</div>
         </div>
       </div>
+      <button class="pack-card-cta-btn" onclick="choisirPack('Pack 2.A — La Vitrine Pro')">
+        Je veux ce site
+        <svg viewBox="0 0 16 16"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
+      </button>
     </div>
     
     <!-- PACK 2.B -->
@@ -3617,6 +3674,10 @@ const NIVEAU_HTML = {
           </div>
         </div>
       </div>
+      <button class="pack-card-cta-btn" onclick="choisirPack('Pack 2.B — L\'Infrastructure Intelligente')">
+        Je veux cette infrastructure
+        <svg viewBox="0 0 16 16"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
+      </button>
     </div>
     
     <!-- PACK 2.C -->
@@ -3651,6 +3712,10 @@ const NIVEAU_HTML = {
         <div class="alert-icon">⚠</div>
         <div class="alert-text">Tout site livré sans souscription au Bouclier nécessite une décharge de responsabilité. En cas de piratage, SHIFT ne pourra pas être tenu responsable. C'est votre assurance digitale.</div>
       </div>
+      <button class="pack-card-cta-btn" onclick="choisirPack('Pack 2.C — Le Bouclier')">
+        Protéger mon site
+        <svg viewBox="0 0 16 16"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
+      </button>
     </div>
     
     <!-- PACK 2.D -->
@@ -3681,7 +3746,10 @@ const NIVEAU_HTML = {
         </div>
       </div>
     </div>
-    
+    <button class="pack-card-cta-btn" onclick="choisirPack('Pack 2.D — Architecture Sur-Mesure')">
+      Discuter de mon projet
+      <svg viewBox="0 0 16 16"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
+    </button>
   </div>
   
   <div class="divider"></div>
@@ -3791,6 +3859,10 @@ const NIVEAU_HTML = {
           <div class="del-item"><div class="dot"></div>Vérification technique et sécurisation du blog</div>
         </div>
       </div>
+      button class="pack-card-cta-btn" onclick="choisirPack('Pack 3.A — Le Diffuseur')">
+        Publier mon article
+        <svg viewBox="0 0 16 16"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
+      </button>
     </div>
     
     <!-- PACK 3.B -->
@@ -3830,6 +3902,10 @@ const NIVEAU_HTML = {
           <div class="del-item"><div class="dot"></div>Rapport mensuel : lectures, classements Google, évolution du trafic organique</div>
         </div>
       </div>
+      button class="pack-card-cta-btn" onclick="choisirPack('Pack 3.B — Le Responsable Éditorial')">
+        Je veux ce pack
+        <svg viewBox="0 0 16 16"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
+      </button>
     </div>
     
     <!-- PACK 3.C -->
@@ -3884,6 +3960,10 @@ const NIVEAU_HTML = {
           <div class="multiplier-text">Chaque article est aussi transformé en <strong>1 newsletter</strong> envoyée à vos abonnés. Un article = 5 contenus. C'est l'argument imbattable de SHIFT.</div>
         </div>
       </div>
+      <button class="pack-card-cta-btn" onclick="choisirPack('Pack 3.C — L\'Écho Digital')">
+        Je veux ce pack
+        <svg viewBox="0 0 16 16"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
+      </button>
     </div>
     
     <!-- PACK 3.D -->
@@ -3914,7 +3994,10 @@ const NIVEAU_HTML = {
         </div>
       </div>
     </div>
-    
+    button class="pack-card-cta-btn" onclick="choisirPack('Pack 3.D — Stratégie Éditoriale Sur-Mesure')">
+      Discuter de mon projet
+      <svg viewBox="0 0 16 16"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
+    </button>
   </div>
   
   <div class="divider"></div>
@@ -4038,6 +4121,10 @@ const NIVEAU_HTML = {
           </div>
         </div>
       </div>
+      <button class="pack-card-cta-btn" onclick="choisirPack('Pack 4.A — L\'Empreinte Globale')">
+        Je veux ce pack
+        <svg viewBox="0 0 16 16"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
+      </button>
     </div>
     
     <!-- PACK 4.B -->
@@ -4077,6 +4164,10 @@ const NIVEAU_HTML = {
           <div class="del-item"><div class="dot"></div>Rapport mensuel : coût par acquisition, ROAS, recommandations stratégiques</div>
         </div>
       </div>
+      <button class="pack-card-cta-btn" onclick="choisirPack('Pack 4.B — Le Propulseur')">
+        Je veux ce pack
+        <svg viewBox="0 0 16 16"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
+      </button>
     </div>
     
     <!-- PACK 4.C -->
@@ -4111,6 +4202,10 @@ const NIVEAU_HTML = {
         <div class="alert-icon">◈</div>
         <div class="alert-text">Ce pack est réservé aux entreprises dont le produit a déjà prouvé sa traction marché. SHIFT analyse votre activité avant tout engagement.</div>
       </div>
+      <button class="pack-card-cta-btn" onclick="choisirPack('Pack 4.C — Le Partenariat Performance')">
+        Je veux ce pack
+        <svg viewBox="0 0 16 16"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
+      </button>
     </div>
     
     <!-- PACK 4.D -->
@@ -4140,6 +4235,10 @@ const NIVEAU_HTML = {
           <div class="cell-text">Un plan de transformation digitale sur-mesure avec une équipe dédiée et une vision à 12 mois. Chaque décision documentée, mesurée et orientée ROI.</div>
         </div>
       </div>
+      <button class="pack-card-cta-btn" onclick="choisirPack('Pack 4.D — L\'Inkubateur')">
+        Je veux ce pack
+        <svg viewBox="0 0 16 16"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
+      </button>
     </div>
     
   </div>
@@ -4394,24 +4493,63 @@ function fillAndGoContact() {
   // Pré-remplit le textarea avec le contexte du quiz
   const textarea = document.getElementById('f-message');
   textarea.value =
+  `Bonjour,
+
+  Suite au questionnaire sur votre site, voici mes réponses :
+
+  Q : ${ctx.q1Label}
+  → ${ctx.q1Answer}
+
+  Q : ${ctx.q2Label}
+  → ${ctx.q2Answer}
+
+  Pack recommandé : ${ctx.pack}
+
+  Je souhaite en savoir plus sur ce pack et obtenir un devis.`;
+
+    // Scroll vers le formulaire après fermeture du modal
+    setTimeout(() => {
+      document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+      // Effet focus sur le champ prénom
+      setTimeout(() => document.getElementById('f-prenom').focus(), 600);
+    }, 350);
+}
+
+// Fonction déclenchée par le bouton "Demander ce pack" sur chaque card
+// packName correspond exactement à la valeur des options du <select>
+function choisirPack(packName) {
+
+  // 1. Sélectionne le bon pack dans le formulaire
+  const select = document.getElementById('f-service');
+  for (let i = 0; i < select.options.length; i++) {
+    // On cherche l'option dont la value contient le code du pack (ex: "Pack 1.A")
+    if (select.options[i].value.includes(packName)) {
+      select.selectedIndex = i;
+      break;
+    }
+  }
+
+  // 2. Pré-remplit le textarea avec un message orienté "pack choisi"
+  const textarea = document.getElementById('f-message');
+  textarea.value =
 `Bonjour,
 
-Suite au questionnaire sur votre site, voici mes réponses :
+J'ai consulté votre offre sur le site SHIFT et je souhaite en savoir plus sur le pack suivant :
 
-Q : ${ctx.q1Label}
-→ ${ctx.q1Answer}
+Pack choisi : ${packName}
 
-Q : ${ctx.q2Label}
-→ ${ctx.q2Answer}
+Pourriez-vous me fournir plus d'informations ainsi qu'un devis personnalisé ?
 
-Pack recommandé : ${ctx.pack}
+Merci.`;
 
-Je souhaite en savoir plus sur ce pack et obtenir un devis.`;
+  // 3. Ferme le modal
+  closePackModal();
 
-  // Scroll vers le formulaire après fermeture du modal
+  // 4. Scroll vers le formulaire contact avec un léger délai
+  // pour laisser le modal se fermer proprement avant de scroller
   setTimeout(() => {
     document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
-    // Effet focus sur le champ prénom
+    // Focus sur le champ prénom pour guider l'utilisateur
     setTimeout(() => document.getElementById('f-prenom').focus(), 600);
   }, 350);
 }
