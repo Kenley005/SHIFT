@@ -1,0 +1,3104 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AyitiDataSpo - Plateforme Publique</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --couleur-primaire:         #004AAD;
+            --couleur-secondaire:       #D52028;
+            --couleur-succes:           #22BB33;
+            --couleur-fond-page:        #FFFFFF;
+            --couleur-texte-principal:  #111827;
+            --couleur-texte-secondaire: #6B7280;
+            --shadow-sm:  0 2px 8px rgba(0,0,0,0.08);
+            --shadow-md:  0 4px 16px rgba(0,0,0,0.12);
+            --radius-sm:  6px;
+            --radius-md:  8px;
+            --radius-lg:  12px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #F9FAFB;
+            color: var(--couleur-texte-principal);
+            overflow-x: hidden;
+        }
+
+        /* ---- HEADER ---- */
+        header {
+            background-color: var(--couleur-fond-page);
+            border-bottom: 2px solid #E5E7EB;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 0 2px var(--couleur-primaire);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo{
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        .logo img{
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+         .logo2{
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--couleur-primaire);
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .logo2 span {
+            color: var(--couleur-secondaire);
+        }
+
+        nav { display: flex; gap: 2rem; align-items: center; }
+
+        nav a {
+            text-decoration: none;
+            color: var(--couleur-texte-principal);
+            font-weight: 500;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        nav a:hover, nav a.active { color: var(--couleur-primaire); }
+        .icon{ width: 20px; height: 20px; display: inline-block; vertical-align: middle; margin-right: 0.35rem; }
+
+        .tab-button .icon { width: 18px; height: 18px; margin-right: 0.5rem; display: inline-flex; align-items: center; }
+
+        .tabs-container {
+            display: flex; gap: 0.5rem; background: white; padding: 1rem;
+            border-radius: var(--radius-md); margin-bottom: 2rem; box-shadow: var(--shadow-sm);
+            flex-wrap: wrap;
+        }
+        .tab-button {
+            flex: 1; padding: 0.8rem; background: transparent; border: none;
+            border-bottom: 3px solid transparent; cursor: pointer; font-weight: 600;
+            color: var(--couleur-texte-secondaire); transition: all 0.3s ease;
+            display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+            border-radius: var(--radius-sm); min-width: 120px;
+        }
+        .tab-button:hover  { background: #F9FAFB; color: var(--couleur-primaire); }
+        .tab-button.active { border-bottom-color: var(--couleur-secondaire); color: var(--couleur-primaire); }
+
+
+        /* ---- BOUTONS ---- */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary { background-color: var(--couleur-secondaire); color: white; }
+        .btn-primary:hover { background-color: #B81B22; }
+        .btn-secondary { background-color: white; color: var(--couleur-primaire); border: 2px solid var(--couleur-primaire); }
+        .btn-secondary:hover { background-color: #F0F4FB; }
+
+        /* ---- PAGES ---- */
+        .page { display: none; }
+        .page.active { display: block; }
+
+        .main-container { max-width: 1400px; margin: 3rem auto; padding: 0 2rem; }
+        .page-title    { font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem; }
+        .page-subtitle { color: var(--couleur-texte-secondaire); margin-bottom: 2rem; }
+
+        /* ---- RECHERCHE ---- */
+        .search-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .search-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #D1D5DB;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--couleur-primaire);
+            box-shadow: 0 0 0 3px rgba(0,74,173,0.1);
+        }
+
+        /* ---- JOUEURS ---- */
+        .player-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .player-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .player-card:hover { transform: translateY(-4px); box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
+
+        .player-header {
+            background: linear-gradient(135deg, var(--couleur-primaire) 0%, #003580 100%);
+            color: white;
+            padding: 0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .player-avatar {
+            width: 100%;
+            height: 200px;
+            border-radius: 0;
+            margin: 0;
+            border: none;
+            background: rgba(255,255,255,0.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            overflow: hidden;
+        }
+
+        .player-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 0; display: block; }
+        .player-name     { font-size: 1.3rem; font-weight: bold; padding: 1rem 1rem 0.35rem; }
+        .player-position { font-size: 0.95rem; opacity: 0.9; padding: 0 1rem 1rem; }
+
+        .player-body { padding: 1.5rem; }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #E5E7EB;
+            font-size: 0.9rem;
+        }
+
+        .info-label { color: var(--couleur-texte-secondaire); font-weight: 600; }
+        .info-value { color: var(--couleur-texte-principal);  font-weight: 500; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid #E5E7EB;
+        }
+
+        .stat-box    { text-align: center; }
+        .stat-value  { font-size: 1.8rem; font-weight: bold; color: var(--couleur-secondaire); }
+        .stat-label  { font-size: 0.8rem; color: var(--couleur-texte-secondaire); margin-top: 0.25rem; }
+
+        /* ---- ÉQUIPES ---- */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .team-card:hover { transform: translateY(-4px); box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
+
+        .team-header {
+            background: linear-gradient(135deg, var(--couleur-primaire) 0%, #003580 100%);
+            color: white;
+            padding: 0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .team-logo {
+            width: 100%;
+            height: 180px;
+            border-radius: 0;
+            margin: 0;
+            border: none;
+            background: rgba(255,255,255,0.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            overflow: hidden;
+        }
+
+        .team-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 0; display: block; }
+        .team-name { font-size: 1.3rem; font-weight: bold; padding: 1rem 1rem 0.35rem; }
+        .team-city { font-size: 0.95rem; opacity: 0.9; padding: 0 1rem 1rem; }
+
+        .team-body { padding: 1.5rem; }
+
+        .player-list  { margin-top: 1rem; }
+
+        .player-item {
+            padding: 0.75rem;
+            background-color: #F9FAFB;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .player-item-name { font-weight: 600; color: var(--couleur-texte-principal); }
+        .player-item-pos  { color: var(--couleur-texte-secondaire); font-size: 0.85rem; }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--couleur-primaire);
+            cursor: pointer;
+        }
+        .category-card:hover,
+        .category-card:focus { transform: translateY(-3px); box-shadow: var(--shadow-md); outline: none; }
+
+        .category-card-header {
+            background: linear-gradient(135deg, var(--couleur-primaire) 0%, #003580 100%);
+            color: white;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .category-icon-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            border: 2px solid rgba(255,255,255,0.5);
+        }
+
+        .category-card-name {
+            font-size: 1.25rem;
+            font-weight: bold;
+            flex: 1;
+        }
+
+        .category-card-body {
+            padding: 1.25rem 1.5rem;
+        }
+
+        .category-description {
+            color: var(--couleur-texte-secondaire);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+            min-height: 1.5rem;
+        }
+
+        .category-stats-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            background: #F9FAFB;
+            border-radius: var(--radius-sm);
+        }
+
+        .category-stat {
+            flex: 1;
+            text-align: center;
+        }
+
+        .category-stat-value {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--couleur-primaire);
+            display: block;
+        }
+
+        .category-stat-label {
+            font-size: 0.75rem;
+            color: var(--couleur-texte-secondaire);
+            font-weight: 600;
+        }
+
+        /* ---- CHAMPIONNATS ---- */
+        .championship-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .championship-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .championship-card:hover { transform: translateY(-4px); box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
+
+        .champ-header {
+            background: linear-gradient(135deg, var(--couleur-primaire) 0%, #003580 100%);
+            color: white;
+            padding: 0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .champ-logo {
+            width: 100%;
+            height: 170px;
+            border-radius: 0;
+            margin: 0;
+            border: none;
+            background: rgba(255,255,255,0.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            overflow: hidden;
+        }
+
+        .champ-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 0; display: block; }
+        .champ-name   { font-size: 1.2rem; font-weight: bold; padding: 1rem 1rem 0.25rem; }
+        .champ-season { font-size: 0.9rem; opacity: 0.9; padding: 0 1rem 1rem; }
+
+        .champ-body { padding: 1.5rem; }
+
+        .champ-info {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #E5E7EB;
+            font-size: 0.9rem;
+        }
+
+        .champ-btn {
+            display: block;
+            width: 100%;
+            margin-top: 1rem;
+            text-align: center;
+            padding: 0.75rem;
+            background-color: var(--couleur-primaire);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .champ-btn:hover { background-color: #003580; }
+
+        /* ---- CLASSEMENTS ---- */
+        .standings-table {
+            background-color: white;
+            border-radius: 8px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-top: 2rem;
+        }
+
+        table  { width: 100%; border-collapse: collapse; min-width: 720px; }
+        th { background: linear-gradient(135deg, var(--couleur-primaire), #003580); color: white; padding: 1rem; text-align: left; font-weight: 600; }
+        td { padding: 1rem; border-bottom: 1px solid #E5E7EB; }
+        tbody tr:hover { background-color: #F9FAFB; }
+
+        .rank   { font-weight: bold; min-width: 30px; text-align: center; }
+        .rank-1 { background-color: #FFD700; border-radius: 4px; padding: 0.5rem; display: inline-block; }
+        .rank-2 { background-color: #C0C0C0; border-radius: 4px; padding: 0.5rem; display: inline-block; }
+        .rank-3 { background-color: #CD7F32; border-radius: 4px; padding: 0.5rem; display: inline-block; }
+
+        /* ---- CARTES JOUEURS (style admin) ---- */
+        .admin-player-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .admin-player-card {
+            background: white;
+            border: 2px solid var(--couleur-or);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .admin-player-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255,215,0,0.3);
+        }
+
+        .admin-player-photo {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: linear-gradient(135deg,#f0f0f0,#d0d0d0);
+        }
+
+        .admin-player-info {
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .admin-player-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .admin-player-position {
+            background-color: var(--couleur-primaire);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .admin-player-age {
+            color: var(--couleur-texte-secondaire);
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .admin-player-team {
+            color: var(--couleur-texte-secondaire);
+            font-size: 0.85rem;
+        }
+
+        /* ---- PAGES DÉTAIL ---- */
+        .detail-header {
+            background: linear-gradient(135deg, var(--couleur-primaire) 0%, #003580 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .detail-title    { font-size: 2.5rem; font-weight: bold; margin-bottom: 0.5rem; }
+        .detail-subtitle { font-size: 1.1rem; opacity: 0.9; }
+
+        .detail-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .detail-info-box { background-color: rgba(255,255,255,0.1); padding: 1rem; border-radius: 4px; }
+        .detail-info-label { font-size: 0.85rem; opacity: 0.8; margin-bottom: 0.5rem; }
+        .detail-info-value { font-size: 1.2rem; font-weight: bold; }
+
+        .card-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+
+        .card-section h3 { color: var(--couleur-primaire); margin-bottom: 1.5rem; }
+
+        .public-calendar-board {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .public-calendar-section {
+            min-width: 0;
+        }
+
+        .public-calendar-tabs {
+            display: flex;
+            align-items: stretch;
+            gap: 0.75rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 0.75rem;
+        }
+
+        .public-calendar-tab {
+            flex: 1 1 0;
+            min-width: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border: 0;
+            border-bottom: 3px solid transparent;
+            border-radius: 0;
+            background: transparent;
+            color: var(--couleur-texte-secondaire);
+            cursor: pointer;
+            padding: 0.85rem 0.75rem;
+            transition: all 0.2s ease;
+        }
+
+        .public-calendar-tab.active {
+            background: transparent;
+            border-bottom-color: var(--couleur-secondaire);
+            color: var(--couleur-primaire);
+        }
+
+        .public-calendar-tab .icon,
+        .public-calendar-status .icon {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .public-calendar-panel {
+            display: none;
+        }
+
+        .public-calendar-panel.active {
+            display: block;
+        }
+
+        .public-calendar-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .public-calendar-match {
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .public-calendar-match-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            color: var(--couleur-texte-secondaire);
+            font-size: 0.9rem;
+            margin-bottom: 0.9rem;
+        }
+
+        .public-calendar-time {
+            color: var(--couleur-primaire);
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .public-calendar-teams {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .public-calendar-team {
+            min-width: 0;
+            text-align: center;
+        }
+
+        .public-calendar-team-name {
+            font-weight: 800;
+            margin-bottom: 0.4rem;
+            overflow-wrap: anywhere;
+        }
+
+        .public-calendar-team-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .public-calendar-team-fallback {
+            font-size: 1.7rem;
+            line-height: 1;
+        }
+
+        .public-calendar-score {
+            min-width: 72px;
+            text-align: center;
+            color: var(--couleur-secondaire);
+            font-size: 1.35rem;
+            font-weight: 900;
+            white-space: nowrap;
+        }
+
+        .public-calendar-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            margin-top: 0.9rem;
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--couleur-primaire);
+            background: rgba(0, 74, 173, 0.08);
+            border-radius: 999px;
+            padding: 0.3rem 0.7rem;
+        }
+
+        .public-calendar-status.played {
+            color: #0F7B46;
+            background: rgba(15, 123, 70, 0.1);
+        }
+
+        .public-calendar-venue {
+            margin-top: 0.9rem;
+            padding-top: 0.9rem;
+            border-top: 1px solid #E5E7EB;
+            color: var(--couleur-texte-secondaire);
+            font-size: 0.9rem;
+        }
+
+        .public-calendar-empty {
+            margin: 0;
+            padding: 1.5rem 1rem;
+            background: #F9FAFB;
+            box-shadow: none;
+        }
+
+        /* ============================================================
+           CLASSEMENTS STATISTIQUES (buteurs, passeurs, gardiens)
+        ============================================================ */
+        .rank-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 1rem 1.25rem;
+            margin-bottom: 0.75rem;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+        .rank-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+        .rank-card:nth-child(1) { border-left-color: #FFD700; }
+        .rank-card:nth-child(2) { border-left-color: #A8A8A8; }
+        .rank-card:nth-child(3) { border-left-color: #CD7F32; }
+
+        .rank-pos {
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: var(--couleur-texte-secondaire);
+            min-width: 34px;
+            text-align: center;
+        }
+
+        .rank-avatar {
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #E5E7EB;
+            flex-shrink: 0;
+        }
+
+        .rank-avatar-placeholder {
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--couleur-primaire), #003580);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.25rem; flex-shrink: 0;
+        }
+
+        .rank-info { flex: 1; min-width: 0; }
+        .rank-name { font-weight: 700; font-size: 0.95rem; color: var(--couleur-texte-principal); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .rank-sub  { font-size: 0.8rem; color: var(--couleur-texte-secondaire); margin-top: 0.2rem; }
+
+        .rank-score-box { text-align: right; flex-shrink: 0; }
+        .rank-score       { font-size: 1.8rem; font-weight: 900; color: var(--couleur-secondaire); line-height: 1; }
+        .rank-score-label { font-size: 0.72rem; color: var(--couleur-texte-secondaire); font-weight: 600; margin-top: 0.15rem; }
+
+        .stats-section-header {
+            padding: 1.25rem 1.5rem;
+            border-radius: var(--radius-md) var(--radius-md) 0 0;
+            color: white;
+            margin-bottom: 0;
+        }
+        .stats-section-header h3 { margin: 0; font-size: 1.1rem; }
+
+        .stats-section-body {
+            background: #F9FAFB;
+            border-radius: 0 0 var(--radius-md) var(--radius-md);
+            padding: 1.25rem;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 1rem;
+        }
+
+        .rank-medal {
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            display: flex; align-items: center;
+            justify-content: center;
+            font-size: 0.82rem; font-weight: 900;
+            flex-shrink: 0; border: 2px solid transparent;
+        }
+        .rank-medal-1 { background:#FFF3CD; color:#856404; border-color:#FFD700; }
+        .rank-medal-2 { background:#F0F0F0; color:#555;    border-color:#AAAAAA; }
+        .rank-medal-3 { background:#F5E6D3; color:#7B4100; border-color:#CD7F32; }
+        .rank-medal-n { background:#F3F4F6; color:var(--couleur-texte-secondaire); border-color:#E5E7EB; }
+        .rank-avatar-placeholder svg { display:block; }
+
+        /* ---- UTILITAIRES ---- */
+        .no-data {
+            text-align: center;
+            padding: 3rem;
+            color: var(--couleur-texte-secondaire);
+            background-color: white;
+            border-radius: 8px;
+        }
+
+        /* Spinner de chargement */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--couleur-texte-secondaire);
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #E5E7EB;
+            border-top-color: var(--couleur-primaire);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ---- MODAL JOUEUR ---- */
+        .player-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0);
+            opacity: 0;
+            transition: opacity 0.3s ease, background-color 0.3s ease;
+        }
+
+        .player-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            opacity: 1;
+        }
+
+        .player-modal-content {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            animation: slideUp 0.3s ease;
+        }
+
+        .player-modal-header {
+            background: linear-gradient(135deg, var(--couleur-primaire) 0%, #003580 100%);
+            color: white;
+            padding: 2rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            position: relative;
+        }
+
+        .player-modal-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--couleur-or);
+            flex-shrink: 0;
+        }
+
+        .player-modal-title {
+            flex: 1;
+        }
+
+        .player-modal-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .player-modal-position {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .player-modal-body {
+            padding: 2rem;
+        }
+
+        .player-modal-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .player-modal-info-item {
+            padding: 1rem;
+            background: #F9FAFB;
+            border-radius: 8px;
+            border-left: 4px solid var(--couleur-primaire);
+        }
+
+        .player-modal-info-label {
+            color: var(--couleur-texte-secondaire);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .player-modal-info-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--couleur-primaire);
+        }
+
+        .player-modal-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #E5E7EB;
+        }
+
+        .player-modal-stat {
+            padding: 1rem;
+            background: #F9FAFB;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .player-modal-stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--couleur-secondaire);
+            margin-bottom: 0.25rem;
+        }
+
+        .player-modal-stat-label {
+            color: var(--couleur-texte-secondaire);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .player-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .player-modal-close:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 768px) {
+            header {
+                padding: 0.75rem 0;
+            }
+
+            .header-container {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.75rem;
+                padding: 0 1rem;
+            }
+
+            .logo {
+                justify-content: center;
+            }
+
+            .logo2 {
+                font-size: 1.25rem;
+            }
+
+            nav {
+                width: 100%;
+                gap: 0.5rem;
+                overflow-x: auto;
+                white-space: nowrap;
+                padding: 0.25rem 0 0.5rem;
+                scrollbar-width: thin;
+            }
+
+            nav a {
+                flex: 0 0 auto;
+                padding: 0.65rem 0.85rem;
+                border-radius: 999px;
+                background: #F3F4F6;
+                font-size: 0.9rem;
+            }
+
+            nav a.active {
+                background: rgba(0,74,173,0.1);
+            }
+
+            .main-container {
+                margin: 1.5rem auto;
+                padding: 0 1rem;
+            }
+
+            .page-title {
+                font-size: 1.6rem;
+                line-height: 1.2;
+            }
+
+            .page-subtitle {
+                margin-bottom: 1.25rem;
+                line-height: 1.5;
+            }
+
+            .search-container,
+            .card-section {
+                padding: 1rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .search-grid,
+            .detail-info {
+                grid-template-columns: 1fr;
+            }
+
+            .public-calendar-match {
+                padding: 0.85rem;
+            }
+
+            .player-grid,
+            .team-grid,
+            .championship-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+
+            .player-avatar {
+                height: 180px;
+            }
+
+            .team-logo,
+            .champ-logo {
+                height: 160px;
+            }
+
+            .player-body,
+            .team-body,
+            .champ-body {
+                padding: 1rem;
+            }
+
+            .info-row,
+            .champ-info {
+                gap: 1rem;
+                align-items: flex-start;
+            }
+
+            .info-value {
+                text-align: right;
+                overflow-wrap: anywhere;
+            }
+
+            .stats-grid {
+                gap: 0.5rem;
+            }
+
+            .stat-value {
+                font-size: 1.35rem;
+            }
+
+            .detail-header {
+                padding: 1.5rem 1rem;
+                border-radius: 8px;
+            }
+
+            .detail-title {
+                font-size: 1.65rem;
+                line-height: 1.2;
+                overflow-wrap: anywhere;
+            }
+
+            .detail-subtitle {
+                font-size: 1rem;
+            }
+
+            .detail-info-box {
+                padding: 0.85rem;
+            }
+
+            .detail-info-value {
+                font-size: 1rem;
+                overflow-wrap: anywhere;
+            }
+
+            .standings-table {
+                margin-top: 1rem;
+                border-radius: 8px;
+            }
+
+            table th,
+            table td {
+                padding: 0.65rem;
+                font-size: 0.85rem;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .no-data,
+            .loading {
+                padding: 2rem 1rem;
+            }
+
+            body > div[style*="position:fixed"] {
+                right: 12px !important;
+                bottom: 12px !important;
+            }
+
+            body > div[style*="position:fixed"] a {
+                padding: 0.65rem 1rem !important;
+            }
+
+            .btn-admin h3 {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .header-container {
+                padding: 0 0.75rem;
+            }
+
+            .main-container {
+                padding: 0 0.75rem;
+            }
+
+            nav a {
+                padding: 0.6rem 0.75rem;
+                font-size: 0.85rem;
+            }
+
+            .page-title {
+                font-size: 1.45rem;
+            }
+
+            .player-avatar,
+            .team-logo,
+            .champ-logo {
+                height: 150px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            table {
+                min-width: 640px;
+            }
+
+            .public-calendar-tabs {
+                gap: 0.45rem;
+                padding: 0.5rem;
+            }
+
+            .public-calendar-tab {
+                flex-direction: column;
+                gap: 0.25rem;
+                padding: 0.65rem 0.35rem;
+                font-size: 0.82rem;
+                text-align: center;
+            }
+
+            .public-calendar-match-meta {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 0.35rem;
+            }
+
+            .public-calendar-teams {
+                gap: 0.45rem;
+            }
+
+            .public-calendar-score {
+                min-width: 58px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header> 
+    <div class="header-container">
+        <div class="logo">
+            <a onclick="app.navigate('search')" class="logo1"><img src="../img/logo data.webp" alt="logo" width="40" height="40"></a>
+            <a onclick="app.navigate('search')" class="logo2">Ayiti<span>Data</span>Spò</a>
+        </div>
+        <nav>
+            <a onclick="app.navigate('search')"        id="nav-search">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg> 
+                Recherche
+            </a>
+            <a onclick="app.navigate('championships')" id="nav-champ">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                    <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                    <path d="M4 22h16"></path>
+                    <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+                    <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+                    <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+                </svg>
+                Championnats
+                </a>
+            <a onclick="app.navigate('teams')"         id="nav-teams">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                Équipes
+            </a>
+            <a onclick="app.navigate('players')"       id="nav-players">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                </svg>
+                Joueurs
+            </a>
+            <a onclick="app.navigate('standings')"     id="nav-standings">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+                Classements
+            </a>
+        </nav>
+    </div>
+</header>
+
+<!-- PAGE : RECHERCHE -->
+<div id="search" class="page active">
+    <div class="main-container">
+        <h1 class="page-title">Recherche</h1>
+        <p class="page-subtitle">Trouvez joueurs, équipes et championnats</p>
+        <div class="search-container">
+            <div class="search-grid">
+                <input type="text" id="searchQuery" placeholder="Recherchez un joueur, une équipe..." onkeyup="app.performSearch()">
+            </div>
+            <button class="btn btn-primary" onclick="app.performSearch()">Rechercher</button>
+        </div>
+        <div id="searchResults"></div>
+    </div>
+</div>
+
+<!-- PAGE : JOUEURS -->
+<div id="players" class="page">
+    <div class="main-container">
+        <h1 class="page-title">Tous les joueurs</h1>
+        <p class="page-subtitle">Découvrez les jeunes talents</p>
+        <div class="search-container">
+            <div class="search-grid">
+                <input type="text" id="playerSearch" placeholder="Rechercher un joueur..." onkeyup="app.filterPlayers()">
+                <select id="playerPosition" onchange="app.filterPlayers()">
+                    <option value="">-- Tous les postes --</option>
+                    <option value="Gardien">Gardien</option>
+                    <option value="Défenseur central">Défenseur central</option>
+                    <option value="Arrière latéral gauche">Arrière latéral gauche</option>
+                    <option value="Arrière latéral droit">Arrière latéral droit</option>
+                    <option value="Milieu défensif">Milieu défensif</option>
+                    <option value="Milieu de terrain">Milieu de terrain</option>
+                    <option value="Milieu gauche">Milieu gauche</option>
+                    <option value="Milieu droit">Milieu droit</option>
+                    <option value="Milieu offensif">Milieu offensif</option>
+                    <option value="Ailier gauche">Ailier gauche</option>
+                    <option value="Ailier droit">Ailier droit</option>
+                    <option value="Attaquant">Attaquant</option>
+                    <option value="Avant-centre">Avant-centre</option>
+                    <option value="Faux 9">Faux 9</option>
+                </select>
+            </div>
+        </div>
+        <div id="playersList" class="player-grid"></div>
+        <div id="noPlayers" class="no-data" style="display:none;"><p>Aucun joueur trouvé</p></div>
+    </div>
+</div>
+
+<!-- PAGE : DÉTAIL JOUEUR -->
+<div id="playerDetail" class="page">
+    <div class="main-container">
+        <button class="btn btn-secondary" onclick="app.navigate('players')" style="margin-bottom:2rem;">← Retour aux joueurs</button>
+        <div class="detail-header">
+            <div class="detail-title"    id="detailPlayerName"></div>
+            <div class="detail-subtitle" id="detailPlayerPosition"></div>
+            <div class="detail-info">
+                <div class="detail-info-box"><div class="detail-info-label">Équipe</div><div class="detail-info-value" id="detailPlayerTeam">-</div></div>
+                <div class="detail-info-box"><div class="detail-info-label">Date de naissance</div><div class="detail-info-value" id="detailPlayerDOB">-</div></div>
+                <div class="detail-info-box"><div class="detail-info-label">Âge</div><div class="detail-info-value" id="detailPlayerAge">-</div></div>
+            </div>
+        </div>
+        <div class="card-section">
+            <h3>Statistiques</h3>
+            <div class="info-row"><span class="info-label">Buts marqués</span><span class="info-value" id="detailPlayerGoals">0</span></div>
+            <div class="info-row"><span class="info-label">Passes décisives</span><span class="info-value" id="detailPlayerAssists">0</span></div>
+            <div class="info-row"><span class="info-label">Matchs joués</span><span class="info-value" id="detailPlayerMatches">0</span></div>
+            <div class="info-row"><span class="info-label">Moyenne buts/match</span><span class="info-value" id="detailPlayerAvg">0.00</span></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE : ÉQUIPES -->
+<div id="teams" class="page">
+    <div class="main-container">
+        <h1 class="page-title">Toutes les équipes</h1>
+        <p class="page-subtitle">Consultez les équipes participantes</p>
+        <div class="search-container">
+            <input type="text" id="teamSearch" placeholder="Rechercher une équipe..." onkeyup="app.filterTeams()">
+        </div>
+        <div id="teamsList" class="team-grid"></div>
+        <div id="noTeams" class="no-data" style="display:none;"><p>Aucune équipe trouvée</p></div>
+    </div>
+</div>
+
+<!-- PAGE : DÉTAIL ÉQUIPE -->
+<div id="teamDetail" class="page">
+    <div class="main-container">
+        <button class="btn btn-secondary" onclick="app.navigate('teams')" style="margin-bottom:2rem;">← Retour aux équipes</button>
+        <div class="detail-header">
+            <div class="detail-title"    id="detailTeamName"></div>
+            <div class="detail-subtitle" id="detailTeamCity"></div>
+        </div>
+        <div class="card-section">
+            <h3>Effectif</h3>
+            <div id="detailTeamPlayers"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE : CHAMPIONNATS -->
+<div id="championships" class="page">
+    <div class="main-container">
+        <h1 class="page-title">Championnats</h1>
+        <p class="page-subtitle">Découvrez tous les championnats disponibles</p>
+        <div class="search-container">
+            <select id="champSearch" onchange="app.filterChampionships()">
+                <option value="">-- Tous les championnats --</option>
+                <option value="league">Ligue</option>
+                <option value="cup">Coupe</option>
+                <option value="hybrid">Ligue + Phases</option>
+            </select>
+        </div>
+        <div id="championshipsList" class="championship-grid"></div>
+        <div id="noChamps" class="no-data" style="display:none;"><p>Aucun championnat trouvé</p></div>
+    </div>
+</div>
+
+<!-- PAGE : DÉTAIL CHAMPIONNAT -->
+<div id="championshipDetail" class="page">
+    <div class="main-container">
+        <button class="btn btn-secondary" onclick="app.navigate('championships')" style="margin-bottom:2rem;">← Retour aux championnats</button>
+        <div class="detail-header">
+            <div id="detailChampLogo" style="margin-bottom:1rem;"></div>
+            <div class="detail-title"    id="detailChampName"></div>
+            <div class="detail-subtitle" id="detailChampSeason"></div>
+            <div class="detail-info">
+                <div class="detail-info-box"><div class="detail-info-label">Format</div><div class="detail-info-value" id="detailChampFormat">-</div></div>
+                <div class="detail-info-box"><div class="detail-info-label">Lieu</div><div class="detail-info-value" id="detailChampLocation">-</div></div>
+                <div class="detail-info-box"><div class="detail-info-label">Équipes</div><div class="detail-info-value" id="detailChampTeamCount">0</div></div>
+            </div>
+        </div>
+        <p id="detailChampDescription" style="margin-bottom:2rem;color:var(--couleur-texte-secondaire);"></p>
+
+        <!-- ONGLETS -->
+        <div style="display:flex;justify-content:space-around;width:100%;gap:2rem;margin-bottom:2rem;border-bottom:2px solid #E5E7EB;flex-wrap:wrap;">
+            <button class="tab-button" onclick="app.switchChampionshipTab('categories')" style="background:none;border:none;padding:1rem 0;cursor:pointer;font-weight:600;color:var(--couleur-texte-secondaire);border-bottom:3px solid transparent;margin-bottom:-2px;" data-tab="categories">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 7h6l2-3h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z"></path>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                </svg>
+                Catégories
+            </button>
+            <button class="tab-button" onclick="app.switchChampionshipTab('teams')" style="background:none;border:none;padding:1rem 0;cursor:pointer;font-weight:600;color:var(--couleur-texte-secondaire);border-bottom:3px solid transparent;margin-bottom:-2px;" data-tab="teams">
+               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                Équipes
+            </button>
+            <button class="tab-button" onclick="app.switchChampionshipTab('format')" style="background:none;border:none;padding:1rem 0;cursor:pointer;font-weight:600;color:var(--couleur-texte-secondaire);border-bottom:3px solid transparent;margin-bottom:-2px;" data-tab="format">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                    <path d="M4 22h16"></path>
+                    <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+                    <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+                    <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+                </svg>
+                Format
+            </button>
+            <button class="tab-button" onclick="app.switchChampionshipTab('calendar')" style="background:none;border:none;padding:1rem 0;cursor:pointer;font-weight:600;color:var(--couleur-texte-secondaire);border-bottom:3px solid transparent;margin-bottom:-2px;" data-tab="calendar">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                Calendrier
+            </button>
+            <button class="tab-button" onclick="app.switchChampionshipTab('stats')" style="background:none;border:none;padding:1rem 0;cursor:pointer;font-weight:600;color:var(--couleur-texte-secondaire);border-bottom:3px solid transparent;margin-bottom:-2px;" data-tab="stats">
+               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="20" x2="18" y2="10"></line>
+                    <line x1="12" y1="20" x2="12" y2="4"></line>
+                    <line x1="6"  y1="20" x2="6"  y2="14"></line>
+                </svg>
+                Statistiques
+            </button>
+        </div>
+
+        <!-- ONGLET CATÉGORIES -->
+        <div class="tab-content" id="tabDetailChampCategories" style="display:none;">
+            <div id="detailChampCategoriesList" class="championship-grid"></div>
+            <div id="noDetailChampCategories" class="no-data" style="display:none;"><p>Aucune catégorie dans ce championnat</p></div>
+        </div>
+
+        <!-- ONGLET ÉQUIPES -->
+        <div class="tab-content" id="tabDetailChampTeams" style="display:none;">
+            <div id="detailChampTeamsList" class="team-grid"></div>
+            <div id="noDetailChampTeams" class="no-data" style="display:none;"><p>Aucune équipe dans ce championnat</p></div>
+        </div>
+
+        <!-- ONGLET CLASSEMENTS -->
+        <div class="tab-content" id="tabDetailChampStandings" style="display:block;">
+            <div class="standings-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="text-align:center;width:50px;">#</th>
+                            <th>Équipe</th>
+                            <th style="text-align:center;">J</th>
+                            <th style="text-align:center;">V</th>
+                            <th style="text-align:center;">N</th>
+                            <th style="text-align:center;">D</th>
+                            <th style="text-align:center;">BP</th>
+                            <th style="text-align:center;">BC</th>
+                            <th style="text-align:center;">DB</th>
+                            <th style="text-align:center;">Pts</th>
+                        </tr>
+                    </thead>
+                    <tbody id="detailChampStandings"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ONGLET MATCHS -->
+        <div class="tab-content" id="tabDetailChampMatches" style="display:none;">
+            <div id="detailChampMatchesList" style="display:grid;gap:1.5rem;"></div>
+            <div id="noDetailChampMatches" class="no-data" style="display:none;"><p>Aucun match enregistré</p></div>
+        </div>
+
+        <!-- ONGLET FORMAT -->
+        <div class="tab-content" id="tabDetailChampFormat" style="display:none;">
+            <div id="formatDisplay"></div>
+        </div>
+
+        <!-- ONGLET CALENDRIER -->
+        <div class="tab-content" id="tabDetailChampCalendar" style="display:none;">
+            <div id="detailChampCalendarList"></div>
+            <div id="noDetailChampCalendar" class="no-data" style="display:none;"><p>Aucun match programmé</p></div>
+        </div>
+
+        <!-- ONGLET STATISTIQUES -->
+        <div class="tab-content" id="tabDetailChampStats" style="display:none;">
+            <div class="card-section">
+                <h3>Statistiques du championnat</h3>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));gap:1.5rem;">
+                    <div style="background:#F3F4F6;padding:1rem;border-radius:8px;text-align:center;">
+                        <div style="font-size:2rem;font-weight:bold;color:var(--couleur-primaire);" id="statsTeamCount">0</div>
+                        <div style="color:var(--couleur-texte-secondaire);">Équipes</div>
+                    </div>
+                    <div style="background:#F3F4F6;padding:1rem;border-radius:8px;text-align:center;">
+                        <div style="font-size:2rem;font-weight:bold;color:var(--couleur-primaire);" id="statsMatchCount">0</div>
+                        <div style="color:var(--couleur-texte-secondaire);">Matchs joués</div>
+                    </div>
+                    <div style="background:#F3F4F6;padding:1rem;border-radius:8px;text-align:center;">
+                        <div style="font-size:2rem;font-weight:bold;color:var(--couleur-primaire);" id="statsTotalGoals">0</div>
+                        <div style="color:var(--couleur-texte-secondaire);">Buts marqués</div>
+                    </div>
+                    <div style="background:#F3F4F6;padding:1rem;border-radius:8px;text-align:center;">
+                        <div style="font-size:2rem;font-weight:bold;color:var(--couleur-primaire);" id="statsCategoryCount">0</div>
+                        <div style="color:var(--couleur-texte-secondaire);">Catégories</div>
+                    </div>
+                </div>
+            </div>
+            <div class="tabs-container" style="margin-bottom:1.5rem;">
+                <button class="tab-button active" id="publicTabBtnButeurs" onclick="app.switchPublicStatsSubTab('buteurs')">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 2a10 10 0 0 1 7.38 3.18L14 10H10
+                                L4.62 5.18A10 10 0 0 1 12 2z"/>
+                        <path d="M2.05 13.5 7 10l3 4-1.5 7.5"/>
+                        <path d="M21.95 13.5 17 10l-3 4 1.5 7.5"/>
+                    </svg>
+                    Meilleur buteur
+                </button>
+                <button class="tab-button" id="publicTabBtnPasseurs" onclick="app.switchPublicStatsSubTab('passeurs')">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 17h13a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H8"/>
+                        <path d="M8 6 C8 6 5 6 4 9 L3 17"/>
+                        <line x1="7"  y1="17" x2="7"  y2="20"/>
+                        <line x1="11" y1="17" x2="11" y2="20"/>
+                        <line x1="15" y1="17" x2="15" y2="20"/>
+                    </svg>
+                    Meilleur passeur
+                </button>
+                <button class="tab-button" id="publicTabBtnGardiens" onclick="app.switchPublicStatsSubTab('gardiens')">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    Meilleur gardien
+                </button>
+            </div>
+            <div id="publicStatsButeurs"></div>
+            <div id="publicStatsPasseurs" style="display:none;"></div>
+            <div id="publicStatsGardiens" style="display:none;"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE : DÉTAIL CATÉGORIE -->
+<div id="categoryView" class="page">
+    <div class="main-container">
+        <button class="btn btn-secondary" onclick="app.navigate('championships')" style="margin-bottom:2rem;">← Retour aux championnats</button>
+        <div class="detail-header">
+            <div class="detail-title"    id="detailCategoryName"></div>
+            <div class="detail-subtitle" id="detailCategoryChamp"></div>
+        </div>
+        <p id="detailCategoryDescription" style="margin-bottom:2rem;color:var(--couleur-texte-secondaire);"></p>
+
+        <!-- ONGLETS CATÉGORIE -->
+        <div style="display:flex;justify-content:space-around;width:100%;gap:2rem;margin-bottom:2rem;border-bottom:2px solid #E5E7EB;flex-wrap:wrap;">
+            <button class="tab-button" onclick="app.switchCategoryTab('teams')" style="background:none;border:none;padding:1rem 0;cursor:pointer;font-weight:600;color:var(--couleur-texte-secondaire);border-bottom:3px solid transparent;margin-bottom:-2px;" data-category-tab="teams">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+                Équipes
+            </button>
+            <button class="tab-button" onclick="app.switchCategoryTab('formats')" style="background:none;border:none;padding:1rem 0;cursor:pointer;font-weight:600;color:var(--couleur-texte-secondaire);border-bottom:3px solid transparent;margin-bottom:-2px;" data-category-tab="formats">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                    <path d="M4 22h16"></path>
+                    <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+                    <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+                    <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+                </svg>
+                Formats
+            </button>
+            <button class="tab-button" onclick="app.switchCategoryTab('calendar')" style="background:none;border:none;padding:1rem 0;cursor:pointer;font-weight:600;color:var(--couleur-texte-secondaire);border-bottom:3px solid transparent;margin-bottom:-2px;" data-category-tab="calendar">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                Calendrier
+            </button>
+        </div>
+
+        <!-- ONGLET ÉQUIPES CATÉGORIE -->
+        <div class="tab-content" id="tabCategoryTeams" style="display:none;">
+            <div id="detailCategoryTeamsList" class="team-grid"></div>
+            <div id="noDetailCategoryTeams" class="no-data" style="display:none;"><p>Aucune équipe dans cette catégorie</p></div>
+        </div>
+
+        <!-- ONGLET FORMATS CATÉGORIE -->
+        <div class="tab-content" id="tabCategoryFormats" style="display:none;">
+            <div id="categoryFormatDisplay"></div>
+        </div>
+
+        <!-- ONGLET CALENDRIER CATÉGORIE -->
+        <div class="tab-content" id="tabCategoryCalendar" style="display:none;">
+            <div id="detailCategoryCalendarList"></div>
+            <div id="noDetailCategoryCalendar" class="no-data" style="display:none;"><p>Aucun match programmé dans cette catégorie</p></div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGE : CLASSEMENTS -->
+<div id="standings" class="page">
+    <div class="main-container">
+        <h1 class="page-title">Classements</h1>
+        <p class="page-subtitle">Consultez les classements actualisés</p>
+        <div class="search-container">
+            <select id="standingsChampionship" onchange="app.loadStandings()">
+                <option value="">-- Sélectionner un championnat --</option>
+            </select>
+        </div>
+        <div id="standingsContent"></div>
+        <div id="noStandings" class="no-data" style="display:none;"><p>Sélectionnez un championnat</p></div>
+    </div>
+</div>
+
+<!-- Bouton retour admin -->
+<div style="position:fixed;bottom:20px;right:20px;z-index:999;">
+    <a href="ayitidataspo_admin.html"
+    style="background:var(--couleur-primaire);color:white;padding:0.75rem 1.5rem;border-radius:50px;
+              cursor:pointer;font-weight:600;box-shadow:0 4px 12px rgba(0,0,0,0.15);
+              text-decoration:none;display:inline-block;transition:all 0.3s ease;"
+       onmouseover="this.style.background='#003580'"
+       onmouseout="this.style.background='#004AAD'">
+       <div class="btn-admin" style="display: flex; justify-content: center;gap: 10px;align-items: center;">
+            <svg viewBox="0 0 24 24" fill="white" style="width: 24px;height: 24px;">
+                <path d="M19.14,12.94a7.14,7.14,0,0,0,.05-.94,7.14,7.14,0,0,0-.05-.94l2.11-1.65a.5.5,0,0,0,.12-.64l-2-3.46a.5.5,0,0,0-.6-.22l-2.49,1a7.28,7.28,0,0,0-1.63-.94l-.38-2.65A.5.5,0,0,0,13.79,2H10.21a.5.5,0,0,0-.49.42L9.34,5.07a7.28,7.28,0,0,0-1.63.94l-2.49-1a.5.5,0,0,0-.6.22l-2,3.46a.5.5,0,0,0,.12.64L4.86,11.06a7.14,7.14,0,0,0-.05.94,7.14,7.14,0,0,0,.05.94L2.75,14.59a.5.5,0,0,0-.12.64l2,3.46a.5.5,0,0,0,.6.22l2.49-1a7.28,7.28,0,0,0,1.63.94l.38,2.65a.5.5,0,0,0,.49.42h3.58a.5.5,0,0,0,.49-.42l.38-2.65a7.28,7.28,0,0,0,1.63-.94l2.49,1a.5.5,0,0,0,.6-.22l2-3.46a.5.5,0,0,0-.12-.64ZM12,15.5A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z"/>
+            </svg>
+            <h3>Admin</h3>   
+        </div> 
+    </a>
+</div>
+
+<!-- MODAL JOUEUR -->
+<div id="playerModal" class="player-modal">
+    <div class="player-modal-content">
+        <div class="player-modal-header">
+            <img id="modalPlayerPhoto" src="" alt="Joueur" class="player-modal-photo">
+            <div class="player-modal-title">
+                <div class="player-modal-name" id="modalPlayerName"></div>
+                <div class="player-modal-position" id="modalPlayerPosition"></div>
+            </div>
+            <button class="player-modal-close" onclick="app.closePlayerModal()">✕</button>
+        </div>
+        <div class="player-modal-body">
+            <div class="player-modal-info">
+                <div class="player-modal-info-item">
+                    <div class="player-modal-info-label">Équipe</div>
+                    <div class="player-modal-info-value" id="modalPlayerTeam">-</div>
+                </div>
+                <div class="player-modal-info-item">
+                    <div class="player-modal-info-label">Âge</div>
+                    <div class="player-modal-info-value" id="modalPlayerAge">-</div>
+                </div>
+                <div class="player-modal-info-item">
+                    <div class="player-modal-info-label">Date de naissance</div>
+                    <div class="player-modal-info-value" id="modalPlayerDOB">-</div>
+                </div>
+                <div class="player-modal-info-item">
+                    <div class="player-modal-info-label">Saison</div>
+                    <div class="player-modal-info-value">2024/25</div>
+                </div>
+            </div>
+            <div class="player-modal-stats">
+                <div class="player-modal-stat">
+                    <div class="player-modal-stat-value" id="modalPlayerGoals">0</div>
+                    <div class="player-modal-stat-label">Buts marqués</div>
+                </div>
+                <div class="player-modal-stat">
+                    <div class="player-modal-stat-value" id="modalPlayerAssists">0</div>
+                    <div class="player-modal-stat-label">Passes décisives</div>
+                </div>
+                <div class="player-modal-stat">
+                    <div class="player-modal-stat-value" id="modalPlayerMatches">0</div>
+                    <div class="player-modal-stat-label">Matchs joués</div>
+                </div>
+                <div class="player-modal-stat">
+                    <div class="player-modal-stat-value" id="modalPlayerAvg">0.00</div>
+                    <div class="player-modal-stat-label">Moy buts/match</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-client.js"></script>
+<script>
+// ============================================================
+// public.js — Logique du portail public
+// Lecture seule depuis Supabase, aucune authentification requise
+// ============================================================
+
+const app = {
+    currentPage     : 'search',
+    currentCategoryId : null,
+    currentChampionshipId : null,
+    championships   : [],
+    teams           : [],
+    players         : [],
+    matches         : [],
+    scorers         : [],
+    categories      : [],
+
+    // ============================================================
+    // INIT
+    // ============================================================
+    async init() {
+        await this.loadData()
+        this.loadChampionshipsSelect()
+        this.navigate('search')
+
+        // Événement pour fermer la modal en cliquant en dehors
+        document.getElementById('playerModal').addEventListener('click', (e) => {
+            if (e.target.id === 'playerModal') {
+                this.closePlayerModal()
+            }
+        })
+    },
+
+    // ============================================================
+    // CHARGEMENT DONNÉES — lecture publique via RLS
+    // ============================================================
+    async loadData() {
+        const [champsRes, teamsRes, playersRes, matchesRes, scorersRes, catsRes] = await Promise.all([
+            window.sb.from('championships').select('*').eq('is_public', true).order('created_at', { ascending: false }),
+            window.sb.from('teams').select('*').order('name'),
+            window.sb.from('players').select('*').order('last_name'),
+            window.sb.from('matches').select('*').order('match_date', { ascending: false }),
+            window.sb.from('scorers').select('*'),
+            window.sb.from('categories').select('*').order('created_at', { ascending: true })
+        ])
+
+        this.championships = champsRes.data || []
+        this.teams         = teamsRes.data  || []
+        this.players       = playersRes.data || []
+        this.matches       = matchesRes.data || []
+        this.scorers       = scorersRes.data || []
+        this.categories    = catsRes.data || []
+    },
+
+    // ============================================================
+    // NAVIGATION
+    // ============================================================
+    navigate(page, categoryId) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'))
+        document.getElementById(page).classList.add('active')
+        this.currentPage = page
+
+        document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'))
+        const navId = {
+            search        : 'nav-search',
+            players       : 'nav-players',
+            playerDetail  : 'nav-players',
+            teams         : 'nav-teams',
+            teamDetail    : 'nav-teams',
+            championships : 'nav-champ',
+            championshipDetail: 'nav-champ',
+            categoryView  : 'nav-champ',
+            standings     : 'nav-standings'
+        }[page]
+        if (navId) { const el = document.getElementById(navId); if (el) el.classList.add('active') }
+
+        if      (page === 'search')        this.performSearch()
+        else if (page === 'players')       this.loadPlayers()
+        else if (page === 'teams')         this.loadTeams()
+        else if (page === 'championships') this.loadChampionships()
+        else if (page === 'categoryView')  {
+            if (categoryId) this.currentCategoryId = categoryId
+            this.displayCategory(this.currentCategoryId)
+        }
+        else if (page === 'standings')     this.loadStandings()
+    },
+
+    // ============================================================
+    // STATISTIQUES D'UN JOUEUR
+    // Calculées depuis la table scorers
+    // ============================================================
+    getPlayerStats(player) {
+        const fullName = `${player.first_name} ${player.last_name}`
+        const goals   = this.scorers.filter(s => s.scorer_name === fullName).length
+        const assists = this.scorers.filter(s => s.assist_name  === fullName).length
+
+        // Matchs joués = matchs de l'équipe du joueur
+        const matchesPlayed = this.matches.filter(m =>
+            m.team_a_id === player.team_id || m.team_b_id === player.team_id
+        ).length
+
+        return { goals, assists, matches: matchesPlayed }
+    },
+
+    hasMatchScore(match) {
+        return match.score_a !== null && match.score_a !== undefined &&
+               match.score_b !== null && match.score_b !== undefined
+    },
+
+    getMatchDate(match) {
+        if (!match.match_date) return null
+        const date = new Date(match.match_date)
+        return Number.isNaN(date.getTime()) ? null : date
+    },
+
+    getMatchSortValue(match, fallback) {
+        const date = this.getMatchDate(match)
+        return date ? date.getTime() : fallback
+    },
+
+    isPublicMatchPlayed(match) {
+        if (this.hasMatchScore(match)) return true
+        const date = this.getMatchDate(match)
+        if (!date) return false
+
+        const matchDay = new Date(date)
+        const today = new Date()
+        matchDay.setHours(0, 0, 0, 0)
+        today.setHours(0, 0, 0, 0)
+        return matchDay < today
+    },
+
+    splitPublicCalendarMatches(matches) {
+        const upcoming = matches
+            .filter(m => !this.isPublicMatchPlayed(m))
+            .sort((a, b) => this.getMatchSortValue(a, Number.MAX_SAFE_INTEGER) - this.getMatchSortValue(b, Number.MAX_SAFE_INTEGER))
+
+        const played = matches
+            .filter(m => this.isPublicMatchPlayed(m))
+            .sort((a, b) => this.getMatchSortValue(b, 0) - this.getMatchSortValue(a, 0))
+
+        return { upcoming, played }
+    },
+
+    formatPublicMatchDate(match) {
+        const date = this.getMatchDate(match)
+        return date
+            ? date.toLocaleDateString('fr-FR', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+            : 'Date &agrave; d&eacute;finir'
+    },
+
+    formatPublicMatchTime(match) {
+        const date = this.getMatchDate(match)
+        return date ? date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' }) : ''
+    },
+
+    getPublicCalendarIcon(type) {
+        if (type === 'played') {
+            return `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>`
+        }
+
+        return `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>`
+    },
+
+    renderPublicCalendarMatchCard(match, isPlayed) {
+        const teamA = this.teams.find(t => t.id === match.team_a_id)
+        const teamB = this.teams.find(t => t.id === match.team_b_id)
+        const score = this.hasMatchScore(match) ? `${match.score_a} - ${match.score_b}` : '&Agrave; jouer'
+        const date = this.formatPublicMatchDate(match)
+        const time = this.formatPublicMatchTime(match)
+        const statusClass = isPlayed ? ' played' : ''
+        const statusIcon = this.getPublicCalendarIcon(isPlayed ? 'played' : 'upcoming')
+        const statusText = isPlayed ? 'Jou&eacute;' : 'Programm&eacute;'
+
+        return `
+            <article class="public-calendar-match">
+                <div class="public-calendar-match-meta">
+                    <span>${date}</span>
+                    ${time ? `<span class="public-calendar-time">${time}</span>` : ''}
+                </div>
+                <div class="public-calendar-teams">
+                    <div class="public-calendar-team">
+                        <div class="public-calendar-team-name">${teamA ? teamA.name : '&Eacute;quipe A'}</div>
+                        ${teamA && teamA.logo_url ? `<img class="public-calendar-team-logo" src="${teamA.logo_url}" alt="${teamA.name}">` : '<div class="public-calendar-team-fallback">&#128101;</div>'}
+                    </div>
+                    <div class="public-calendar-score">${score}</div>
+                    <div class="public-calendar-team">
+                        <div class="public-calendar-team-name">${teamB ? teamB.name : '&Eacute;quipe B'}</div>
+                        ${teamB && teamB.logo_url ? `<img class="public-calendar-team-logo" src="${teamB.logo_url}" alt="${teamB.name}">` : '<div class="public-calendar-team-fallback">&#128101;</div>'}
+                    </div>
+                </div>
+                <div class="public-calendar-status${statusClass}">${statusIcon}<span>${statusText}</span></div>
+                ${match.venue ? `<div class="public-calendar-venue"><strong>Lieu :</strong> ${match.venue}</div>` : ''}
+            </article>`
+    },
+
+    renderPublicCalendarSection(matches, emptyText, isPlayed, panelName, isActive = false) {
+        const body = matches.length > 0
+            ? `<div class="public-calendar-grid">${matches.map(m => this.renderPublicCalendarMatchCard(m, isPlayed)).join('')}</div>`
+            : `<div class="no-data public-calendar-empty"><p>${emptyText}</p></div>`
+
+        return `
+            <section class="card-section public-calendar-section public-calendar-panel${isActive ? ' active' : ''}" data-calendar-panel="${panelName}">
+                ${body}
+            </section>`
+    },
+
+    renderPublicCalendar(matches, emptySuffix = '', calendarId = '') {
+        const { upcoming, played } = this.splitPublicCalendarMatches(matches)
+        return `
+            <div class="public-calendar-board">
+                <div class="public-calendar-tabs">
+                    <button type="button" class="public-calendar-tab active" data-calendar-tab="upcoming" onclick="app.switchPublicCalendarTab('${calendarId}', 'upcoming')">
+                        ${this.getPublicCalendarIcon('upcoming')}
+                        <span>Matchs programm&eacute;s</span>
+                    </button>
+                    <button type="button" class="public-calendar-tab" data-calendar-tab="played" onclick="app.switchPublicCalendarTab('${calendarId}', 'played')">
+                        ${this.getPublicCalendarIcon('played')}
+                        <span>Matchs jou&eacute;s</span>
+                    </button>
+                </div>
+                ${this.renderPublicCalendarSection(upcoming, `Aucun match programm&eacute;${emptySuffix}`, false, 'upcoming', true)}
+                ${this.renderPublicCalendarSection(played, `Aucun match jou&eacute;${emptySuffix}`, true, 'played')}
+            </div>`
+    },
+
+    switchPublicCalendarTab(calendarId, tabName) {
+        const calendar = document.getElementById(calendarId)
+        if (!calendar) return
+
+        calendar.querySelectorAll('.public-calendar-tab').forEach(tab => {
+            tab.classList.toggle('active', tab.dataset.calendarTab === tabName)
+        })
+
+        calendar.querySelectorAll('.public-calendar-panel').forEach(panel => {
+            panel.classList.toggle('active', panel.dataset.calendarPanel === tabName)
+        })
+    },
+
+    loadPublicCalendar(listId, emptyId, matches, emptySuffix = '') {
+        const calendarList = document.getElementById(listId)
+        const noCalendar = document.getElementById(emptyId)
+        if (!calendarList) return
+
+        calendarList.innerHTML = this.renderPublicCalendar(matches, emptySuffix, listId)
+        if (noCalendar) noCalendar.style.display = 'none'
+    },
+
+    _rankMedal(i) {
+        if (i === 0) return `
+            <div class="rank-medal rank-medal-1" title="1er">
+                <svg viewBox="0 0 24 24" fill="#856404" width="16" height="16">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87
+                             1.18 6.88L12 17.77l-6.18 3.25
+                             L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+            </div>`
+        if (i === 1) return `<div class="rank-medal rank-medal-2">2</div>`
+        if (i === 2) return `<div class="rank-medal rank-medal-3">3</div>`
+        return `<div class="rank-medal rank-medal-n">${i + 1}</div>`
+    },
+
+    _rankIcon(type) {
+        const icons = {
+            ball: `
+                <svg viewBox="0 0 24 24" fill="none" stroke="white"
+                     stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"
+                     width="24" height="24">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 2a10 10 0 0 1 7.38 3.18L14 10H10
+                             L4.62 5.18A10 10 0 0 1 12 2z"/>
+                    <path d="M2.05 13.5 7 10l3 4-1.5 7.5"/>
+                    <path d="M21.95 13.5 17 10l-3 4 1.5 7.5"/>
+                </svg>`,
+            assist: `
+                <svg viewBox="0 0 24 24" fill="none" stroke="white"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                     width="24" height="24">
+                    <path d="M9 14 4 9l5-5"/>
+                    <path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/>
+                </svg>`,
+            glove: `
+                <svg viewBox="0 0 24 24" fill="none" stroke="white"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                     width="24" height="24">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    <path d="M12 8v4M10 10h4"/>
+                </svg>`
+        }
+        return icons[type] || icons.ball
+    },
+
+    getPublicChampScorerRows(champId) {
+        const matchIds = new Set(
+            this.matches
+                .filter(m => m.championship_id === champId)
+                .map(m => m.id)
+        )
+        return this.scorers.filter(s => matchIds.has(s.match_id))
+    },
+
+    getPlayerByFullName(name) {
+        const target = (name || '').trim().toLowerCase()
+        return this.players.find(p => `${p.first_name} ${p.last_name}`.trim().toLowerCase() === target)
+    },
+
+    renderPublicRankCard({ name, player, team, score, label, iconType, subText }, i) {
+        return `
+            <div class="rank-card">
+                ${this._rankMedal(i)}
+                ${player && player.photo_url
+                    ? `<img src="${player.photo_url}" class="rank-avatar" alt="${name}">`
+                    : `<div class="rank-avatar-placeholder">${this._rankIcon(iconType)}</div>`
+                }
+                <div class="rank-info">
+                    <div class="rank-name">${name}</div>
+                    <div class="rank-sub">${subText || `${player ? player.position : '—'} · ${team ? team.name : '—'}`}</div>
+                </div>
+                <div class="rank-score-box">
+                    <div class="rank-score">${score}</div>
+                    <div class="rank-score-label">${label}</div>
+                </div>
+            </div>`
+    },
+
+    switchPublicStatsSubTab(tab) {
+        const map = { buteurs: 'Buteurs', passeurs: 'Passeurs', gardiens: 'Gardiens' }
+        Object.values(map).forEach(name => {
+            const btn = document.getElementById('publicTabBtn' + name)
+            const div = document.getElementById('publicStats' + name)
+            if (btn) btn.classList.remove('active')
+            if (div) div.style.display = 'none'
+        })
+
+        const suffix = map[tab]
+        if (!suffix) return
+
+        const btn = document.getElementById('publicTabBtn' + suffix)
+        const div = document.getElementById('publicStats' + suffix)
+        if (btn) btn.classList.add('active')
+        if (div) div.style.display = 'block'
+
+        if (tab === 'buteurs') this.loadPublicTopScorers(this.currentChampionshipId)
+        else if (tab === 'passeurs') this.loadPublicTopAssisters(this.currentChampionshipId)
+        else if (tab === 'gardiens') this.loadPublicTopGoalkeepers(this.currentChampionshipId)
+    },
+
+    loadPublicStatsDisplay(champId) {
+        this.currentChampionshipId = champId
+        const statTabs = ['Buteurs', 'Passeurs', 'Gardiens']
+        statTabs.forEach(name => {
+            const btn = document.getElementById('publicTabBtn' + name)
+            const div = document.getElementById('publicStats' + name)
+            if (btn) btn.classList.remove('active')
+            if (div) div.style.display = 'none'
+        })
+
+        const btnButeurs = document.getElementById('publicTabBtnButeurs')
+        const divButeurs = document.getElementById('publicStatsButeurs')
+        if (btnButeurs) btnButeurs.classList.add('active')
+        if (divButeurs) divButeurs.style.display = 'block'
+        this.loadPublicTopScorers(champId)
+    },
+
+    loadPublicTopScorers(champId) {
+        const container = document.getElementById('publicStatsButeurs')
+        if (!container) return
+
+        const counts = {}
+        this.getPublicChampScorerRows(champId).forEach(s => {
+            if (!s.scorer_name || !s.scorer_name.trim()) return
+            const name = s.scorer_name.trim()
+            const goals = Number(s.goals)
+            counts[name] = (counts[name] || 0) + (Number.isFinite(goals) && goals > 0 ? goals : 1)
+        })
+
+        const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 20)
+        if (sorted.length === 0) {
+            container.innerHTML = '<div class="no-data">Aucun buteur enregistré pour ce championnat</div>'
+            return
+        }
+
+        container.innerHTML = `
+        <div>
+            <div class="stats-section-header" style="background:linear-gradient(135deg,var(--couleur-primaire),#003580);">
+                <div style="display:flex;align-items:center;gap:0.75rem;">
+                    ${this._rankIcon('ball')}
+                    <h3 style="margin:0;">Classement des buteurs</h3>
+                </div>
+            </div>
+            <div class="stats-section-body">
+                ${sorted.map(([name, goals], i) => {
+                    const player = this.getPlayerByFullName(name)
+                    const team = player ? this.teams.find(t => t.id === player.team_id) : null
+                    return this.renderPublicRankCard({
+                        name,
+                        player,
+                        team,
+                        score: goals,
+                        label: `but${goals > 1 ? 's' : ''}`,
+                        iconType: 'ball'
+                    }, i)
+                }).join('')}
+            </div>
+        </div>`
+    },
+
+    loadPublicTopAssisters(champId) {
+        const container = document.getElementById('publicStatsPasseurs')
+        if (!container) return
+
+        const counts = {}
+        this.getPublicChampScorerRows(champId).forEach(s => {
+            if (!s.assist_name || !s.assist_name.trim()) return
+            const name = s.assist_name.trim()
+            const assists = Number(s.assists)
+            counts[name] = (counts[name] || 0) + (Number.isFinite(assists) && assists > 0 ? assists : 1)
+        })
+
+        const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 20)
+        if (sorted.length === 0) {
+            container.innerHTML = '<div class="no-data">Aucune passe décisive enregistrée pour ce championnat</div>'
+            return
+        }
+
+        container.innerHTML = `
+        <div>
+            <div class="stats-section-header" style="background:linear-gradient(135deg,var(--couleur-secondaire),#B81B22);">
+                <div style="display:flex;align-items:center;gap:0.75rem;">
+                    ${this._rankIcon('assist')}
+                    <h3 style="margin:0;">Classement des passeurs</h3>
+                </div>
+            </div>
+            <div class="stats-section-body">
+                ${sorted.map(([name, assists], i) => {
+                    const player = this.getPlayerByFullName(name)
+                    const team = player ? this.teams.find(t => t.id === player.team_id) : null
+                    return this.renderPublicRankCard({
+                        name,
+                        player,
+                        team,
+                        score: assists,
+                        label: `passe${assists > 1 ? 's' : ''}`,
+                        iconType: 'assist'
+                    }, i)
+                }).join('')}
+            </div>
+        </div>`
+    },
+
+    loadPublicTopGoalkeepers(champId) {
+        const container = document.getElementById('publicStatsGardiens')
+        if (!container) return
+
+        const champTeamIds = new Set(
+            this.teams
+                .filter(t => t.championship_id === champId)
+                .map(t => t.id)
+        )
+        const goalkeepers = this.players.filter(p =>
+            (p.position || '').toLowerCase().includes('gardien') && champTeamIds.has(p.team_id)
+        )
+
+        if (goalkeepers.length === 0) {
+            container.innerHTML = '<div class="no-data">Aucun gardien enregistré dans ce championnat</div>'
+            return
+        }
+
+        const champMatches = this.matches.filter(m =>
+            m.championship_id === champId && this.hasMatchScore(m)
+        )
+
+        const results = goalkeepers.map(gk => {
+            const team = this.teams.find(t => t.id === gk.team_id)
+            if (!team) return null
+
+            const teamMatches = champMatches.filter(m =>
+                m.team_a_id === team.id || m.team_b_id === team.id
+            )
+
+            let cleanSheets = 0
+            teamMatches.forEach(m => {
+                const conceded = m.team_a_id === team.id ? m.score_b : m.score_a
+                if (conceded === 0) cleanSheets++
+            })
+
+            return { gk, team, cleanSheets, matchesPlayed: teamMatches.length }
+        })
+        .filter(r => r !== null && r.matchesPlayed > 0)
+        .sort((a, b) => b.cleanSheets - a.cleanSheets)
+        .slice(0, 20)
+
+        if (results.length === 0) {
+            container.innerHTML = '<div class="no-data">Aucun match joué pour calculer les clean sheets</div>'
+            return
+        }
+
+        container.innerHTML = `
+        <div>
+            <div class="stats-section-header" style="background:linear-gradient(135deg,#1a1a2e,#16213e);">
+                <div style="display:flex;align-items:center;gap:0.75rem;">
+                    ${this._rankIcon('glove')}
+                    <h3 style="margin:0;">Classement des gardiens — Clean Sheets</h3>
+                </div>
+            </div>
+            <div class="stats-section-body">
+                ${results.map(({ gk, team, cleanSheets, matchesPlayed }, i) => {
+                    const pct = Math.round((cleanSheets / matchesPlayed) * 100)
+                    return this.renderPublicRankCard({
+                        name: `${gk.first_name} ${gk.last_name}`,
+                        player: gk,
+                        team,
+                        score: cleanSheets,
+                        label: `clean sheet${cleanSheets > 1 ? 's' : ''}`,
+                        iconType: 'glove',
+                        subText: `${team.name} · ${matchesPlayed} match${matchesPlayed > 1 ? 's' : ''} · ${pct}% invaincu`
+                    }, i)
+                }).join('')}
+            </div>
+        </div>`
+    },
+
+    // ============================================================
+    // RECHERCHE GLOBALE
+    // ============================================================
+    performSearch() {
+        const query    = document.getElementById('searchQuery').value.toLowerCase().trim()
+        const results  = document.getElementById('searchResults')
+
+        if (!query) {
+            // Afficher les derniers championnats si aucune requête
+            const recentChamps = this.championships.slice(0, 6)
+            if (recentChamps.length > 0) {
+                let html = '<h2 style="color:var(--couleur-primaire);margin:2rem 0 1.5rem;">Derniers championnats</h2>'
+                html += '<div class="championship-grid">'
+                html += recentChamps.map(c => this.getChampionshipCardHTML(c)).join('')
+                html += '</div>'
+                results.innerHTML = html
+            } else {
+                results.innerHTML = '<div class="no-data">Aucun championnat disponible</div>'
+            }
+            return
+        }
+
+        let html = ''
+
+        // Joueurs
+        const playerResults = this.players.filter(p =>
+            `${p.first_name} ${p.last_name}`.toLowerCase().includes(query)
+        )
+
+        if (playerResults.length > 0) {
+            html += '<h2 style="color:var(--couleur-primaire);margin:2rem 0 1.5rem;">Joueurs</h2>'
+            html += '<div class="player-grid">' + playerResults.map(p => this.getPlayerCardHTML(p)).join('') + '</div>'
+        }
+
+        // Équipes
+        const teamResults = this.teams.filter(t => t.name.toLowerCase().includes(query))
+        if (teamResults.length > 0) {
+            html += '<h2 style="color:var(--couleur-primaire);margin:2rem 0 1.5rem;">Équipes</h2>'
+            html += '<div class="team-grid">' + teamResults.map(t => this.getTeamCardHTML(t)).join('') + '</div>'
+        }
+
+        // Championnats
+        const champResults = this.championships.filter(c => c.name.toLowerCase().includes(query))
+        if (champResults.length > 0) {
+            html += '<h2 style="color:var(--couleur-primaire);margin:2rem 0 1.5rem;">Championnats</h2>'
+            html += '<div class="championship-grid">' + champResults.map(c => this.getChampionshipCardHTML(c)).join('') + '</div>'
+        }
+
+        if (!html) {
+            results.innerHTML = `<div class="no-data">Aucun résultat pour "<strong>${query}</strong>"</div>`
+        } else {
+            results.innerHTML = html
+        }
+    },
+
+    // ============================================================
+    // JOUEURS
+    // ============================================================
+    loadPlayers() {
+        const list   = document.getElementById('playersList')
+        const noData = document.getElementById('noPlayers')
+        if (this.players.length === 0) { list.innerHTML = ''; noData.style.display = 'block'; return }
+        noData.style.display = 'none'
+        list.innerHTML = this.players.map(p => this.getPlayerCardHTML(p)).join('')
+    },
+
+    filterPlayers() {
+        const search   = document.getElementById('playerSearch').value.toLowerCase()
+        const position = document.getElementById('playerPosition').value
+        const list     = document.getElementById('playersList')
+        const noData   = document.getElementById('noPlayers')
+
+        const filtered = this.players.filter(p =>
+            `${p.first_name} ${p.last_name}`.toLowerCase().includes(search) &&
+            (!position || p.position === position)
+        )
+
+        if (filtered.length === 0) { list.innerHTML = ''; noData.style.display = 'block'; return }
+        noData.style.display = 'none'
+        list.innerHTML = filtered.map(p => this.getPlayerCardHTML(p)).join('')
+    },
+
+    getPlayerCardHTML(p) {
+        const team  = this.teams.find(t => t.id === p.team_id)
+        const age   = new Date().getFullYear() - new Date(p.dob).getFullYear()
+        const stats = this.getPlayerStats(p)
+
+        return `
+        <div class="player-card" onclick="app.openPlayerModal('${p.id}')">
+            <div class="player-header">
+                <div class="player-avatar">
+                    ${p.photo_url ? `<img src="${p.photo_url}" alt="${p.first_name}">` : '⚽'}
+                </div>
+                <div class="player-name">${p.first_name} ${p.last_name}</div>
+                <div class="player-position">${p.position}</div>
+            </div>
+            <div class="player-body">
+                <div class="info-row">
+                    <span class="info-label">Équipe</span>
+                    <span class="info-value">${team ? team.name : '-'}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Âge</span>
+                    <span class="info-value">${age} ans</span>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-box"><div class="stat-value">${stats.goals}</div><div class="stat-label">Buts</div></div>
+                    <div class="stat-box"><div class="stat-value">${stats.matches}</div><div class="stat-label">Matchs</div></div>
+                    <div class="stat-box"><div class="stat-value">${stats.matches > 0 ? (stats.goals / stats.matches).toFixed(1) : '0'}</div><div class="stat-label">Moy</div></div>
+                </div>
+            </div>
+        </div>`
+    },
+
+    viewPlayer(id) {
+        const player = this.players.find(p => p.id === id); if (!player) return
+        const team   = this.teams.find(t => t.id === player.team_id)
+        const dob    = new Date(player.dob)
+        const age    = new Date().getFullYear() - dob.getFullYear()
+        const stats  = this.getPlayerStats(player)
+
+        document.getElementById('detailPlayerName').textContent     = `${player.first_name} ${player.last_name}`
+        document.getElementById('detailPlayerPosition').textContent = player.position
+        document.getElementById('detailPlayerTeam').textContent     = team ? team.name : 'Non assigné'
+        document.getElementById('detailPlayerDOB').textContent      = dob.toLocaleDateString('fr-FR')
+        document.getElementById('detailPlayerAge').textContent      = age + ' ans'
+        document.getElementById('detailPlayerGoals').textContent    = stats.goals
+        document.getElementById('detailPlayerAssists').textContent  = stats.assists
+        document.getElementById('detailPlayerMatches').textContent  = stats.matches
+        document.getElementById('detailPlayerAvg').textContent      = stats.matches > 0 ? (stats.goals / stats.matches).toFixed(2) : '0.00'
+
+        this.navigate('playerDetail')
+    },
+
+    openPlayerModal(id) {
+        const player = this.players.find(p => p.id === id)
+        if (!player) return
+
+        const team = this.teams.find(t => t.id === player.team_id)
+        const dob = new Date(player.dob)
+        const age = new Date().getFullYear() - dob.getFullYear()
+        const stats = this.getPlayerStats(player)
+
+        // Remplir la modal avec les infos du joueur
+        document.getElementById('modalPlayerName').textContent = `${player.first_name} ${player.last_name}`
+        document.getElementById('modalPlayerPosition').textContent = player.position
+        document.getElementById('modalPlayerTeam').textContent = team ? team.name : 'Non assigné'
+        document.getElementById('modalPlayerAge').textContent = age + ' ans'
+        document.getElementById('modalPlayerDOB').textContent = dob.toLocaleDateString('fr-FR')
+        document.getElementById('modalPlayerPhoto').src = player.photo_url ? player.photo_url : 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2280%22 text-anchor=%22middle%22 dy=%22.3em%22%3E⚽%3C/text%3E%3C/svg%3E'
+
+        document.getElementById('modalPlayerGoals').textContent = stats.goals
+        document.getElementById('modalPlayerAssists').textContent = stats.assists
+        document.getElementById('modalPlayerMatches').textContent = stats.matches
+        document.getElementById('modalPlayerAvg').textContent = stats.matches > 0 ? (stats.goals / stats.matches).toFixed(2) : '0.00'
+
+        // Afficher la modal
+        document.getElementById('playerModal').classList.add('active')
+    },
+
+    closePlayerModal() {
+        document.getElementById('playerModal').classList.remove('active')
+    },
+
+    // ============================================================
+    // ÉQUIPES
+    // ============================================================
+    loadTeams() {
+        const list   = document.getElementById('teamsList')
+        const noData = document.getElementById('noTeams')
+        if (this.teams.length === 0) { list.innerHTML = ''; noData.style.display = 'block'; return }
+        noData.style.display = 'none'
+        list.innerHTML = this.teams.map(t => this.getTeamCardHTML(t)).join('')
+    },
+
+    filterTeams() {
+        const search = document.getElementById('teamSearch').value.toLowerCase()
+        const list   = document.getElementById('teamsList')
+        const noData = document.getElementById('noTeams')
+        const filtered = this.teams.filter(t => t.name.toLowerCase().includes(search))
+        if (filtered.length === 0) { list.innerHTML = ''; noData.style.display = 'block'; return }
+        noData.style.display = 'none'
+        list.innerHTML = filtered.map(t => this.getTeamCardHTML(t)).join('')
+    },
+
+    getTeamCardHTML(t) {
+        const playerCount  = this.players.filter(p => p.team_id === t.id).length
+        const topPlayers   = this.players.filter(p => p.team_id === t.id).slice(0, 3)
+
+        return `
+        <div class="team-card" onclick="app.viewTeam('${t.id}')">
+            <div class="team-header">
+                <div class="team-logo">
+                    ${t.logo_url ? `<img src="${t.logo_url}" alt="${t.name}">` : '👥'}
+                </div>
+                <div class="team-name">${t.name}</div>
+                <div class="team-city">${t.city}</div>
+            </div>
+            <div class="team-body">
+                <div class="info-row">
+                    <span class="info-label">Joueurs</span>
+                    <span class="info-value">${playerCount}</span>
+                </div>
+            </div>
+        </div>`
+    },
+
+    viewTeam(id) {
+        const team = this.teams.find(t => t.id === id); if (!team) return
+        const teamPlayers = this.players.filter(p => p.team_id === id)
+
+        document.getElementById('detailTeamName').textContent = team.name
+        document.getElementById('detailTeamCity').textContent = team.city
+
+        document.getElementById('detailTeamPlayers').innerHTML = teamPlayers.length === 0
+            ? '<div style="color:var(--couleur-texte-secondaire);">Aucun joueur assigné</div>'
+            : `<div class="admin-player-grid">
+                ${teamPlayers.map(p => {
+                    const age = new Date().getFullYear() - new Date(p.dob).getFullYear()
+                    return `
+                    <div class="admin-player-card">
+                        <img src="${p.photo_url ? p.photo_url : 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2280%22 text-anchor=%22middle%22 dy=%22.3em%22%3E⚽%3C/text%3E%3C/svg%3E'}" alt="${p.first_name} ${p.last_name}" class="admin-player-photo">
+                        <div class="admin-player-info">
+                            <div class="admin-player-name">${p.first_name} ${p.last_name}</div>
+                            <div class="admin-player-position">${p.position}</div>
+                            <div class="admin-player-age">${age} ans</div>
+                            <div class="admin-player-team">${team.name}</div>
+                        </div>
+                    </div>
+                    `
+                }).join('')}
+                </div>`
+
+        this.navigate('teamDetail')
+    },
+
+    // ============================================================
+    // CHAMPIONNATS
+    // ============================================================
+    loadChampionships() {
+        const list   = document.getElementById('championshipsList')
+        const noData = document.getElementById('noChamps')
+        if (this.championships.length === 0) { list.innerHTML = ''; noData.style.display = 'block'; return }
+        noData.style.display = 'none'
+        list.innerHTML = this.championships.map(c => this.getChampionshipCardHTML(c)).join('')
+    },
+
+    filterChampionships() {
+        const format = document.getElementById('champSearch').value
+        const list   = document.getElementById('championshipsList')
+        const noData = document.getElementById('noChamps')
+        const filtered = format ? this.championships.filter(c => c.format === format) : this.championships
+        if (filtered.length === 0) { list.innerHTML = ''; noData.style.display = 'block'; return }
+        noData.style.display = 'none'
+        list.innerHTML = filtered.map(c => this.getChampionshipCardHTML(c)).join('')
+    },
+
+    getChampionshipCardHTML(c) {
+        const teamCount = this.teams.filter(t => t.championship_id === c.id).length
+        return `
+        <div class="championship-card" onclick="app.viewChampionship('${c.id}')">
+            <div class="champ-header">
+                <div class="champ-logo">
+                    ${c.logo_url ? `<img src="${c.logo_url}" alt="${c.name}">` : '🏆'}
+                </div>
+                <div class="champ-name">${c.name}</div>
+                <div class="champ-season">${c.season}</div>
+            </div>
+            <div class="champ-body">
+                <div class="champ-info"><span class="info-label">Format</span><span class="info-value">${c.format}</span></div>
+                <div class="champ-info"><span class="info-label">Lieu</span><span class="info-value">${c.location}</span></div>
+                <div class="champ-info"><span class="info-label">Équipes</span><span class="info-value">${teamCount}</span></div>
+            </div>
+        </div>`
+    },
+
+    viewChampionship(id) {
+        const champ      = this.championships.find(c => c.id === id); if (!champ) return
+        this.currentChampionshipId = id
+        const champTeams = this.teams.filter(t => t.championship_id === id)
+        const champMatches = this.matches.filter(m => m.championship_id === id && m.score_a !== null)
+
+        // En-tête
+        document.getElementById('detailChampLogo').innerHTML = champ.logo_url
+            ? `<img src="${champ.logo_url}" alt="${champ.name}" style="width:80px;height:80px;border-radius:50%;border:3px solid rgba(255,255,255,0.5);object-fit:cover;">`
+            : '<span style="font-size:3rem;">🏆</span>'
+
+        document.getElementById('detailChampName').textContent        = champ.name
+        document.getElementById('detailChampSeason').textContent      = champ.season
+        document.getElementById('detailChampFormat').textContent      = champ.format
+        document.getElementById('detailChampLocation').textContent    = champ.location
+        document.getElementById('detailChampDescription').textContent = champ.description || ''
+        document.getElementById('detailChampTeamCount').textContent   = champTeams.length
+
+        // Classement
+        const standings = this.computeStandings(champTeams, champMatches)
+        document.getElementById('detailChampStandings').innerHTML = standings.map((s, i) => `
+            <tr>
+                <td style="text-align:center;"><span class="rank ${i < 3 ? 'rank-' + (i+1) : ''}">${i+1}</span></td>
+                <td>
+                    <div style="display:flex;align-items:center;gap:0.5rem;">
+                        ${s.team.logo_url ? `<img src="${s.team.logo_url}" style="width:28px;height:28px;border-radius:50%;object-fit:cover;" alt="${s.team.name}">` : ''}
+                        <strong>${s.team.name}</strong>
+                    </div>
+                </td>
+                <td style="text-align:center;">${s.played}</td>
+                <td style="text-align:center;">${s.wins}</td>
+                <td style="text-align:center;">${s.draws}</td>
+                <td style="text-align:center;">${s.losses}</td>
+                <td style="text-align:center;">${s.goalsFor}</td>
+                <td style="text-align:center;">${s.goalsAgainst}</td>
+                <td style="text-align:center;">${s.diff > 0 ? '+' : ''}${s.diff}</td>
+                <td style="text-align:center;"><strong style="color:var(--couleur-secondaire);font-size:1.1rem;">${s.points}</strong></td>
+            </tr>`).join('')
+
+        // Équipes
+        const teamsList = document.getElementById('detailChampTeamsList')
+        const noTeams = document.getElementById('noDetailChampTeams')
+        if (champTeams.length === 0) {
+            teamsList.innerHTML = ''
+            noTeams.style.display = 'block'
+        } else {
+            noTeams.style.display = 'none'
+            teamsList.innerHTML = champTeams.map(t => this.getTeamCardHTML(t)).join('')
+        }
+
+        // Matchs
+        const allChampMatches = this.matches.filter(m => m.championship_id === id)
+        const matchesList = document.getElementById('detailChampMatchesList')
+        const noMatches = document.getElementById('noDetailChampMatches')
+        if (allChampMatches.length === 0) {
+            matchesList.innerHTML = ''
+            noMatches.style.display = 'block'
+        } else {
+            noMatches.style.display = 'none'
+            matchesList.innerHTML = allChampMatches.map(m => {
+                const teamA = this.teams.find(t => t.id === m.team_a_id)
+                const teamB = this.teams.find(t => t.id === m.team_b_id)
+                const score = m.score_a !== null ? `${m.score_a} - ${m.score_b}` : 'Reporté'
+                const date = new Date(m.match_date).toLocaleDateString('fr-FR', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })
+                return `
+                <div class="card-section" style="padding:1.5rem;">
+                    <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:1rem;align-items:center;">
+                        <div style="text-align:right;">
+                            <div style="font-weight:bold;margin-bottom:0.5rem;">${teamA ? teamA.name : 'Équipe A'}</div>
+                            ${teamA && teamA.logo_url ? `<img src="${teamA.logo_url}" style="width:40px;height:40px;border-radius:50%;object-fit:cover;">` : '👥'}
+                        </div>
+                        <div style="text-align:center;">
+                            <div style="font-size:1.8rem;font-weight:bold;color:var(--couleur-secondaire);">${score}</div>
+                            <div style="font-size:0.85rem;color:var(--couleur-texte-secondaire);">${date}</div>
+                        </div>
+                        <div style="text-align:left;">
+                            <div style="font-weight:bold;margin-bottom:0.5rem;">${teamB ? teamB.name : 'Équipe B'}</div>
+                            ${teamB && teamB.logo_url ? `<img src="${teamB.logo_url}" style="width:40px;height:40px;border-radius:50%;object-fit:cover;">` : '👥'}
+                        </div>
+                    </div>
+                    ${m.venue ? `<div style="margin-top:1rem;padding-top:1rem;border-top:1px solid #E5E7EB;color:var(--couleur-texte-secondaire);"><strong>Lieu :</strong> ${m.venue}</div>` : ''}
+                </div>`
+            }).join('')
+        }
+
+        // Réinitialiser les onglets
+        document.querySelectorAll('#championshipDetail .tab-button[data-tab]').forEach(b => {
+            b.style.borderBottomColor = 'transparent'
+            b.style.color = 'var(--couleur-texte-secondaire)'
+        })
+        document.querySelectorAll('#championshipDetail .tab-content').forEach(c => c.style.display = 'none')
+
+        // Charger les catégories
+        const champCategories = this.categories.filter(c => c.championship_id === id)
+        const categoriesList = document.getElementById('detailChampCategoriesList')
+        const noCategories = document.getElementById('noDetailChampCategories')
+        if (champCategories.length === 0) {
+            categoriesList.innerHTML = ''
+            noCategories.style.display = 'block'
+        } else {
+            noCategories.style.display = 'none'
+            categoriesList.innerHTML = champCategories.map(c => {
+                const catTeamCount = this.teams.filter(t => t.category_id === c.id).length
+                const catMatchCount = this.matches.filter(m => {
+                    const teamA = this.teams.find(t => t.id === m.team_a_id)
+                    const teamB = this.teams.find(t => t.id === m.team_b_id)
+                    return (teamA && teamA.category_id === c.id) || (teamB && teamB.category_id === c.id)
+                }).length
+                return `
+                <div class="category-card" onclick="app.viewCategory('${c.id}')" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();app.viewCategory('${c.id}')}">
+                    <div class="category-card-header">
+                        <div class="category-icon-circle">${this.getCategoryIcon(c.name)}</div>
+                        <div class="category-card-name">${c.name}</div>
+                    </div>
+                    <div class="category-card-body">
+                        <p class="category-description">${c.description || 'Aucune description'}</p>
+                        <div class="category-stats-row">
+                            <div class="category-stat">
+                                <span class="category-stat-value">${catTeamCount}</span>
+                                <span class="category-stat-label">Équipe(s)</span>
+                            </div>
+                            <div class="category-stat">
+                                <span class="category-stat-value">${catMatchCount}</span>
+                                <span class="category-stat-label">Match(s)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>`
+            }).join('')
+        }
+
+        // Afficher l'onglet Catégories par défaut
+        document.querySelector('[data-tab="categories"]').style.borderBottomColor = 'var(--couleur-secondaire)'
+        document.querySelector('[data-tab="categories"]').style.color = 'var(--couleur-primaire)'
+        document.getElementById('tabDetailChampCategories').style.display = 'block'
+
+        // Charger le format
+        this.loadFormatDisplay(id)
+
+        // Calendrier
+        const allMatches = this.matches.filter(m => m.championship_id === id)
+        this.loadPublicCalendar('detailChampCalendarList', 'noDetailChampCalendar', allMatches)
+
+        // Statistiques
+        const champPlayers = this.players.filter(p => {
+            const pTeam = this.teams.find(t => t.id === p.team_id)
+            return pTeam && pTeam.championship_id === id
+        })
+        const champScorerGoals = this.scorers.reduce((total, s) => {
+            const match = this.matches.find(m => m.id === s.match_id)
+            const goals = Number(s.goals)
+            const value = Number.isFinite(goals) && goals > 0 ? goals : 1
+            return match && match.championship_id === id ? total + value : total
+        }, 0)
+
+        document.getElementById('statsTeamCount').textContent = champTeams.length
+        document.getElementById('statsMatchCount').textContent = champMatches.length
+        document.getElementById('statsTotalGoals').textContent = champScorerGoals
+        document.getElementById('statsCategoryCount').textContent = champCategories.length
+        this.loadPublicStatsDisplay(id)
+
+        this.navigate('championshipDetail')
+    },
+
+    switchChampionshipTab(tabName) {
+        document.querySelectorAll('#championshipDetail .tab-button[data-tab]').forEach(b => {
+            b.style.borderBottomColor = 'transparent'
+            b.style.color = 'var(--couleur-texte-secondaire)'
+        })
+        document.querySelectorAll('#championshipDetail .tab-content').forEach(c => c.style.display = 'none')
+
+        const btn = document.querySelector(`[data-tab="${tabName}"]`)
+        if (btn) {
+            btn.style.borderBottomColor = 'var(--couleur-secondaire)'
+            btn.style.color = 'var(--couleur-primaire)'
+        }
+
+        if (tabName === 'categories') document.getElementById('tabDetailChampCategories').style.display = 'block'
+        else if (tabName === 'teams') document.getElementById('tabDetailChampTeams').style.display = 'block'
+        else if (tabName === 'standings') document.getElementById('tabDetailChampStandings').style.display = 'block'
+        else if (tabName === 'matches') document.getElementById('tabDetailChampMatches').style.display = 'block'
+        else if (tabName === 'format') document.getElementById('tabDetailChampFormat').style.display = 'block'
+        else if (tabName === 'calendar') document.getElementById('tabDetailChampCalendar').style.display = 'block'
+        else if (tabName === 'stats') {
+            document.getElementById('tabDetailChampStats').style.display = 'block'
+            this.loadPublicStatsDisplay(this.currentChampionshipId)
+        }
+    },
+
+    // ============================================================
+    // CATÉGORIES
+    // ============================================================
+    getCategoryIcon(categoryName) {
+        // Mapping des noms de catégories à des icônes SVG
+        const iconMap = {
+            'masculin': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:32px;height:32px;color:white;"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>',
+            'féminin': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:32px;height:32px;color:white;"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>',
+            'mixte': '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:32px;height:32px;color:white;"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>'
+        }
+        
+        // Chercher une correspondance (case-insensitive)
+        const lowerName = (categoryName || '').toLowerCase().trim()
+        for (const [key, icon] of Object.entries(iconMap)) {
+            if (lowerName.includes(key)) return icon
+        }
+        
+        // Icône par défaut - Trophy/Medal
+        return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:32px;height:32px;color:white;">
+            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+            <path d="M4 22h16"></path>
+            <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
+            <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
+            <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+        </svg>`
+    },
+
+    // ============================================================
+    // FORMAT DISPLAY — Ligue, Coupe, Hybride
+    // ============================================================
+    loadFormatDisplay(champId) {
+        const champ = this.championships.find(c => c.id === champId)
+        if (!champ) return
+        const div = document.getElementById('formatDisplay')
+        if (champ.format === 'league') div.innerHTML = this.generateLeagueTable(champId)
+        else if (champ.format === 'cup') div.innerHTML = this.generateCupBracket(champId)
+        else if (champ.format === 'hybrid') div.innerHTML = this.generateHybridFormat(champId)
+    },
+
+    generateLeagueTable(champId) {
+        const cats = this.categories.filter(c => c.championship_id === champId)
+        if (cats.length > 0) {
+            return cats.map(cat => {
+                const catTeams = this.teams.filter(t => t.championship_id === champId && t.category_id === cat.id)
+                const catMatches = this.matches.filter(m => m.championship_id === champId && m.category_id === cat.id && m.score_a !== null)
+                return `<h3 style="margin:1.5rem 0 1rem;color:var(--couleur-primaire);display:flex;align-items:center;gap:0.5rem;"><span style="background:#004AAD;color:white;padding:0.25rem 0.75rem;border-radius:4px;font-size:0.85rem;">🏷 ${cat.name}</span></h3>` +
+                    this._buildStandingsTable(catTeams, catMatches)
+            }).join('')
+        }
+        const champTeams = this.teams.filter(t => t.championship_id === champId)
+        const champMatches = this.matches.filter(m => m.championship_id === champId && m.score_a !== null)
+        const noCatTeams = champTeams.filter(t => !t.category_id)
+        const noCatMatches = champMatches.filter(m => {
+            const tA = this.teams.find(t => t.id === m.team_a_id)
+            const tB = this.teams.find(t => t.id === m.team_b_id)
+            return (!tA || !tA.category_id) && (!tB || !tB.category_id)
+        })
+        return (noCatTeams.length > 0 ? '<h3 style="margin:1.5rem 0 1rem;color:var(--couleur-primaire);">Classement</h3>' + this._buildStandingsTable(noCatTeams, noCatMatches) : '')
+    },
+
+    generateCupBracket(champId, categoryId=null) {
+        const champ = this.championships.find(c => c.id === champId)
+        const champTeams = this.teams.filter(t => t.championship_id === champId && (!categoryId || t.category_id === categoryId))
+        const champMatches = this.matches.filter(m => m.championship_id === champId && (!categoryId || m.category_id === categoryId))
+        if (champTeams.length === 0) return `<div class="no-data">Aucune équipe dans ce championnat</div>`
+
+        const num = champTeams.length
+        const phases = num >= 16 ? ['1/8','1/4','1/2','Finale'] : num >= 8 ? ['1/4','1/2','Finale'] : num >= 4 ? ['1/2','Finale'] : ['Finale']
+        const byPhase = {}
+        phases.forEach(ph => { byPhase[ph] = champMatches.filter(m => m.phase === ph) })
+
+        let html = `<div style="background:#000;padding:2rem;border-radius:8px;overflow-x:auto;">
+        <div style="font-size:1.5rem;color:#FFD700;font-weight:900;margin-bottom:2rem;">${champ ? champ.name : 'CHAMPIONSHIP'}</div>
+        <div style="display:flex;justify-content:center;gap:40px;min-width:fit-content;">`
+
+        phases.forEach(phase => {
+            const matches = byPhase[phase] || []
+            const exp = phase === '1/8' ? 8 : phase === '1/4' ? 4 : phase === '1/2' ? 2 : 1
+            html += `<div><div style="text-align:center;color:#FFD700;margin-bottom:1rem;">${phase}</div>`
+            for(let i = 0; i < exp; i++) {
+                const m = matches[i]
+                html += '<div style="border:2px solid white;border-radius:4px;width:140px;margin-bottom:1rem;">'
+                if(m) {
+                    const tA = this.teams.find(t => t.id === m.team_a_id)
+                    const tB = this.teams.find(t => t.id === m.team_b_id)
+                    const wA = m.score_a > m.score_b
+                    const wB = m.score_b > m.score_a
+                    html += `<div style="padding:0.5rem;display:flex;justify-content:space-between;color:white;border-bottom:1px solid rgba(255,255,255,0.3);${wA ? 'background:rgba(76,175,80,0.2);font-weight:bold;' : ''}"><span style="font-size:0.75rem;">${tA ? tA.name : 'TBD'}</span><span>${m.score_a ?? '-'}</span></div>`
+                    html += `<div style="padding:0.5rem;display:flex;justify-content:space-between;color:white;${wB ? 'background:rgba(76,175,80,0.2);font-weight:bold;' : ''}"><span style="font-size:0.75rem;">${tB ? tB.name : 'TBD'}</span><span>${m.score_b ?? '-'}</span></div>`
+                } else {
+                    html += '<div style="padding:0.5rem;color:rgba(255,255,255,0.5);border-bottom:1px solid rgba(255,255,255,0.3);">TBD —</div>'
+                    html += '<div style="padding:0.5rem;color:rgba(255,255,255,0.5);">TBD —</div>'
+                }
+                html += '</div>'
+            }
+            html += '</div>'
+        })
+        html += '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;"><div style="width:90px;height:110px;border:2px solid white;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:3rem;">🏆</div><div style="color:#FFD700;font-weight:bold;margin-top:0.5rem;">CHAMPION</div></div>'
+        html += '</div></div>'
+        return html
+    },
+
+    generateHybridFormat(champId, categoryId=null) {
+        const champTeams = this.teams.filter(t => t.championship_id === champId && (!categoryId || t.category_id === categoryId))
+        if (champTeams.length === 0) return `<div class="no-data">Aucune équipe dans ce championnat</div>`
+        const groupSize = 4
+        const numGroups = Math.ceil(champTeams.length / groupSize)
+        let html = '<div style="display:flex;flex-direction:column;gap:2rem;"><div class="groups-section"><h2 style="color:var(--couleur-primaire);margin-bottom:1rem;">Phase de Groupes</h2><div class="groups-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.5rem;">'
+        for(let i = 0; i < numGroups; i++) {
+            const gt = champTeams.slice(i * groupSize, (i + 1) * groupSize)
+            html += `<div class="group-card" style="background:white;border:2px solid var(--couleur-primaire);border-radius:8px;overflow:hidden;"><div class="group-header" style="background:var(--couleur-primaire);color:white;padding:1rem;font-weight:bold;text-align:center;">Groupe ${String.fromCharCode(65 + i)}</div><div class="group-teams" style="padding:1rem;">${gt.map((t, idx) => `<div class="group-team-item" style="display:flex;justify-content:space-between;padding:0.75rem;border-bottom:1px solid #E5E7EB;"><span><strong>${idx + 1}.</strong> ${t.name}</span><span style="color:var(--couleur-primaire);font-weight:bold;">0 pts</span></div>`).join('')}</div></div>`
+        }
+        html += '</div></div>' + this.generateCupBracket(champId, categoryId) + '</div>'
+        return html
+    },
+
+    _buildStandingsTable(champTeams, champMatches) {
+        if (champTeams.length === 0) return '<div class="no-data" style="margin-bottom:1rem;">Aucune équipe</div>'
+        const standings = champTeams.map(team => {
+            const tm = champMatches.filter(m => m.team_a_id === team.id || m.team_b_id === team.id)
+            let pts = 0, played = 0, won = 0, drawn = 0, lost = 0, gf = 0, ga = 0
+            tm.forEach(m => {
+                played++
+                const isA = m.team_a_id === team.id
+                const ts = isA ? m.score_a : m.score_b
+                const os = isA ? m.score_b : m.score_a
+                gf += ts
+                ga += os
+                if(ts > os) { won++; pts += 3 }
+                else if(ts === os) { drawn++; pts++ }
+                else { lost++ }
+            })
+            return { team, pts, played, won, drawn, lost, gf, ga, diff: gf - ga }
+        }).sort((a, b) => b.pts !== a.pts ? b.pts - a.pts : b.diff !== a.diff ? b.diff - a.diff : b.gf - a.gf)
+        
+        return `<div class="league-table" style="margin-bottom:1.5rem;"><table style="width:100%;border-collapse:collapse;"><thead><tr style="background:#F3F4F6;"><th style="padding:0.75rem;text-align:left;font-weight:bold;border-bottom:2px solid #D1D5DB;">#</th><th style="padding:0.75rem;text-align:left;font-weight:bold;border-bottom:2px solid #D1D5DB;">Équipe</th><th style="padding:0.75rem;text-align:center;font-weight:bold;border-bottom:2px solid #D1D5DB;">J</th><th style="padding:0.75rem;text-align:center;font-weight:bold;border-bottom:2px solid #D1D5DB;">V</th><th style="padding:0.75rem;text-align:center;font-weight:bold;border-bottom:2px solid #D1D5DB;">N</th><th style="padding:0.75rem;text-align:center;font-weight:bold;border-bottom:2px solid #D1D5DB;">D</th><th style="padding:0.75rem;text-align:center;font-weight:bold;border-bottom:2px solid #D1D5DB;">BP</th><th style="padding:0.75rem;text-align:center;font-weight:bold;border-bottom:2px solid #D1D5DB;">BC</th><th style="padding:0.75rem;text-align:center;font-weight:bold;border-bottom:2px solid #D1D5DB;">Diff</th><th style="padding:0.75rem;text-align:center;font-weight:bold;border-bottom:2px solid #D1D5DB;">Pts</th></tr></thead>
+        <tbody>${standings.map((s, i) => `<tr style="border-bottom:1px solid #E5E7EB;"><td style="padding:0.75rem;text-align:left;font-weight:bold;">${i + 1}</td><td style="padding:0.75rem;display:flex;align-items:center;gap:0.5rem;"><div style="display:flex;align-items:center;gap:0.5rem;width:100%;">${s.team.logo_url ? `<img src="${s.team.logo_url}" style="width:24px;height:24px;border-radius:50%;object-fit:cover;" alt="${s.team.name}">` : ''}<strong>${s.team.name}</strong></div></td><td style="padding:0.75rem;text-align:center;">${s.played}</td><td style="padding:0.75rem;text-align:center;">${s.won}</td><td style="padding:0.75rem;text-align:center;">${s.drawn}</td><td style="padding:0.75rem;text-align:center;">${s.lost}</td><td style="padding:0.75rem;text-align:center;">${s.gf}</td><td style="padding:0.75rem;text-align:center;">${s.ga}</td><td style="padding:0.75rem;text-align:center;">${s.diff > 0 ? '+' : ''}${s.diff}</td><td style="padding:0.75rem;text-align:center;color:var(--couleur-secondaire);font-weight:bold;">${s.pts}</td></tr>`).join('')}</tbody></table></div>`
+    },
+
+    loadCategoryFormatDisplay(categoryId) {
+        const cat = this.categories.find(c => c.id === categoryId)
+        if (!cat) return
+        const champ = this.championships.find(c => c.id === cat.championship_id)
+        const div = document.getElementById('categoryFormatDisplay')
+        if (!champ || !div) return
+
+        if (champ.format === 'league') {
+            const catTeams = this.teams.filter(t => t.championship_id === champ.id && t.category_id === categoryId)
+            const catMatches = this.matches.filter(m => m.championship_id === champ.id && m.category_id === categoryId && m.score_a !== null)
+            div.innerHTML = `<h3 style="margin:1.5rem 0 1rem;color:var(--couleur-primaire);display:flex;align-items:center;gap:0.5rem;"><span style="background:#004AAD;color:white;padding:0.25rem 0.75rem;border-radius:4px;font-size:0.85rem;">🏷 ${cat.name}</span></h3>` +
+                this._buildStandingsTable(catTeams, catMatches)
+        } else if (champ.format === 'cup') {
+            div.innerHTML = this.generateCupBracket(champ.id, categoryId)
+        } else if (champ.format === 'hybrid') {
+            div.innerHTML = this.generateHybridFormat(champ.id, categoryId)
+        }
+    },
+
+    viewCategory(categoryId) {
+        const category = this.categories.find(c => c.id === categoryId)
+        if (!category) return
+
+        this.currentCategoryId = categoryId
+        const championship = this.championships.find(c => c.id === category.championship_id)
+        const categoryTeams = this.teams.filter(t => t.category_id === categoryId)
+        const categoryMatches = this.matches.filter(m => {
+            const matchTeamA = this.teams.find(t => t.id === m.team_a_id)
+            const matchTeamB = this.teams.find(t => t.id === m.team_b_id)
+            return (matchTeamA && matchTeamA.category_id === categoryId) || (matchTeamB && matchTeamB.category_id === categoryId)
+        })
+
+        // En-tête
+        document.getElementById('detailCategoryName').textContent = category.name
+        document.getElementById('detailCategoryChamp').textContent = championship ? championship.name : 'Championnat'
+        document.getElementById('detailCategoryDescription').textContent = category.description || ''
+
+        // Réinitialiser les onglets
+        document.querySelectorAll('#categoryView .tab-button').forEach(b => {
+            b.style.borderBottomColor = 'transparent'
+            b.style.color = 'var(--couleur-texte-secondaire)'
+        })
+        document.querySelectorAll('#categoryView .tab-content').forEach(c => c.style.display = 'none')
+
+        // Onglet Équipes
+        const teamsList = document.getElementById('detailCategoryTeamsList')
+        const noTeams = document.getElementById('noDetailCategoryTeams')
+        if (categoryTeams.length === 0) {
+            teamsList.innerHTML = ''
+            noTeams.style.display = 'block'
+        } else {
+            noTeams.style.display = 'none'
+            teamsList.innerHTML = categoryTeams.map(t => this.getTeamCardHTML(t)).join('')
+        }
+
+        // Onglet Formats
+        this.loadCategoryFormatDisplay(categoryId)
+
+        // Onglet Calendrier
+        this.loadPublicCalendar('detailCategoryCalendarList', 'noDetailCategoryCalendar', categoryMatches, ' dans cette cat&eacute;gorie')
+
+        // Afficher l'onglet Équipes par défaut
+        const teamsBtn = document.querySelector('[data-category-tab="teams"]')
+        if (teamsBtn) {
+            teamsBtn.style.borderBottomColor = 'var(--couleur-secondaire)'
+            teamsBtn.style.color = 'var(--couleur-primaire)'
+        }
+        document.getElementById('tabCategoryTeams').style.display = 'block'
+
+        this.navigate('categoryView')
+    },
+
+    displayCategory(categoryId) {
+        if (!categoryId) return
+        const category = this.categories.find(c => c.id === categoryId)
+        if (!category) return
+
+        const championship = this.championships.find(c => c.id === category.championship_id)
+        const categoryTeams = this.teams.filter(t => t.category_id === categoryId)
+        const categoryMatches = this.matches.filter(m => {
+            const matchTeamA = this.teams.find(t => t.id === m.team_a_id)
+            const matchTeamB = this.teams.find(t => t.id === m.team_b_id)
+            return (matchTeamA && matchTeamA.category_id === categoryId) || (matchTeamB && matchTeamB.category_id === categoryId)
+        })
+
+        // En-tête
+        document.getElementById('detailCategoryName').textContent = category.name
+        document.getElementById('detailCategoryChamp').textContent = championship ? championship.name : 'Championnat'
+        document.getElementById('detailCategoryDescription').textContent = category.description || ''
+
+        // Réinitialiser les onglets
+        document.querySelectorAll('#categoryView .tab-button').forEach(b => {
+            b.style.borderBottomColor = 'transparent'
+            b.style.color = 'var(--couleur-texte-secondaire)'
+        })
+        document.querySelectorAll('#categoryView .tab-content').forEach(c => c.style.display = 'none')
+
+        // Onglet Équipes
+        const teamsList = document.getElementById('detailCategoryTeamsList')
+        const noTeams = document.getElementById('noDetailCategoryTeams')
+        if (categoryTeams.length === 0) {
+            teamsList.innerHTML = ''
+            noTeams.style.display = 'block'
+        } else {
+            noTeams.style.display = 'none'
+            teamsList.innerHTML = categoryTeams.map(t => this.getTeamCardHTML(t)).join('')
+        }
+
+        // Onglet Formats
+        this.loadCategoryFormatDisplay(categoryId)
+
+        // Onglet Calendrier
+        this.loadPublicCalendar('detailCategoryCalendarList', 'noDetailCategoryCalendar', categoryMatches, ' dans cette cat&eacute;gorie')
+
+        // Afficher l'onglet Équipes par défaut
+        const teamsBtn = document.querySelector('[data-category-tab="teams"]')
+        if (teamsBtn) {
+            teamsBtn.style.borderBottomColor = 'var(--couleur-secondaire)'
+            teamsBtn.style.color = 'var(--couleur-primaire)'
+        }
+        document.getElementById('tabCategoryTeams').style.display = 'block'
+    },
+
+    switchCategoryTab(tabName) {
+        document.querySelectorAll('#categoryView .tab-button').forEach(b => {
+            b.style.borderBottomColor = 'transparent'
+            b.style.color = 'var(--couleur-texte-secondaire)'
+        })
+        document.querySelectorAll('#categoryView .tab-content').forEach(c => c.style.display = 'none')
+
+        const btn = document.querySelector(`[data-category-tab="${tabName}"]`)
+        if (btn) {
+            btn.style.borderBottomColor = 'var(--couleur-secondaire)'
+            btn.style.color = 'var(--couleur-primaire)'
+        }
+
+        if (tabName === 'teams') document.getElementById('tabCategoryTeams').style.display = 'block'
+        else if (tabName === 'formats') document.getElementById('tabCategoryFormats').style.display = 'block'
+        else if (tabName === 'calendar') document.getElementById('tabCategoryCalendar').style.display = 'block'
+    },
+
+    // ============================================================
+    // CLASSEMENTS
+    // ============================================================
+    loadChampionshipsSelect() {
+        const select = document.getElementById('standingsChampionship')
+        select.innerHTML = '<option value="">-- Sélectionner un championnat --</option>' +
+            this.championships.map(c => `<option value="${c.id}">${c.name}</option>`).join('')
+    },
+
+    loadStandings() {
+        const champId  = document.getElementById('standingsChampionship').value
+        const content  = document.getElementById('standingsContent')
+        const noData   = document.getElementById('noStandings')
+
+        if (!champId) { content.innerHTML = ''; noData.style.display = 'block'; return }
+        noData.style.display = 'none'
+
+        const champTeams   = this.teams.filter(t => t.championship_id === champId)
+        const champMatches = this.matches.filter(m => m.championship_id === champId && m.score_a !== null)
+        const standings    = this.computeStandings(champTeams, champMatches)
+
+        content.innerHTML = `
+        <div class="standings-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="text-align:center;width:50px;">#</th>
+                        <th>Équipe</th>
+                        <th style="text-align:center;">J</th>
+                        <th style="text-align:center;">V</th>
+                        <th style="text-align:center;">N</th>
+                        <th style="text-align:center;">D</th>
+                        <th style="text-align:center;">BP</th>
+                        <th style="text-align:center;">BC</th>
+                        <th style="text-align:center;">DB</th>
+                        <th style="text-align:center;">Pts</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${standings.map((s, i) => `
+                    <tr>
+                        <td style="text-align:center;"><span class="rank ${i < 3 ? 'rank-' + (i+1) : ''}">${i+1}</span></td>
+                        <td>
+                            <div style="display:flex;align-items:center;gap:0.5rem;">
+                                ${s.team.logo_url ? `<img src="${s.team.logo_url}" style="width:28px;height:28px;border-radius:50%;object-fit:cover;" alt="${s.team.name}">` : ''}
+                                <strong>${s.team.name}</strong>
+                            </div>
+                        </td>
+                        <td style="text-align:center;">${s.played}</td>
+                        <td style="text-align:center;">${s.wins}</td>
+                        <td style="text-align:center;">${s.draws}</td>
+                        <td style="text-align:center;">${s.losses}</td>
+                        <td style="text-align:center;">${s.goalsFor}</td>
+                        <td style="text-align:center;">${s.goalsAgainst}</td>
+                        <td style="text-align:center;">${s.diff > 0 ? '+' : ''}${s.diff}</td>
+                        <td style="text-align:center;"><strong style="color:var(--couleur-secondaire);font-size:1.1rem;">${s.points}</strong></td>
+                    </tr>`).join('')}
+                </tbody>
+            </table>
+        </div>`
+    },
+
+    // ============================================================
+    // CALCUL CLASSEMENT — fonction partagée
+    // ============================================================
+    computeStandings(teams, matches) {
+        return teams.map(team => {
+            let played=0, wins=0, draws=0, losses=0, goalsFor=0, goalsAgainst=0
+
+            matches.forEach(m => {
+                if (m.team_a_id === team.id) {
+                    played++
+                    goalsFor     += m.score_a
+                    goalsAgainst += m.score_b
+                    if (m.score_a > m.score_b)      wins++
+                    else if (m.score_a === m.score_b) draws++
+                    else                              losses++
+                } else if (m.team_b_id === team.id) {
+                    played++
+                    goalsFor     += m.score_b
+                    goalsAgainst += m.score_a
+                    if (m.score_b > m.score_a)      wins++
+                    else if (m.score_b === m.score_a) draws++
+                    else                              losses++
+                }
+            })
+
+            const points = wins * 3 + draws
+            const diff   = goalsFor - goalsAgainst
+            return { team, played, wins, draws, losses, goalsFor, goalsAgainst, diff, points }
+        }).sort((a, b) => {
+            if (b.points !== a.points) return b.points - a.points
+            if (b.diff   !== a.diff)   return b.diff   - a.diff
+            return b.goalsFor - a.goalsFor
+        })
+    }
+}
+
+window.addEventListener('load', () => app.init())
+</script>
+
+</body>
+</html>
