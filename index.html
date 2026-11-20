@@ -14,13 +14,13 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SHIFT Agora | on construit votre agence digital et on le fait tourner </title>
+<title>SHIFT Agora </title>
 
 <!-- La Meta Description qui s'affiche sous votre nom dans Google -->
 <meta name="description" content="Site web, contenu, automatisation, maintenance. Shift Agora prend en charge le digital des organisations qui n'ont pas d'équipe interne pour s'en occuper. Pétion-Ville et Marrakech.">
 
 <!-- Balises Open Graph (pour l'affichage propre sur LinkedIn, WhatsApp, etc.) -->
-<meta property="og:title" content="SHIFT Agora | on construit votre agence digital et on le fait tourner">
+<meta property="og:title" content="SHIFT Agora">
 <meta property="og:description" content="Quatres niveaux d'accompagnement, du lancement à la gestion mensuelle complète.">
 <meta property="og:url" content="https://shiftagora.com">
 <meta property="og:type" content="website">
@@ -1384,15 +1384,17 @@
     align-items:flex-end;
     transition:all .25s;
     cursor:pointer;
+    font:inherit;
+    color:inherit;
+    text-align:left;
+    padding:0;
+    width:100%;
   }
   .portfolio-card:hover{
     transform:translateY(-4px);
     border-color:var(--border-hover);
   }
-  .portfolio-card:first-child{
-    grid-column:span 2;
-    grid-row:span 2;
-  }
+  
   .portfolio-img{
     position: absolute;
     inset: 0;
@@ -1464,7 +1466,7 @@
   /* ===== MODAL ===== */
   .pf-modal {
     position:fixed;
-    inset:0;
+    inset:70px 0 0 0;
     z-index:1000;
     background:rgba(2,5,18,0.97);
     display:flex;
@@ -1477,6 +1479,108 @@
   .pf-modal.open {
     opacity:1;
     pointer-events:all;
+  }
+  .pf-project{
+    display:none;
+    width:min(850px,90vw);
+    max-height:90vh;
+    overflow-y:auto;
+    border:1px solid var(--border-hover);
+    border-radius:14px;
+    background:var(--bg-card);
+    color:var(--text-primary);
+    box-shadow:0 25px 90px rgba(0,0,30,.7);
+    scrollbar-color:var(--accent-1) var(--bg-secondary);
+  }
+  .pf-project.active{display:block}
+  .pf-project-head{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding:18px 22px;
+    background:var(--nav-bg);
+    border-bottom:1px solid var(--border);
+    backdrop-filter:blur(16px);
+  }
+  .pf-project-head h3{
+    font-family:'Syne',sans-serif;
+    font-size:20px;
+    margin:0;
+  }
+  .pf-project-status{
+    color:var(--accent-1);
+    font-size:11px;
+    font-weight:700;
+    margin-top:5px;
+  }
+  .pf-project-body{padding:22px}
+  .pf-project-cover{
+    display:block;
+    width:100%;
+    max-height:340px;
+    object-fit:cover;
+    object-position:top;
+    border-radius:9px;
+  }
+  .pf-project-body h4{
+    font-family:'Syne',sans-serif;
+    font-size:15px;
+    margin:24px 0 8px;
+  }
+  .pf-project-body p{
+    color:var(--text-secondary);
+    font-size:14px;
+    line-height:1.7;
+    margin:0;
+  }
+  .pf-project-tags,.pf-project-links,.pf-project-gallery{
+    display:flex;
+    flex-wrap:wrap;
+    gap:9px;
+  }
+  .pf-project-tag,.pf-project-link{
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:7px 10px;
+    color:var(--text-secondary);
+    font-size:12px;
+  }
+  .pf-project-link{
+    color:var(--accent-1);
+    text-decoration:none;
+    border-radius:7px;
+  }
+  .pf-project-shot{
+    width:calc(50% - 5px);
+    border:1px solid var(--border);
+    border-radius:8px;
+    overflow:hidden;
+    background:var(--bg-secondary);
+    color:var(--text-primary);
+    text-align:left;
+    padding:0;
+  }
+  .pf-project-shot img{
+    display:block;
+    width:100%;
+    height:130px;
+    object-fit:cover;
+    object-position:top;
+  }
+  .pf-project-shot span{
+    display:block;
+    padding:8px 10px;
+    font-size:11px;
+  }
+  .pf-project-notice{
+    border-left:3px solid var(--accent-1);
+    padding:12px 14px;
+    background:var(--accent-1-dim);
+    color:var(--text-secondary);
+    font-size:13px;
+    line-height:1.6;
   }
   body.modal-open {
     overflow:hidden;
@@ -1874,6 +1978,8 @@
     .portfolio-card:first-child{
       grid-column:1;
     }
+    .pf-project{width:92vw}
+    .pf-project-body{padding:16px}
     .packs-grid{
       grid-template-columns:1fr;
     }
@@ -2637,7 +2743,7 @@
           <div class="service-icon"><svg viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg></div>
           <h3 class="service-name">Un site qui travaille pour vous</h3>
           <p class="service-desc">Site Vitrine, landing page, e-commerce. Rapide, lisible sur mobile et surtout, le site est maintenu. Un site livré puis laissé seul redevient un probleme sous peu de temps.</p>
-          <div class="service-tags"><span class="tag">Développement</span><span class="tag">Mobile-first</span><span class="tag">Hébergement</span></div><span class="tag">Maintenance</span>
+          <div class="service-tags"><span class="tag">Développement</span><span class="tag">Mobile-first</span><span class="tag">Hébergement</span><span class="tag">Maintenance</span></div>
         </div>
         <div class="service-card reveal" style="transition-delay:.2s">
           <div class="service-number">03</div>
@@ -2653,6 +2759,25 @@
           <p class="service-desc">Inscription, formulaires, relances, mises à jour.tout ce qui se répète peut etre automatisé. Chaque heure récupérée est une heure rendue à votre métier.</p>
           <div class="service-tags"><span class="tag">Automatisations</span><span class="tag">Formulaires</span><span class="tag">intégrations</span><span class="tag">Tableaux de bord</span></div>
         </div>
+      </div>
+    </div></section>
+
+    <!-- ACCOMPAGNEMENT MENSUEL -->
+    <section id="accompagnement" style="background:var(--bg-secondary);transition:background var(--transition-theme)"><div class="container">
+      <div class="reveal" style="max-width:760px;margin:0 auto 40px;text-align:center">
+        <span class="section-eyebrow">L'accompagnement mensuel</span>
+        <h2 class="section-title">Le digital n'est pas un projet. C'est une opération.</h2>
+      </div>
+      <div class="reveal" style="max-width:760px;margin:0 auto">
+        <p class="section-sub" style="max-width:none;margin-bottom:18px">La plupart des projets digitaux ne meurent pas pendant la production — ils meurent après. Le site n'est plus mis à jour. La page sociale s'arrête. Personne n'a le temps de s'en occuper.</p>
+        <p class="section-sub" style="max-width:none;margin-bottom:24px">C'est pour cette raison que Shift Agora travaille au mois. Vous fixez un niveau d'engagement, nous tenons la production. Vous n'avez rien à relancer.</p>
+        <ul class="pack-deliverables">
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Production régulière de contenus, avec un volume défini chaque mois</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Mise à jour et surveillance du site</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Automatisations maintenues et ajustées au fil du temps</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>Un interlocuteur unique, réponse sous 24h</li>
+        </ul>
+        <a href="#contact" class="btn-primary">Parler de l'accompagnement mensuel<svg viewBox="0 0 16 16"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg></a>
       </div>
     </div></section>
 
@@ -2752,77 +2877,29 @@
     <!-- PORTFOLIO -->
     <section id="portfolio"><div class="container">
       <div class="services-header reveal">
-        <div><span class="section-eyebrow">Nos travaux</span><h2 class="section-title">Aperçu de nos projets</h2></div>
+        <div><span class="section-eyebrow">Nos travaux</span><h2 class="section-title">Nos collaborations & initiatives</h2></div>
       </div>
-      <div class="portfolio-grid">
-        
-        <a class="portfolio-card" href="https://ayitidataspo.com" target="_blank" rel="noopener" data-type="link">
-          <div class="portfolio-img">
-          <img src="SHIFT content/img/spo.webp" alt="AYITIDATASPO" loading="lazy">
-        `</div>
-          <div class="portfolio-info">
-            <div class="portfolio-cat">Web Design</div>
-            <div class="portfolio-title">AyitiDataSpo — Plateforme de Football Haïtien</div>
-            <div class="portfolio-hint">
-              <svg viewBox="0 0 16 16"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
-              Voir le site
-            </div>
-          </div>
-        </a>
+      <div class="portfolio-grid" id="portfolioGrid"></div>
 
-        <!-- Image plein ecran simple -->
-        <div class="portfolio-card" style="transition-delay:.1s" data-type="single"
-          data-img="SHIFT content/img/rexus.webp" data-title="Identité Visuelle — Rexus Co." data-cat="Branding">
-          <div class="portfolio-img">
-            <img src="SHIFT content/img/rexus.webp" alt="REXUS" loading="lazy">
-          </div>
-          <div class="portfolio-info">
-            <div class="portfolio-cat">Branding</div>
-            <div class="portfolio-title">Identité Visuelle — Rexus Co.</div>
-            <div class="portfolio-hint">
-              <svg viewBox="0 0 16 16"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
-              Voir l'image
-            </div>
+      <!-- MODAL -->
+      <div id="portfolioModal" class="pf-modal">
+        <button class="pf-close" id="pfClose" aria-label="Fermer">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <div class="pf-single" id="pfSingle">
+          <div class="pf-single-wrap">
+            <img id="pfSingleImg" src="" alt="">
+            <div class="pf-caption" id="pfSingleCaption"></div>
           </div>
         </div>
-        
-        <!-- Gallerie avec miniatures -->
-        <div class="portfolio-card" style="transition-delay:.4s" data-type="gallery"
-          data-gallery='["SHIFT content/img/flyers.webp","SHIFT content/img/resultat.webp","SHIFT content/img/classement.webp","SHIFT content/img/final.webp","SHIFT content/img/final 7.webp"]'
-          data-title="Collection Flyers — Événements" data-cat="Print">
-          <div class="portfolio-img">
-            <img src="SHIFT content/img/flyers.webp" alt="FLYERS" loading="lazy">
+        <div class="pf-gallery" id="pfGallery">
+          <div class="pf-gallery-main">
+            <img id="pfMainImg" src="" alt="">
+            <div class="pf-caption" id="pfGalleryCaption"></div>
           </div>
-          <div class="portfolio-info">
-            <div class="portfolio-cat">Print</div>
-            <div class="portfolio-title">Collection Flyers — Événements</div>
-            <div class="portfolio-hint">
-              <svg viewBox="0 0 16 16"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
-              Voir la galerie
-            </div>
-          </div>
+          <div class="pf-thumbs" id="pfThumbs"></div>
         </div>
-
-        <!-- MODAL -->
-        <div id="portfolioModal" class="pf-modal">
-          <button class="pf-close" id="pfClose">
-            <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          </button>
-          <div class="pf-single" id="pfSingle">
-            <div class="pf-single-wrap">
-              <img id="pfSingleImg" src="" alt="">
-              <div class="pf-caption" id="pfSingleCaption"></div>
-            </div>
-          </div>
-          <div class="pf-gallery" id="pfGallery">
-            <div class="pf-gallery-main">
-              <img id="pfMainImg" src="" alt="">
-              <div class="pf-caption" id="pfGalleryCaption"></div>
-            </div>
-            <div class="pf-thumbs" id="pfThumbs"></div>
-          </div>
-        </div>
-
+        <section class="pf-project" id="pfProject" aria-label="Détails du projet"></section>
       </div>
     </div>
     </section>
@@ -3147,6 +3224,94 @@
   const pfMainImg      = document.getElementById('pfMainImg');
   const pfGalleryCap   = document.getElementById('pfGalleryCaption');
   const pfThumbs       = document.getElementById('pfThumbs');
+  const pfProject      = document.getElementById('pfProject');
+  const portfolioGrid  = document.getElementById('portfolioGrid');
+  let activePortfolioProject = null;
+  const portfolioAsset = file => 'shift-agora-portfolio/assets/' + encodeURIComponent(file);
+  const escapePortfolioHTML = value => String(value).replace(/[&<>"']/g, char => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  })[char]);
+  const portfolioProjects = [
+    {
+      name: 'AyitiDataSpò',
+      category: 'Plateforme web · Département digital externalisé',
+      status: 'Plateforme développée',
+      cover: 'ayiti-home.png',
+      short: 'Une plateforme de gestion des championnats de football, conçue et accompagnée de bout en bout.',
+      about: 'AyitiDataSpò est une plateforme numérique dédiée à la modernisation de la gestion des compétitions de football et à la valorisation des talents du football haïtien. Elle propose des outils pour les équipes, joueurs, matchs, calendriers, classements et statistiques, ainsi qu’un espace public de consultation.',
+      role: 'SHIFT Agora a conçu et développé la plateforme de A à Z. L’agence prend en charge son architecture technique, son déploiement, sa maintenance, son évolution, ses réseaux sociaux et sa communication digitale.',
+      services: ['Conception de plateforme', 'Développement web', 'Déploiement et maintenance', 'Évolution technique', 'Gestion des réseaux sociaux', 'Communication digitale'],
+      gallery: [['ayiti-home.png', 'Page d’accueil'], ['ayiti-cup.png', 'Exemple de compétition'], ['ayiti-admin.png', 'Interface organisateur (capture de démonstration)'], ['ayiti-competitions.png', 'Catalogue des compétitions'], ['ayiti-public.png', 'Portail public']],
+      links: [['Site web', 'https://ayitidataspo.com/'], ['Instagram', 'https://www.instagram.com/ayitidataspo/'], ['Facebook', 'https://www.facebook.com/profile.php?id=61591823374220']]
+    },
+    {
+      name: 'JEMSEF Sportif Club',
+      category: 'Communication sportive · Développement web',
+      status: 'Réalisations documentées',
+      cover: 'jemsef-event.jpg',
+      short: 'Communication des compétitions, création graphique et formulaire d’inscription en ligne.',
+      about: 'JEMSEF Sportif Club est une organisation sportive fondée en 2009 à Saint-Marc, en Haïti. Elle œuvre pour la promotion du sport et l’encadrement des jeunes, notamment à travers les compétitions JEMSEF Cup.',
+      role: 'SHIFT Agora accompagne JEMSEF dans ses activités digitales : gestion des réseaux sociaux, campagnes de communication, création de supports sportifs et développement d’outils numériques. L’outil d’inscription créé permet la collecte des inscriptions uniquement ; aucun tableau de bord de gestion n’est revendiqué.',
+      services: ['Réseaux sociaux', 'Création graphique', 'Communication événementielle', 'Campagnes sportives', 'Formulaire de collecte des inscriptions', 'Accompagnement digital'],
+      gallery: [['jemsef-event.jpg', 'Affiche officielle JEMSEF Cup 2026'], ['jemsef-registration.jpg', 'Lancement des inscriptions'], ['jemsef-semis.jpg', 'Demi-finales'], ['jemsef-final.jpg', 'Finale'], ['jemsef-form.png', 'Formulaire de collecte des inscriptions']],
+      links: [['Facebook', 'https://www.facebook.com/jemsefhaiti'], ['Instagram', 'https://www.instagram.com/jemsefhaiti/'], ['Formulaire', 'https://formulaire-inscription-jemsef.netlify.app/']]
+    },
+    {
+      name: 'Héritage Santé',
+      category: 'Modernisation WordPress · Accompagnement',
+      status: 'Modernisation en cours',
+      inProgress: true,
+      cover: 'heritage-site.png',
+      short: 'Reprise d’un blog de sensibilisation sanitaire et accompagnement de son évolution numérique.',
+      about: 'Héritage Santé est une initiative haïtienne d’information et de sensibilisation sanitaire. Née sous la forme d’un blog, elle porte un projet d’évolution vers une plateforme de santé numérique plus complète.',
+      role: 'SHIFT Agora accompagne la modernisation de la plateforme WordPress existante, sa maintenance et son évolution technique, ainsi que la présence digitale du projet. Les fonctionnalités futures présentées dans la vision du projet ne sont pas annoncées comme déjà opérationnelles.',
+      services: ['Modernisation WordPress', 'Maintenance et mises à jour', 'Évolution de plateforme', 'Expérience utilisateur', 'Réseaux sociaux'],
+      gallery: [['heritage-site.png', 'Plateforme initiale avant modernisation']],
+      links: [['Blog existant', 'https://santes77.wordpress.com/2025/01/06/la-sinusite-une-maladie-de-plus-en-plus-populaire-en-haiti/'], ['Instagram', 'https://www.instagram.com/hs234540/']]
+    },
+    {
+      name: 'Shift.learning',
+      category: 'Initiative SHIFT · Éducation numérique',
+      status: 'Initiative active',
+      cover: 'learning-linkedin.png',
+      short: 'Vulgarisation des technologies grâce aux carrousels, publications et vidéos pédagogiques.',
+      about: 'Shift.learning est une initiative éducative de SHIFT Agora qui vise à rendre les notions technologiques plus accessibles, notamment les concepts et métiers liés à l’intelligence artificielle.',
+      role: 'SHIFT Agora porte cette initiative et assure sa ligne éditoriale, la conception graphique, la production de contenus pédagogiques et la diffusion sur les réseaux sociaux, notamment Instagram, LinkedIn et Facebook.',
+      services: ['Stratégie éditoriale', 'Vulgarisation technologique', 'Carrousels pédagogiques', 'Contenus vidéo', 'Design graphique', 'Gestion des réseaux sociaux'],
+      gallery: [['learning-linkedin.png', 'Carrousels sur LinkedIn'], ['learning-instagram.png', 'Publications Instagram']],
+      links: [['Instagram', 'https://www.instagram.com/shif.tlearning/'], ['LinkedIn', 'https://www.linkedin.com/company/136015422/']]
+    },
+    {
+      name: 'Université Quisqueya — Sports',
+      category: 'Digitalisation sportive · Système d’identification',
+      status: 'Développement en cours',
+      inProgress: true,
+      cover: 'uniq-portal.png',
+      short: 'Conception d’outils digitaux pour l’organisation sportive, dont le portail UNiQ Sports.',
+      about: 'La Direction sportive de l’Université Quisqueya souhaite moderniser ses processus d’identification, de suivi et de gestion des activités sportives.',
+      role: 'SHIFT Agora est chargée de traduire les idées digitales de l’organisation sportive en solutions techniques. Le Système officiel d’identification UNiQ Sports est en cours de développement : l’interface présentée prévoit des accès pour étudiants-athlètes, responsables sportifs et administration.',
+      services: ['Analyse des besoins', 'Conception de systèmes', 'Développement web', 'Digitalisation de processus', 'Accompagnement technique'],
+      gallery: [['uniq-portal.png', 'Aperçu du portail UNiQ Sports en développement']],
+      links: []
+    }
+  ];
+
+  portfolioGrid.innerHTML = portfolioProjects.map((project, index) => `
+    <button class="portfolio-card" type="button" data-project="${index}" aria-label="Découvrir ${escapePortfolioHTML(project.name)}">
+      <div class="portfolio-img"><img src="${portfolioAsset(project.cover)}" alt="${escapePortfolioHTML(project.name)}" loading="lazy"></div>
+      <div class="portfolio-info">
+        <div class="portfolio-cat">${escapePortfolioHTML(project.category)}</div>
+        <div class="portfolio-title">${escapePortfolioHTML(project.name)}</div>
+        <div class="portfolio-hint">
+          <svg viewBox="0 0 16 16"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
+          Découvrir le projet
+        </div>
+      </div>
+    </button>`).join('');
+  portfolioGrid.querySelectorAll('.portfolio-card').forEach(card => {
+    card.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    card.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
 
   function openModal()  { modal.classList.add('open'); document.body.classList.add('modal-open'); }
   function closeModal() {
@@ -3155,11 +3320,15 @@
     setTimeout(() => {
       pfSingle.classList.remove('active');
       pfGallery.classList.remove('active');
+      pfProject.classList.remove('active');
+      pfProject.innerHTML = '';
+      activePortfolioProject = null;
       pfSingleImg.src = ''; pfMainImg.src = ''; pfThumbs.innerHTML = '';
     }, 350);
   }
 
   function openSingle(img, title, cat) {
+    pfProject.classList.remove('active');
     pfSingleImg.src = img; pfSingleImg.alt = title;
     pfSingleCaption.textContent = cat + ' — ' + title;
     pfSingle.classList.add('active'); pfGallery.classList.remove('active');
@@ -3167,6 +3336,7 @@
   }
 
   function openGallery(imgs, title, cat) {
+    pfProject.classList.remove('active');
     let current = 0;
     pfMainImg.src = imgs[0]; pfMainImg.alt = title;
     pfGalleryCap.textContent = cat + ' — ' + title;
@@ -3190,16 +3360,48 @@
     openModal();
   }
 
-  document.querySelectorAll('.portfolio-card[data-type]').forEach(card => {
-    const type = card.getAttribute('data-type');
-    if (type === 'link') return;
-    card.addEventListener('click', () => {
-      if (type === 'single') {
-        openSingle(card.getAttribute('data-img'), card.getAttribute('data-title'), card.getAttribute('data-cat'));
-      } else if (type === 'gallery') {
-        openGallery(JSON.parse(card.getAttribute('data-gallery')), card.getAttribute('data-title'), card.getAttribute('data-cat'));
-      }
-    });
+  function openProject(project) {
+    activePortfolioProject = project;
+    const html = escapePortfolioHTML;
+    const gallery = project.gallery.map(([file, caption], index) => `
+      <button class="pf-project-shot" type="button" data-shot="${index}" aria-label="Voir en grand : ${html(caption)}">
+        <img src="${portfolioAsset(file)}" alt="${html(caption)}" loading="lazy"><span>${html(caption)} ↗</span>
+      </button>`).join('');
+    const services = project.services.map(service => `<span class="pf-project-tag">${html(service)}</span>`).join('');
+    const links = project.links.length
+      ? project.links.map(([label, url]) => `<a class="pf-project-link" href="${html(url)}" target="_blank" rel="noopener noreferrer">${html(label)} ↗</a>`).join('')
+      : '<p>Le lien public sera ajouté dès sa disponibilité.</p>';
+
+    pfProject.innerHTML = `
+      <header class="pf-project-head">
+        <div><h3>${html(project.name)}</h3><div class="pf-project-status">${html(project.status)}</div></div>
+      </header>
+      <div class="pf-project-body">
+        <img class="pf-project-cover" src="${portfolioAsset(project.cover)}" alt="${html(project.name)}">
+        <h4>À propos</h4><p>${html(project.about)}</p>
+        <h4>Notre intervention</h4><p>${html(project.role)}</p>
+        <h4>Domaines d’intervention</h4><div class="pf-project-tags">${services}</div>
+        ${project.inProgress ? '<h4>État d’avancement</h4><div class="pf-project-notice">Projet en cours : les captures montrent le point de départ ou une interface en développement. Elles ne constituent pas une déclaration de mise en service complète.</div>' : ''}
+        <h4>Réalisations & captures</h4><div class="pf-project-gallery">${gallery}</div>
+        <h4>Liens</h4><div class="pf-project-links">${links}</div>
+      </div>`;
+    pfSingle.classList.remove('active');
+    pfGallery.classList.remove('active');
+    pfProject.classList.add('active');
+    openModal();
+  }
+
+  portfolioGrid.addEventListener('click', event => {
+    const card = event.target.closest('[data-project]');
+    if (card) openProject(portfolioProjects[Number(card.dataset.project)]);
+  });
+
+  pfProject.addEventListener('click', event => {
+    const shot = event.target.closest('[data-shot]');
+    if (!shot || !activePortfolioProject) return;
+    const project = activePortfolioProject;
+    const index = Number(shot.dataset.shot);
+    openGallery(project.gallery.map(([file]) => portfolioAsset(file)), project.name, project.gallery[index][1]);
   });
 
   pfClose.addEventListener('click', closeModal);
